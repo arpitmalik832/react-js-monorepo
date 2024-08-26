@@ -1,0 +1,33 @@
+{
+  "name": "library",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "type": "module",
+  "private": true,
+  "author": "Arpit Malik",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest --coverage --silent",
+    "test:watch": "jest --watch",
+    "test:ss-update": "jest -u",
+    "test:coverage": "jest --coverage",
+    "test:coverage:pre-commit": "jest --coverage --silent",
+    "test:watch:quick": "jest --watch --runInBand",
+    "test:coverage:quick": "jest --coverage --maxWorkers=50%",
+    "test:coverage:pre-commit:quick": "jest --coverage --maxWorkers=50% --silent",
+    "test:clearCache": "jest --clearCache"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.2",
+    "@babel/plugin-transform-runtime": "^7.25.4",
+    "@babel/preset-env": "^7.25.4",
+    "@babel/preset-react": "^7.24.7",
+    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/react": "^16.0.0",
+    "@types/jest": "^29.5.12",
+    "babel-jest": "^29.7.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  }
+}

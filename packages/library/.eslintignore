@@ -8,3 +8,4 @@ cypress/videos
 cypress/screenshots
 .storybook
 storybook-static
+**/*.md

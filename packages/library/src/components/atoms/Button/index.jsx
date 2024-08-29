@@ -4,7 +4,7 @@ import forwardGrey from '../../../assets/images/forwardGrey.png';
 import s from './index.module.scss';
 
 const Button = () => (
-  <div data-testId="button" className={s.button}>
+  <div data-testid="button" className={s.button}>
     <StandardAccount />
     <img src={forwardGrey} alt="" />
     Button

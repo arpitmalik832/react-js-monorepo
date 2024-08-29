@@ -10,7 +10,6 @@ module.exports = {
     'prettier',
     'react-app',
     'plugin:storybook/recommended',
-    'plugin:mdx/recommended',
   ],
   plugins: [
     'css-modules',
@@ -20,7 +19,6 @@ module.exports = {
     'react',
     'react-hooks',
     'storybook',
-    'mdx',
   ],
   // globals: {
   //   __isRelease__: 'readonly',
@@ -65,6 +63,8 @@ module.exports = {
     {
       files: ['*.mdx'],
       parser: 'eslint-mdx',
+      extends: ['plugin:mdx/recommended'],
+      plugins: ['mdx'],
       rules: {
         'react/jsx-filename-extension': [
           1,

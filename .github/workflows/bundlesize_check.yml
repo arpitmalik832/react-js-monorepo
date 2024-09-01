@@ -1,0 +1,25 @@
+name: Lint and Bundle Size Check
+
+on:
+  pull_request:
+    branches: [development, staging, beta, release, master]
+
+jobs:
+  bundle-size:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      - name: Build project
+        run: yarn build
+      - name: Check bundle size
+        uses: siddharthkp/bundlesize@v2
+        with:
+          files: "packages/library/dist/**/*.js"
+          max-size: "100kB"
+          compression: "gzip"

@@ -2,7 +2,7 @@ name: Bundle Size Check
 
 on:
   pull_request:
-    branches: [main]
+    branches: [development, staging, beta, release, master]
 
 jobs:
   bundle-size:

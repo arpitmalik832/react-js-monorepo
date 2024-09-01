@@ -17242,9 +17242,9 @@ strong-log-transformer@2.1.0, strong-log-transformer@^2.1.0:
     through "^2.3.4"
 
 style-dictionary@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.npmjs.org/style-dictionary/-/style-dictionary-4.0.1.tgz"
-  integrity sha512-aZ2iouI0i0DIXk3QhCkwOeo5rQeuk5Ja0PhHo32/EXCNuay4jK4CZ+hQJW0Er0J74VWniR+qaeoWgjklcULxOQ==
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/style-dictionary/-/style-dictionary-4.1.0.tgz#17ca6ae002470c7e8a4c3fa31f4eee1017b39152"
+  integrity sha512-DfY64t/XsL0bycnabIcIna/H1GyjK4sKLui2t0q6flr2uM+VpRNoSNCPOpi5YSouhKEFjoiC6ediyrMzraTz8A==
   dependencies:
     "@bundled-es-modules/deepmerge" "^4.3.1"
     "@bundled-es-modules/glob" "^10.4.2"

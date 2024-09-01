@@ -6,7 +6,7 @@ const { themes } = require('prism-react-renderer');
   module.exports = {
     title: 'My Site',
     tagline: 'Dinosaurs are cool',
-    url: 'https://your-docusaurus-test-site.com',
+    url: 'https://staging--react-js-rollup-library-monorepo.netlify.app/',
     baseUrl: '/',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
@@ -79,7 +79,7 @@ const { themes } = require('prism-react-renderer');
                 protocol: 'https',
               },
             ],
-            apiKey: 'Q5kUZ0UMDBBN88NxIzvJYwAdKosyopnJ',
+            apiKey: '6MJJBbWsWS4bbPpOThKjg9wzNkjNbPaJ',
           },
           // Optional: Typesense search parameters
           typesenseSearchParameters: {},

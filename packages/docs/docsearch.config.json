@@ -1,7 +1,11 @@
 {
   "index_name": "docs",
-  "start_urls": ["https://my-docs-site.com/"],
-  "sitemap_urls": ["https://my-docs-site.com/sitemap.xml"],
+  "start_urls": [
+    "https://staging--react-js-rollup-library-monorepo.netlify.app/"
+  ],
+  "sitemap_urls": [
+    "https://staging--react-js-rollup-library-monorepo.netlify.app/sitemap.xml"
+  ],
   "sitemap_alternate_links": true,
   "stop_urls": ["/tests"],
   "selectors": {

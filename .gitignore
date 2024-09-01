@@ -116,10 +116,6 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# ignore package-lock or yarn.lock if generated
-package-lock.json
-yarn.lock
-
 # ignore build files
 build
 dist

@@ -1,8 +1,8 @@
-name: Lint and Bundle Size Check
+name: Bundle Size Check
 
 on:
   pull_request:
-    branches: [development, staging, beta, release, master]
+    branches: [main]
 
 jobs:
   bundle-size:
@@ -12,14 +12,13 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "20"
+          node-version: "16"
       - name: Install dependencies
         run: yarn install --frozen-lockfile
       - name: Build project
         run: yarn build
       - name: Check bundle size
-        uses: siddharthkp/bundlesize@v2
+        uses: jackyef/bundlewatch-gh-action@master
         with:
-          files: "packages/library/dist/**/*.js"
-          max-size: "100kB"
-          compression: "gzip"
+          build-script: yarn build
+          bundlewatch-github-token: ${{ secrets.BUNDLEWATCH_GITHUB_TOKEN }}

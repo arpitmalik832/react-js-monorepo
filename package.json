@@ -1,6 +1,6 @@
 {
   "name": "react-js-rollup-library",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "A React JS starter code",
   "type": "module",
   "private": true,
@@ -42,7 +42,8 @@
     "lint-staged": "lerna run lint-staged --concurrency 1",
     "grant-permissions:husky": "chmod +x .husky/*",
     "prepare": "husky install && yarn grant-permissions:husky",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "version:bump": "lerna version --yes --no-push --no-git-tag-version"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.4.0",

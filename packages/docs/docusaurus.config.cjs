@@ -1,8 +1,5 @@
 const { themes } = require('prism-react-renderer');
 
-const lightCodeTheme = themes.github;
-const darkCodeTheme = themes.dracula;
-
 // With JSDoc @type annotations, IDEs can provide config autocompletion
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 (
@@ -14,9 +11,8 @@ const darkCodeTheme = themes.dracula;
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
     favicon: 'img/favicon.ico',
-    organizationName: 'facebook', // Usually your GitHub org/user name.
-    projectName: 'docusaurus', // Usually your repo name.
-
+    organizationName: 'arpitmalik832', // Usually your GitHub org/user name.
+    projectName: 'library', // Usually your repo name.
     presets: [
       [
         '@docusaurus/preset-classic',
@@ -26,13 +22,13 @@ const darkCodeTheme = themes.dracula;
             sidebarPath: require.resolve('./sidebars.js'),
             // Please change this to your repo.
             editUrl:
-              'https://github.com/facebook/docusaurus/edit/main/website/',
+              'https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/docs/',
           },
           blog: {
             showReadingTime: true,
             // Please change this to your repo.
             editUrl:
-              'https://github.com/facebook/docusaurus/edit/main/website/blog/',
+              'https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/blog/',
           },
           theme: {
             customCss: require.resolve('./src/css/custom.css'),
@@ -40,7 +36,6 @@ const darkCodeTheme = themes.dracula;
         }),
       ],
     ],
-
     themeConfig:
       /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
       ({
@@ -59,64 +54,46 @@ const darkCodeTheme = themes.dracula;
             },
             { to: '/blog', label: 'Blog', position: 'left' },
             {
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/',
               label: 'GitHub',
               position: 'right',
             },
             {
               type: 'docsVersionDropdown',
+              label: 'Version',
+              position: 'right',
             },
           ],
-        },
-        footer: {
-          style: 'dark',
-          links: [
-            {
-              title: 'Docs',
-              items: [
-                {
-                  label: 'Tutorial',
-                  to: '/docs/intro',
-                },
-              ],
-            },
-            {
-              title: 'Community',
-              items: [
-                {
-                  label: 'Stack Overflow',
-                  href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-                },
-                {
-                  label: 'Discord',
-                  href: 'https://discordapp.com/invite/docusaurus',
-                },
-                {
-                  label: 'Twitter',
-                  href: 'https://twitter.com/docusaurus',
-                },
-              ],
-            },
-            {
-              title: 'More',
-              items: [
-                {
-                  label: 'Blog',
-                  to: '/blog',
-                },
-                {
-                  label: 'GitHub',
-                  href: 'https://github.com/facebook/docusaurus',
-                },
-              ],
-            },
-          ],
-          copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
         },
         prism: {
-          theme: lightCodeTheme,
-          darkTheme: darkCodeTheme,
+          theme: themes.github,
+          darkTheme: themes.dracula,
+        },
+        typesense: {
+          typesenseCollectionName: 'docs',
+          typesenseServerConfig: {
+            nodes: [
+              {
+                host: 'hbwtonpgf08uav1dp-1.a1.typesense.net',
+                port: '443',
+                protocol: 'https',
+              },
+            ],
+            apiKey: 'Q5kUZ0UMDBBN88NxIzvJYwAdKosyopnJ',
+          },
+          // Optional: Typesense search parameters
+          typesenseSearchParameters: {},
+          // Optional: path to Typesense search page
+          contextualSearch: true,
         },
       }),
+    plugins: [
+      [
+        'docusaurus-theme-search-typesense',
+        {
+          // The typesense options are already configured in your themeConfig
+        },
+      ],
+    ],
   }
 );

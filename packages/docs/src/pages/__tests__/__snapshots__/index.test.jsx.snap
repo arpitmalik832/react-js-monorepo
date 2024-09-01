@@ -1,0 +1,186 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home unit tests snapshot test 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        data-testid="mock-layout"
+      >
+        <div
+          data-testid="mock-layout-title"
+        >
+          Hello from mock title
+        </div>
+        <div
+          data-testid="mock-layout-description"
+        >
+          Description will go into a meta tag in &lt;head /&gt;
+        </div>
+        <div
+          data-testid="mock-layout-children"
+        >
+          <header
+            class="hero hero--primary heroBanner"
+          >
+            <div
+              class="container"
+            >
+              <h1
+                class="hero__title"
+              >
+                mock title
+              </h1>
+              <p
+                class="hero__subtitle"
+              >
+                mock tagline
+              </p>
+              <div
+                class="buttons"
+              >
+                <div
+                  data-testid="mock-link"
+                >
+                  <div
+                    data-testid="mock-link-classname"
+                  >
+                    button button--secondary button--lg
+                  </div>
+                  <div
+                    data-testid="mock-link-to"
+                  >
+                    /docs/intro
+                  </div>
+                </div>
+              </div>
+            </div>
+          </header>
+          <main>
+            <div
+              data-testid="mock-home-features"
+            >
+              HomepageFeatures
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      data-testid="mock-layout"
+    >
+      <div
+        data-testid="mock-layout-title"
+      >
+        Hello from mock title
+      </div>
+      <div
+        data-testid="mock-layout-description"
+      >
+        Description will go into a meta tag in &lt;head /&gt;
+      </div>
+      <div
+        data-testid="mock-layout-children"
+      >
+        <header
+          class="hero hero--primary heroBanner"
+        >
+          <div
+            class="container"
+          >
+            <h1
+              class="hero__title"
+            >
+              mock title
+            </h1>
+            <p
+              class="hero__subtitle"
+            >
+              mock tagline
+            </p>
+            <div
+              class="buttons"
+            >
+              <div
+                data-testid="mock-link"
+              >
+                <div
+                  data-testid="mock-link-classname"
+                >
+                  button button--secondary button--lg
+                </div>
+                <div
+                  data-testid="mock-link-to"
+                >
+                  /docs/intro
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+        <main>
+          <div
+            data-testid="mock-home-features"
+          >
+            HomepageFeatures
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

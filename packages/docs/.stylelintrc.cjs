@@ -64,9 +64,7 @@ module.exports = {
     '**/*.{mjs,cjs,js,jsx,ts,mdx}',
     'build/**/*.{css,scss}',
     'dist/**/*.{css,scss}',
-    'static/**/*.{css,scss}',
     'node_modules/**/*.{css,scss}',
     'coverage/**/*.{css,scss}',
-    'storybook-static/**/*.{css,scss}',
   ],
 };

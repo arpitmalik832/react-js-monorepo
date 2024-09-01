@@ -7,6 +7,5 @@ cypress/downloads
 cypress/videos
 cypress/screenshots
 .storybook
-storybook-static
 **/*.md
 versioned_docs

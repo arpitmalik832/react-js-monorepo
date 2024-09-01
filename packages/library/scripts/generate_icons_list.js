@@ -23,10 +23,11 @@ async function getIcons(dir) {
 
 async function processIcons(dir) {
   const files = await getIcons(dir);
+  const filesNew = files.map(i => i.replace('\\', '/'));
   const content = `// Do not edit directly.
 // Last generated on ${new Date()}
 
-const list = ${JSON.stringify(files, null, 2)}
+const list = ${JSON.stringify(filesNew, null, 2)}
 
 export default list;
 `;

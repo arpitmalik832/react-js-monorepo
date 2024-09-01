@@ -118,8 +118,11 @@ printf "\n${Blue}=================================${NC}\n"
 printf "\n${Blue}=================================${NC}\n"
 
 printf "${Green}Start - Linting of the code.${NC}"
+# Adding changes done by build script
+git add .
 
 yarn lint-staged
+
 # Adding changes made by lint-staged
 git add .
 

@@ -17499,10 +17499,10 @@ stylelint-config-clean-order@^5.4.2:
   dependencies:
     stylelint-order "^6.0.4"
 
-stylelint-config-hudochenkov@^8.0.1:
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/stylelint-config-hudochenkov/-/stylelint-config-hudochenkov-8.0.1.tgz#6ecb11c5aa7cfa64b6a3a8e02415193d949f9d79"
-  integrity sha512-rcYq/GV5GCH+vMzHXqtDhO22UaYu8mif1QDC+X+y0XFlyGEJ8u1CdtmaffIkIkOCBH1QOqtqbwB4ZXTrbTSR6g==
+stylelint-config-hudochenkov@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/stylelint-config-hudochenkov/-/stylelint-config-hudochenkov-10.0.0.tgz#bbd75ad28217e574c398c27947354865999eacec"
+  integrity sha512-/foIJpc2grEsG1NxPXLgqEOezOW1ArC5EvUssLEwcGVkrCMgVzyPN/OxL696oj137ZOJckv0raCjZEiCCoWAVw==
 
 stylelint-config-idiomatic-order@^10.0.0:
   version "10.0.0"

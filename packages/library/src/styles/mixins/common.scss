@@ -24,10 +24,9 @@
   overflow: hidden; // fallback for non supported browsers
   display: -webkit-box;
   -webkit-box-orient: vertical;
+  -webkit-line-clamp: $maxLine;
 
   white-space: normal;
-
-  -webkit-line-clamp: $maxLine;
 }
 
 // Add horizontal gap between elements

@@ -79,13 +79,12 @@
     "knip": "^5.27.4",
     "lint-staged": "^15.2.9",
     "rimraf": "^6.0.1",
-    "stylelint": "^14.16.1",
+    "stylelint": "^16.9.0",
     "stylelint-config-clean-order": "^6.1.0",
     "stylelint-config-hudochenkov": "^10.0.0",
     "stylelint-config-idiomatic-order": "^10.0.0",
-    "stylelint-config-prettier": "^9.0.5",
-    "stylelint-config-standard": "^29.0.0",
-    "stylelint-config-standard-scss": "^6.0.0",
+    "stylelint-config-standard": "^36.0.1",
+    "stylelint-config-standard-scss": "^13.1.0",
     "stylelint-order": "^6.0.4"
   },
   "dependencies": {

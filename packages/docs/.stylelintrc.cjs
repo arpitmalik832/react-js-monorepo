@@ -6,7 +6,6 @@ module.exports = {
   extends: [
     'stylelint-config-standard',
     'stylelint-config-standard-scss',
-    'stylelint-config-prettier',
     'stylelint-config-idiomatic-order',
     'stylelint-config-hudochenkov/order',
     'stylelint-config-clean-order/error',

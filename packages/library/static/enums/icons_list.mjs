@@ -1,5 +1,5 @@
 // Do not edit directly.
-// Last generated on Tue Sep 03 2024 14:30:35 GMT+0530 (India Standard Time)
+// Last generated on Tue Sep 03 2024 14:33:40 GMT+0530 (India Standard Time)
 
 const list = [
   'lg32/standardAccount.svg',

@@ -5,7 +5,12 @@
   "private": true,
   "author": "Arpit Malik",
   "license": "MIT",
+  "engines": {
+    "node": ">=20.17.0",
+    "yarn": ">=1.22.22"
+  },
   "scripts": {
+    "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install dependencies')\"",
     "rm-build": "rimraf build --glob",
     "rm-node_modules": "rimraf node_modules --glob",
     "rm-package-lock": "rimraf package-lock.json",

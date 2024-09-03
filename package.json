@@ -9,11 +9,16 @@
   "workspaces": [
     "packages/*"
   ],
+  "engines": {
+    "node": ">=20.17.0",
+    "yarn": ">=1.22.22"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter"
   },
   "scripts": {
+    "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install dependencies')\"",
     "clean": "lerna clean -y",
     "start": "lerna run start --stream",
     "build": "lerna run build --stream --no-bail",

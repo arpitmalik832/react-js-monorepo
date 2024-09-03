@@ -6,11 +6,17 @@
   "private": true,
   "author": "Arpit Malik",
   "license": "MIT",
+  "engines": {
+    "node": ">=20.17.0",
+    "yarn": ">=1.22.22"
+  },
   "scripts": {
+    "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install dependencies')\"",
     "rm-dist": "rimraf dist --glob",
     "rm-node_modules": "rimraf node_modules --glob",
     "rm-package-lock": "rimraf package-lock.json",
-    "clean": "yarn rm-package-lock && yarn rm-node_modules",
+    "rm-yarn-lock": "rimraf yarn.lock",
+    "clean": "yarn rm-yarn-lock && yarn rm-node_modules",
     "generate-styles": "style-dictionary build --config style-dictionary.config.js",
     "build-sass": "sass --no-source-map ./src/styles/index.scss ./static/styles/sass-generated/index.css && postcss ./static/styles/sass-generated/index.css -o ./static/styles/postcss-processed/index.css",
     "watch-sass": "sass --no-source-map --watch ./src/styles/index.scss ./static/styles/sass-generated/index.css && postcss ./static/styles/sass-generated/index.css -o ./static/styles/postcss-processed/index.css --watch",

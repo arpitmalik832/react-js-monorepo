@@ -19,7 +19,9 @@
   },
   "scripts": {
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install dependencies')\"",
-    "clean": "lerna clean -y",
+    "rm-node_modules": "rimraf node_modules --glob",
+    "rm-yarn-lock": "rimraf yarn.lock",
+    "clean": "lerna clean -y && yarn rm-yarn-lock && yarn rm-node_modules",
     "start": "lerna run start --stream",
     "build": "lerna run build --stream --no-bail",
     "build:beta": "lerna run build:beta --stream --no-bail",

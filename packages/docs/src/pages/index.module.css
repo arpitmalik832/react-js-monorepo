@@ -10,7 +10,7 @@
   text-align: center;
 }
 
-@media screen and (max-width: 966px) {
+@media (width <= 966px) {
   .heroBanner {
     padding: 2rem;
   }

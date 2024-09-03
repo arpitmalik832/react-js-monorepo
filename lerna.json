@@ -1,17 +1,16 @@
 {
   "$schema": "node_modules/lerna/schemas/lerna-schema.json",
-  "packages": [
-    "packages/*"
-  ],
+  "packages": ["packages/*"],
   "version": "0.0.1",
+  "conventionalCommits": true,
   "npmClient": "yarn",
   "command": {
     "bootstrap": {
-      "hoist": false,
-      "nohoist": [
-        "react",
-        "react-dom"
-      ]
+      "hoist": "false",
+      "nohoist": ["react", "react-dom"]
+    },
+    "version": {
+      "createRelease": "github"
     }
   }
 }

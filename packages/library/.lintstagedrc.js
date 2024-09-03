@@ -8,7 +8,7 @@ const config = {
     'yarn prettier:fix "**/*.{css,scss}"',
   ],
   '**/*.json': ['yarn prettier:fix "**/*.json" --parser json'],
-  '**/*.md': ['yarnttier:fix "**/*.md" --parser markdown'],
+  '**/*.md': ['yarn prettier:fix "**/*.md" --parser markdown'],
 };
 
 export default config;

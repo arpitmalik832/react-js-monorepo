@@ -2,28 +2,25 @@ name: Publish Package
 
 on:
   push:
-    branches:
-      - development
+    branches: [development]
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: "20"
       - name: Authenticate with GitHub Packages
         run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > ~/.npmrc
-      - name: Install dependencies
-        run: yarn install
-      - name: Navigate to the package directory
+      - name: Installing dependencies
+        run: yarn install --frozen-lockfile
+      - name: Navigating to the library directory
         run: cd packages/library
-      - name: Build the package
+      - name: Building the library
         run: yarn build
-      - name: Publish to GitHub Packages
-        run: yarn publish --access public
+      - name: Publishing to GitHub Packages
+        run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

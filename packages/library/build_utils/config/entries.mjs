@@ -7,10 +7,10 @@ const ENTRIES = [
     inputFile: 'src/utils/index.js',
     dirName: 'utils',
   },
-  // {
-  //   inputFile: 'src/enums/index.js',
-  //   dirName: 'enums',
-  // },
+  {
+    inputFile: 'src/enums/index.js',
+    dirName: 'enums',
+  },
   // {
   //   inputFile: 'src/hooks/index.js',
   //   dirName: 'hooks',

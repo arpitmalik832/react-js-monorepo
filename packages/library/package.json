@@ -16,6 +16,13 @@
     "node": ">=20.17.0",
     "yarn": ">=1.22.22"
   },
+  "exports": {
+    "./icons/*": "./dist/assets/icons/*",
+    "./styles/*": "./dist/styles/*",
+    "./components": "./dist/components/index.js",
+    "./utils": "./dist/utils/index.js",
+    "./enums": "./dist/enums/index.js"
+  },
   "scripts": {
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install dependencies')\"",
     "rm-dist": "rimraf dist --glob",

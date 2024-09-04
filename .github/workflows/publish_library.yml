@@ -17,10 +17,9 @@ jobs:
       - name: Installing dependencies
         run: yarn install --frozen-lockfile
       - name: Navigating to the library directory
-        run: cd packages/library
-      - name: Building the library
-        run: yarn build
-      - name: Publishing to GitHub Packages
-        run: yarn publish
+        working-directory: packages/library
+        run: |
+          yarn build
+          yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

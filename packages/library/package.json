@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "description": "> TODO: description",
   "type": "module",
-  "private": true,
   "author": "Arpit Malik",
   "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "engines": {
     "node": ">=20.17.0",
     "yarn": ">=1.22.22"

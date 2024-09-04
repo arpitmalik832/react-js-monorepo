@@ -16,10 +16,11 @@
     "node": ">=20.17.0",
     "yarn": ">=1.22.22"
   },
+  "files": ["dist"],
   "exports": {
     "./icons/*": "./dist/assets/icons/*",
     "./styles/*": "./dist/styles/*",
-    "./components": "./dist/components/index.js",
+    ".": "./dist/components/index.js",
     "./utils": "./dist/utils/index.js",
     "./enums": "./dist/enums/index.js"
   },

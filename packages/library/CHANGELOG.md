@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/compare/v0.2.1...v0.2.2) (2024-09-05)
+
+### Bug Fixes
+
+- **main:** importing styles file in the main file and also exporting only signle file ([ff5e725](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/commit/ff5e72585af150f2ffed1f9eb56faedf2d820d7e))
+
 ## [0.2.1](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/compare/v0.2.0...v0.2.1) (2024-09-05)
 
 ## [0.1.2](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/compare/v0.1.1...v0.1.2) (2024-09-04)

@@ -20,11 +20,6 @@ module.exports = {
     'react-hooks',
     'storybook',
   ],
-  // globals: {
-  //   __isRelease__: 'readonly',
-  //   __isBeta__: 'readonly',
-  //   __isStaging__: 'readonly',
-  // },
   rules: {
     // rules regarding react plugin
     'react/react-in-jsx-scope': 0,

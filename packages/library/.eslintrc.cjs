@@ -20,11 +20,13 @@ module.exports = {
     'react-hooks',
     'storybook',
   ],
-  // globals: {
-  //   __isRelease__: 'readonly',
-  //   __isBeta__: 'readonly',
-  //   __isStaging__: 'readonly',
-  // },
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx'],
+      },
+    },
+  },
   rules: {
     // rules regarding react plugin
     'react/react-in-jsx-scope': 0,
@@ -61,7 +63,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['*.mdx'],
+      files: ['**/*.mdx', '**/*.md'],
       parser: 'eslint-mdx',
       extends: ['plugin:mdx/recommended'],
       plugins: ['mdx'],

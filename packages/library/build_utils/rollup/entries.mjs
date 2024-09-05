@@ -7,6 +7,7 @@ import url from '@rollup/plugin-url';
 import image from '@rollup/plugin-image';
 import postcss from 'rollup-plugin-postcss';
 import terser from '@rollup/plugin-terser';
+import json from '@rollup/plugin-json';
 
 import { ENTRIES } from '../config/entries.mjs';
 import svgrConfig from '../../svgr.config.mjs';
@@ -34,6 +35,7 @@ const getEntryConfig = ({ inputFile }) => {
     image(),
     url(),
     svgr(svgrConfig),
+    json(),
   ];
 
   if (['production', 'beta'].includes(process.env.LIB_ENV)) {
@@ -72,6 +74,7 @@ const getEntryConfig = ({ inputFile }) => {
         preserveModulesRoot: 'src',
       },
     ],
+    external: id => /node_modules/.test(id), // Exclude node_modules
     plugins,
   };
 };

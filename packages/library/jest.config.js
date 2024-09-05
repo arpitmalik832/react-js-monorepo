@@ -30,11 +30,6 @@ const config = {
     '!src/routes/**',
     '!src/stories/**',
   ],
-  globals: {
-    __isStaging__: true,
-    __isBeta__: false,
-    __isRelease__: false,
-  },
   // https://facebook.github.io/jest/docs/en/configuration.html#coveragedirectory-string
   coverageDirectory: '<rootDir>/coverage', // [string]
   coveragePathIgnorePatterns: ['node_modules'],

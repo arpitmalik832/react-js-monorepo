@@ -16,13 +16,21 @@
     "node": ">=20.17.0",
     "yarn": ">=1.22.22"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
+  "module": "dist/components/index.js",
   "exports": {
     "./icons/*": "./dist/assets/icons/*",
-    "./styles/*": "./dist/styles/*",
     ".": "./dist/components/index.js",
-    "./utils": "./dist/utils/index.js",
-    "./enums": "./dist/enums/index.js"
+    "./index.css": "./dist/index.css",
+    "./enums": "./dist/enums/index.js",
+    "./hooks": "./dist/hooks/index.js",
+    "./providers": "./dist/providers/index.js",
+    "./redux": "./dist/redux/index.js",
+    "./services": "./dist/services/index.js",
+    "./styles/*": "./dist/styles/*",
+    "./utils": "./dist/utils/index.js"
   },
   "scripts": {
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install dependencies')\"",
@@ -83,6 +91,7 @@
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^26.0.1",
     "@rollup/plugin-image": "^3.0.3",
+    "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-url": "^8.0.2",
@@ -148,8 +157,15 @@
     "stylelint-order": "^6.0.4",
     "url-loader": "^4.1.1"
   },
-  "peerDependencies": {
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.2.7",
+    "axios": "^1.7.7",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-redux": "^9.1.2",
+    "react-router-dom": "^6.26.1",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^3.1.0",
+    "web-vitals": "^4.2.3"
   }
 }

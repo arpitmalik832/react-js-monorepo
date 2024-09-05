@@ -40,8 +40,8 @@ const config = {
     preserveModulesRoot: 'src',
     sourcemap: !['production', 'beta'].includes(process.env.LIB_ENV),
   },
+  external: id => /node_modules/.test(id), // Exclude node_modules
   plugins,
-  external: ['react', 'react-dom'],
 };
 
 export default config;

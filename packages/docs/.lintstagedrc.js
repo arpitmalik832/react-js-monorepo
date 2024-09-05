@@ -7,6 +7,6 @@ module.exports = {
     'yarn lint-css:fix',
     'yarn prettier:fix "**/*.{css,scss}"',
   ],
-  '**/*.json': ['yarn prettier:fix "**/*.json" --parser json'],
-  '**/*.md': ['yarn prettier:fix "**/*.md" --parser markdown'],
+  '**/*.json': ['yarn prettier:fix "**/*.json"'],
+  '**/*.md': ['yarn prettier:fix "**/*.md"'],
 };

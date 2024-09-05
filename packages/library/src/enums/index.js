@@ -1,3 +1,2 @@
-import * as app from './app';
-
-export { app };
+export * as APP from './app';
+export * as SW from './sw';

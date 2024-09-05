@@ -5,4 +5,11 @@ const ENVS = {
   PROD: 'production',
 };
 
-export { ENVS };
+const THEME = {
+  LIGHT: 'light',
+  DARK: 'dark',
+};
+
+const API1_TIMEOUT = 15000;
+
+export { ENVS, THEME, API1_TIMEOUT };

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/compare/v0.1.1...v0.2.0) (2024-09-05)
+
+### Features
+
+- **main:** added hooks, providers, and redux utilities ([344a107](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/commit/344a107780b706e9493a327085dba68553f979e5))
+
 ## [0.1.1](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/compare/v0.1.0...v0.1.1) (2024-09-04)
 
 ### Bug Fixes

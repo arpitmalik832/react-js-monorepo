@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/compare/v0.2.2...v0.2.3) (2024-09-05)
+
+### Bug Fixes
+
+- added fix to only import the statement in the main index.js file ([144b08f](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/commit/144b08f7ecca8d8c5ec75f322428d4c98b69090d))
+
 ## [0.2.2](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/compare/v0.2.1...v0.2.2) (2024-09-05)
 
 ### Bug Fixes

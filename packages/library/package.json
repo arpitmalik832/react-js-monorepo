@@ -23,14 +23,7 @@
   "exports": {
     "./icons/*": "./dist/assets/icons/*",
     ".": "./dist/components/index.js",
-    "./index.css": "./dist/index.css",
-    "./enums": "./dist/enums/index.js",
-    "./hooks": "./dist/hooks/index.js",
-    "./providers": "./dist/providers/index.js",
-    "./redux": "./dist/redux/index.js",
-    "./services": "./dist/services/index.js",
-    "./styles/*": "./dist/styles/*",
-    "./utils": "./dist/utils/index.js"
+    "./styles/*": "./dist/styles/*"
   },
   "scripts": {
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install dependencies')\"",

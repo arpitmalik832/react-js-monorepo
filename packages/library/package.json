@@ -19,10 +19,10 @@
   "files": [
     "dist"
   ],
-  "module": "dist/components/index.js",
+  "module": "dist/index.js",
   "exports": {
     "./icons/*": "./dist/assets/icons/*",
-    ".": "./dist/components/index.js",
+    ".": "./dist/index.js",
     "./styles/*": "./dist/styles/*"
   },
   "scripts": {

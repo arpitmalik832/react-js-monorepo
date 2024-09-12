@@ -1,3 +1,5 @@
 import Button from './Button';
+import ComponentWithSuspense from './ComponentWithSuspense';
+import HtmlContent from './HtmlContent';
 
-export { Button };
+export { Button, ComponentWithSuspense, HtmlContent };

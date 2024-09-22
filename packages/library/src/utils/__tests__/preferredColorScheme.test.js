@@ -1,3 +1,7 @@
+/**
+ * Unit tests for the `preferredColorScheme` event listener.
+ * @file The file is saved as `preferredColorScheme.test.js`.
+ */
 import '@testing-library/jest-dom';
 
 import preferredColorScheme from '../eventListeners/preferredColorScheme';
@@ -9,7 +13,7 @@ describe('preferredColorScheme unit tests', () => {
   it('preferredColorScheme functions test', () => {
     Object.defineProperty(window, 'matchMedia', {
       writable: true,
-      value: jest.fn().mockImplementation(query => matchMediaMock(query, true)),
+      value: matchMediaMock(true),
     });
 
     preferredColorScheme.callBackFn();

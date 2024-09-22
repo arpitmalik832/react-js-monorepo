@@ -1,3 +1,7 @@
+/**
+ * Hook to initialize axios instances.
+ * @file The file is saved as `useInitAxios.js`.
+ */
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,7 +13,18 @@ import {
   addResponseInterceptor,
 } from '../utils/apiUtils';
 
-const useInitAxios = () => {
+/**
+ * Custom hook to initialize axios instances with the provided API configuration.
+ * @example
+ *
+ * import useInitAxios from './useInitAxios';
+ *
+ * function App() {
+ *   useInitAxios();
+ *   // other logic
+ * }
+ */
+function useInitAxios() {
   const apis = useSelector(state => state.apis);
   const dispatch = useDispatch();
 
@@ -35,6 +50,6 @@ const useInitAxios = () => {
       dispatch(updateApi1AxiosInstance(axiosInstance));
     }
   }, [apis.api1Headers, apis.api1Host]);
-};
+}
 
 export default useInitAxios;

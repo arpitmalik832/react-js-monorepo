@@ -1,3 +1,7 @@
+/**
+ * Unit tests for the ComponentWithSuspense component.
+ * @file The file is saved as `ComponentWithSuspense.test.jsx`.
+ */
 import { render, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
@@ -11,10 +15,27 @@ describe('ComponentWithSuspense unit tests', () => {
   afterEach(() => {
     cleanup();
   });
+  /**
+   * Mock component for testing purposes.
+   * @returns {import('react').JSX.Element} The rendered component.
+   * @example
+   * <Component />
+   */
+  function Component() {
+    return <div data-testid="mock-component" />;
+  }
+
+  /**
+   * Fallback component for testing purposes.
+   * @returns {import('react').JSX.Element} The rendered fallback component.
+   * @example
+   * <Fallback />
+   */
+  function Fallback() {
+    return <div data-testid="mock-fallback" />;
+  }
 
   test('ComponentWithSuspense snapshot test', () => {
-    const Component = () => <div data-testid="mock-component" />;
-
     const component = render(
       <ComponentWithSuspense component={<Component />} />,
     );
@@ -23,9 +44,6 @@ describe('ComponentWithSuspense unit tests', () => {
   });
 
   test('ComponentWithSuspense with fallback', () => {
-    const Component = () => <div data-testid="mock-component" />;
-    const Fallback = () => <div data-testid="mock-fallback" />;
-
     const { getByTestId } = render(
       <ComponentWithSuspense
         component={<Component />}

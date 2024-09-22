@@ -1,3 +1,7 @@
+/**
+ * This hook handles back press in the application.
+ * @file It is saved as `useBackPress.js`.
+ */
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -10,7 +14,13 @@ import {
 import beforeUnload from '../utils/eventListeners/beforeUnload';
 import { log } from '../utils/logsUtils';
 
-const useBackPress = () => {
+/**
+ * Custom hook to handle back press events in the application.
+ * @returns {object} An object containing the stack and methods to manipulate it.
+ * @example
+ * const { stack, push, pop, clear } = useBackPress();
+ */
+function useBackPress() {
   const { stack } = useSelector(state => state.navigation);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -35,13 +45,25 @@ const useBackPress = () => {
     };
   }, []);
 
-  const push = callback => {
+  /**
+   * Pushes a callback onto the stack.
+   * @param {Function} callback - The callback to push onto the stack.
+   * @example
+   * push(() => console.log('Callback executed'));
+   */
+  function push(callback) {
     dispatch(pushStack(callback));
-  };
+  }
 
-  const pop = () => {
+  /**
+   * Pops the last item from the stack and handles back press.
+   * @example
+   * const { pop } = useBackPress();
+   * pop();
+   */
+  function pop() {
     handleBackPress();
-  };
+  }
 
   const clear = useCallback(() => {
     if (stack.length) {
@@ -50,6 +72,6 @@ const useBackPress = () => {
   }, [stack]);
 
   return { stack, push, pop, clear };
-};
+}
 
 export default useBackPress;

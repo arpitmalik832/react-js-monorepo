@@ -9,3 +9,4 @@ cypress/screenshots
 .storybook
 storybook-static
 **/*.md
+distInfo

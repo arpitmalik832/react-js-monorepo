@@ -2,9 +2,9 @@
 // Last generated on Sun Sep 22 2024 15:12:11 GMT+0530 (India Standard Time)
 
 const list = [
-  "lg32/standardAccount.svg",
-  "rg24/systemActionABCKeypad.svg",
-  "sm16/systemAdd.svg"
-]
+  'lg32/standardAccount.svg',
+  'rg24/systemActionABCKeypad.svg',
+  'sm16/systemAdd.svg',
+];
 
 export default list;

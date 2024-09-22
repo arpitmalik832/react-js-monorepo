@@ -1,8 +1,20 @@
+/**
+ * Generates the build stats for the bundle.
+ * @file This file is saved as `buildStats.js`.
+ */
 import { writeFileSync, mkdirSync } from 'fs';
 import { dirname } from 'path';
 import zlib from 'zlib';
 
-export default function buildStats({ outputPath = 'build-stats.json' }) {
+/**
+ * Builds statistics for the bundle.
+ * @param {string} outputPath - The path where the build stats will be saved.
+ * @returns {void}
+ * @example
+ * // Example usage
+ * buildStats('path/to/output.json');
+ */
+export default function buildStats(outputPath = 'build-stats.json') {
   let startTime;
 
   return {

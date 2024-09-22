@@ -3,6 +3,7 @@
 # Compiled output
 build
 dist
+distInfo
 node_modules
 coverage
 storybook-static

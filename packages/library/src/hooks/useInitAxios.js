@@ -40,12 +40,8 @@ function useInitAxios() {
         },
       });
 
-      addRequestInterceptor({
-        axiosInstance,
-      });
-      addResponseInterceptor({
-        axiosInstance,
-      });
+      addRequestInterceptor(axiosInstance);
+      addResponseInterceptor(axiosInstance);
 
       dispatch(updateApi1AxiosInstance(axiosInstance));
     }

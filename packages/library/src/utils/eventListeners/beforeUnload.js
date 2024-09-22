@@ -1,3 +1,7 @@
+/**
+ * This is a utility function to handle the beforeunload event.
+ * @file This file is saved as `beforeUnload.js`.
+ */
 const beforeUnload = {
   callBackFn() {},
   subscribe(callBackFn) {

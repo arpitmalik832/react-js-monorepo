@@ -1,3 +1,7 @@
+/**
+ * Unit tests for HtmlContent component.
+ * @file This file is saved as `HtmlContent.test.jsx`.
+ */
 import { render, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
 

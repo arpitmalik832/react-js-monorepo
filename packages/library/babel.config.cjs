@@ -1,3 +1,7 @@
+/**
+ * Contains the babel configuration for the library.
+ * @file This file is saved as `babel.config.cjs`.
+ */
 module.exports = {
   presets: [
     [

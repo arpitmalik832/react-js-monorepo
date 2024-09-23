@@ -1,3 +1,7 @@
+/**
+ * Unit tests for Loader component.
+ * @file This file is saved as `Loader.test.jsx`.
+ */
 import { cleanup, render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 

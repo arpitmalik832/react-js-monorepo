@@ -1,3 +1,7 @@
+/**
+ * Rollup configuration file for building SVG icons using SVGR.
+ * @file This file is saved as `svgr.mjs`.
+ */
 import svgr from '@svgr/rollup';
 import terser from '@rollup/plugin-terser';
 import progress from 'rollup-plugin-progress';
@@ -39,9 +43,7 @@ if (process.env.INCLUDE_BUILD_STATS === 'true') {
       filename: `distInfo/svgr/visualizers/${timestamp}/treemap.html`,
       template: 'treemap',
     }),
-    buildStats({
-      outputPath: `distInfo/svgr/buildStats/${timestamp}/index.json`,
-    }),
+    buildStats(`distInfo/svgr/buildStats/${timestamp}/index.json`),
   );
 }
 

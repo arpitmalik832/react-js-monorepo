@@ -1,3 +1,7 @@
+/**
+ * Rollup configuration for the main library build.
+ * @file This file is saved as `main.mjs`.
+ */
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import babel from '@rollup/plugin-babel';
@@ -71,9 +75,7 @@ if (process.env.INCLUDE_BUILD_STATS === 'true') {
       filename: `distInfo/main/visualizers/${timestamp}/treemap.html`,
       template: 'treemap',
     }),
-    buildStats({
-      outputPath: `distInfo/main/buildStats/${timestamp}/index.json`,
-    }),
+    buildStats(`distInfo/main/buildStats/${timestamp}/index.json`),
   );
 }
 

@@ -107,11 +107,16 @@ module.exports = {
       parser: 'eslint-mdx',
       extends: ['plugin:mdx/recommended'],
       plugins: ['mdx'],
+      settings: {
+        'mdx/code-blocks': true,
+      },
+      parserOptions: {
+        extensions: ['.mdx', '.jsx', '.md', '.js'],
+        markdownExtensions: ['.mdx', '.jsx', '.md', '.js'],
+      },
       rules: {
-        'react/jsx-filename-extension': [
-          1,
-          { extensions: ['.js', '.jsx', '.mdx'] },
-        ],
+        'react/jsx-filename-extension': [1, { extensions: ['.mdx'] }],
+        'jsdoc/require-file-overview': 0, // Disable this rule for MDX files
       },
     },
   ],

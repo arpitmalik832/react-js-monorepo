@@ -1,3 +1,7 @@
+/**
+ * Contains constants for App.
+ * @file This file is saved as `app.js`.
+ */
 const ENVS = {
   DEV: 'development',
   STG: 'staging',

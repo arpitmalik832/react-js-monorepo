@@ -17,9 +17,11 @@
     "yarn": ">=1.22.22"
   },
   "files": [
-    "dist"
+    "dist",
+    "types"
   ],
   "module": "dist/index.js",
+  "types": "types/index.d.ts",
   "exports": {
     "./icons/*": "./dist/assets/icons/*",
     ".": "./dist/index.js",
@@ -28,6 +30,7 @@
   "scripts": {
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install dependencies')\"",
     "rm-dist": "rimraf dist --glob",
+    "rm-types": "rimraf types --glob",
     "rm-node_modules": "rimraf node_modules --glob",
     "rm-package-lock": "rimraf package-lock.json",
     "rm-yarn-lock": "rimraf yarn.lock",
@@ -39,18 +42,20 @@
     "colors-css-to-mdx": "node scripts/colors_css_to_mdx.js",
     "colors-scss-to-mdx": "node scripts/colors_scss_to_mdx.js",
     "typography-scss-to-mdx": "node scripts/typography_scss_to_mdx.js",
-    "build-w-rm": "yarn generate-styles && yarn generate-icons-list && yarn build-sass && cross-env LIB_ENV=staging INCLUDE_BUILD_STATS=false rollup -c rollup.config.js && node build_utils/scripts/updateImportForMixins.js",
-    "build": "yarn rm-dist && yarn build-w-rm",
-    "build-bundleanalyzer-w-rm": "yarn generate-styles && yarn generate-icons-list && yarn build-sass && cross-env LIB_ENV=staging INCLUDE_BUILD_STATS=true rollup -c rollup.config.js && node build_utils/scripts/updateImportForMixins.js",
-    "build-bundleanalyzer": "yarn rm-dist && yarn build-bundleanalyzer-w-rm",
-    "build-w-rm:beta": "yarn generate-styles && yarn generate-icons-list && yarn build-sass && cross-env LIB_ENV=beta INCLUDE_BUILD_STATS=false rollup -c rollup.config.js && node build_utils/scripts/updateImportForMixins.js",
-    "build:beta": "yarn rm-dist && yarn build-w-rm:beta",
-    "build-bundleanalyzer-w-rm:beta": "yarn generate-styles && yarn generate-icons-list && yarn build-sass && cross-env LIB_ENV=beta INCLUDE_BUILD_STATS=true rollup -c rollup.config.js && node build_utils/scripts/updateImportForMixins.js",
-    "build-bundleanalyzer:beta": "yarn rm-dist && yarn build-bundleanalyzer-w-rm:beta",
-    "build-w-rm:prod": "yarn generate-styles && yarn generate-icons-list && yarn build-sass && cross-env LIB_ENV=production INCLUDE_BUILD_STATS=false rollup -c rollup.config.js && node build_utils/scripts/updateImportForMixins.js",
-    "build:prod": "yarn rm-dist && yarn build-w-rm:prod",
-    "build-bundleanalyzer-w-rm:prod": "yarn generate-styles && yarn generate-icons-list && yarn build-sass && cross-env LIB_ENV=production INCLUDE_BUILD_STATS=true rollup -c rollup.config.js && node build_utils/scripts/updateImportForMixins.js",
-    "build-bundleanalyzer:prod": "yarn rm-dist && yarn build-bundleanalyzer-w-rm:prod",
+    "generate-declarations": "tsc",
+    "minify-dts": "node scripts/minify_dts.js",
+    "build-w-rm": "yarn generate-styles && yarn generate-icons-list && yarn build-sass && cross-env LIB_ENV=staging INCLUDE_BUILD_STATS=false rollup -c rollup.config.js && node build_utils/scripts/updateImportForMixins.js && yarn generate-declarations && yarn minify-dts",
+    "build": "yarn rm-dist && yarn rm-types && yarn build-w-rm",
+    "build-bundleanalyzer-w-rm": "yarn generate-styles && yarn generate-icons-list && yarn build-sass && cross-env LIB_ENV=staging INCLUDE_BUILD_STATS=true rollup -c rollup.config.js && node build_utils/scripts/updateImportForMixins.js && yarn generate-declarations && yarn minify-dts",
+    "build-bundleanalyzer": "yarn rm-dist && yarn rm-types && yarn build-bundleanalyzer-w-rm",
+    "build-w-rm:beta": "yarn generate-styles && yarn generate-icons-list && yarn build-sass && cross-env LIB_ENV=beta INCLUDE_BUILD_STATS=false rollup -c rollup.config.js && node build_utils/scripts/updateImportForMixins.js && yarn generate-declarations && yarn minify-dts",
+    "build:beta": "yarn rm-dist && yarn rm-types && yarn build-w-rm:beta",
+    "build-bundleanalyzer-w-rm:beta": "yarn generate-styles && yarn generate-icons-list && yarn build-sass && cross-env LIB_ENV=beta INCLUDE_BUILD_STATS=true rollup -c rollup.config.js && node build_utils/scripts/updateImportForMixins.js && yarn generate-declarations && yarn minify-dts",
+    "build-bundleanalyzer:beta": "yarn rm-dist && yarn rm-types && yarn build-bundleanalyzer-w-rm:beta",
+    "build-w-rm:prod": "yarn generate-styles && yarn generate-icons-list && yarn build-sass && cross-env LIB_ENV=production INCLUDE_BUILD_STATS=false rollup -c rollup.config.js && node build_utils/scripts/updateImportForMixins.js && yarn generate-declarations && yarn minify-dts",
+    "build:prod": "yarn rm-dist && yarn rm-types && yarn build-w-rm:prod",
+    "build-bundleanalyzer-w-rm:prod": "yarn generate-styles && yarn generate-icons-list && yarn build-sass && cross-env LIB_ENV=production INCLUDE_BUILD_STATS=true rollup -c rollup.config.js && node build_utils/scripts/updateImportForMixins.js && yarn generate-declarations && yarn minify-dts",
+    "build-bundleanalyzer:prod": "yarn rm-dist && yarn rm-types && yarn build-bundleanalyzer-w-rm:prod",
     "lint-js": "eslint \"**/*.{mjs,cjs,js,jsx,mdx}\" --quiet --ignore-path .eslintignore",
     "lint-css": "stylelint \"**/*.{css,scss}\"",
     "prettier": "prettier",
@@ -159,6 +164,7 @@
     "stylelint-config-standard": "^36.0.1",
     "stylelint-config-standard-scss": "^13.1.0",
     "stylelint-order": "^6.0.4",
+    "typescript": "^5.6.2",
     "url-loader": "^4.1.1"
   },
   "dependencies": {

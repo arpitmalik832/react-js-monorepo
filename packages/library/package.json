@@ -23,8 +23,18 @@
   "module": "dist/index.js",
   "types": "types/index.d.ts",
   "exports": {
-    "./icons/*": "./dist/assets/icons/*",
-    ".": "./dist/index.js",
+    "./icons/*": {
+      "import": "./dist/assets/icons/*",
+      "require": "./dist/assets/icons/*",
+      "default": "./dist/assets/icons/*",
+      "types": "./types/assets/icons/*"
+    },
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js",
+      "types": "./types/index.d.ts"
+    },
     "./styles/*": "./dist/styles/*"
   },
   "scripts": {

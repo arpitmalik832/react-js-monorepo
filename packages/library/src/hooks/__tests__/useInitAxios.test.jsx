@@ -1,3 +1,7 @@
+/**
+ * Unit tests for useInitAxios hook.
+ * @file The file is saved as `useInitAxios.test.jsx`.
+ */
 import { cleanup, render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { configureStore, createSlice } from '@reduxjs/toolkit';
@@ -39,11 +43,17 @@ describe('useInitAxios unit tests', () => {
       },
     });
 
-    const TempComponent = () => {
+    /**
+     * Temporary component to initialize Axios.
+     * @returns {import('react').JSX.Element} The rendered component.
+     * @example
+     * <TempComponent />
+     */
+    function TempComponent() {
       useInitAxios();
 
       return <div data-testid="temp-component" />;
-    };
+    }
 
     const component = render(
       <Provider store={store}>
@@ -69,11 +79,17 @@ describe('useInitAxios unit tests', () => {
       },
     });
 
-    const TempComponent = () => {
+    /**
+     * Temporary component to initialize Axios.
+     * @returns {import('react').JSX.Element} The rendered component.
+     * @example
+     * <TempComponent />
+     */
+    function TempComponent() {
       useInitAxios();
 
       return <div data-testid="temp-component" />;
-    };
+    }
 
     const component = render(
       <Provider store={store}>

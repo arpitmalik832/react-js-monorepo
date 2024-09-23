@@ -1,3 +1,7 @@
+/**
+ * Contains constants for Service Worker.
+ * @file This file is saved as `sw.js`.
+ */
 const URL = `/sw.js`;
 
 const LOGS = {

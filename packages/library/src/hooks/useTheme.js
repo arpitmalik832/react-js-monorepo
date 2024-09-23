@@ -1,3 +1,7 @@
+/**
+ * This hook manages the theme of the application.
+ * @file The file is saved as `useTheme.js`.
+ */
 import { useCallback, useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -5,7 +9,18 @@ import { setDarkTheme, setLightTheme } from '../redux/slices/appSlice';
 import preferredColorScheme from '../utils/eventListeners/preferredColorScheme';
 import { THEME } from '../enums/app';
 
-const useTheme = () => {
+/**
+ * Custom hook to manage the application's theme.
+ * @example
+ *
+ * import useTheme from './useTheme';
+ *
+ * function App() {
+ *   useTheme();
+ *   // other logic
+ * }
+ */
+function useTheme() {
   const theme = useSelector(state => state.app.theme);
   const dispatch = useDispatch();
 
@@ -26,6 +41,6 @@ const useTheme = () => {
       preferredColorScheme.unSubscribe();
     };
   }, []);
-};
+}
 
 export default useTheme;

@@ -1,3 +1,7 @@
+/**
+ * Unit test for apiUtils.
+ * @file This file is saved as `apiUtils.test.js`.
+ */
 import '@testing-library/jest-dom';
 
 import {
@@ -91,9 +95,7 @@ describe('apiUtils unit test', () => {
       },
     };
 
-    addRequestInterceptor({
-      axiosInstance,
-    });
+    addRequestInterceptor(axiosInstance);
 
     axiosInstance.interceptors.request.use.mock.calls[0][0]({
       metadata: {
@@ -120,9 +122,7 @@ describe('apiUtils unit test', () => {
       },
     };
 
-    addResponseInterceptor({
-      axiosInstance,
-    });
+    addResponseInterceptor(axiosInstance);
 
     axiosInstance.interceptors.response.use.mock.calls[0][0]({
       config: {

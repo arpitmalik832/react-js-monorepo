@@ -1,4 +1,8 @@
 /* eslint-disable no-console */
+/**
+ * Unit tests for useApiRequest hook.
+ * @file The file is saved as `useApiRequest.test.jsx`.
+ */
 import { cleanup, fireEvent, render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { configureStore, createSlice } from '@reduxjs/toolkit';
@@ -40,7 +44,13 @@ describe('useApiRequest unit tests', () => {
       },
     });
 
-    const TempComponent = () => {
+    /**
+     * Temporary component to test useApiRequest hook.
+     * @returns {import('react').JSX.Element} The rendered component.
+     * @example
+     * <TempComponent />
+     */
+    function TempComponent() {
       useApiRequest();
 
       return (
@@ -48,7 +58,7 @@ describe('useApiRequest unit tests', () => {
           Mocked
         </button>
       );
-    };
+    }
 
     const component = render(
       <Provider store={store}>
@@ -75,7 +85,13 @@ describe('useApiRequest unit tests', () => {
       },
     });
 
-    const TempComponent = () => {
+    /**
+     * Temporary component to test useApiRequest hook.
+     * @returns {import('react').JSX.Element} The rendered component.
+     * @example
+     * <TempComponent />
+     */
+    function TempComponent() {
       const apis = useSelector(state => state.apis);
       const { makeGetCall } = useApiRequest();
 
@@ -93,7 +109,7 @@ describe('useApiRequest unit tests', () => {
           Mocked
         </button>
       );
-    };
+    }
 
     const component = render(
       <Provider store={store}>
@@ -121,7 +137,13 @@ describe('useApiRequest unit tests', () => {
       },
     });
 
-    const TempComponent = () => {
+    /**
+     * Temporary component to test useApiRequest hook.
+     * @returns {import('react').JSX.Element} The rendered component.
+     * @example
+     * <TempComponent />
+     */
+    function TempComponent() {
       const apis = useSelector(state => state.apis);
       const { makeGetCall, cancelRequest } = useApiRequest();
 
@@ -141,7 +163,7 @@ describe('useApiRequest unit tests', () => {
           Mocked
         </button>
       );
-    };
+    }
 
     const component = render(
       <Provider store={store}>
@@ -168,7 +190,13 @@ describe('useApiRequest unit tests', () => {
       },
     });
 
-    const TempComponent = () => {
+    /**
+     * Temporary component to test useApiRequest hook.
+     * @returns {import('react').JSX.Element} The rendered component.
+     * @example
+     * <TempComponent />
+     */
+    function TempComponent() {
       const apis = useSelector(state => state.apis);
       const { makePostCall } = useApiRequest();
 
@@ -186,7 +214,7 @@ describe('useApiRequest unit tests', () => {
           Mocked
         </button>
       );
-    };
+    }
 
     const component = render(
       <Provider store={store}>
@@ -213,7 +241,13 @@ describe('useApiRequest unit tests', () => {
       },
     });
 
-    const TempComponent = () => {
+    /**
+     * Temporary component to test useApiRequest hook.
+     * @returns {import('react').JSX.Element} The rendered component.
+     * @example
+     * <TempComponent />
+     */
+    function TempComponent() {
       const apis = useSelector(state => state.apis);
       const { makePostCall, cancelAllRequests } = useApiRequest();
 
@@ -232,7 +266,7 @@ describe('useApiRequest unit tests', () => {
           Mocked
         </button>
       );
-    };
+    }
 
     const component = render(
       <Provider store={store}>
@@ -259,7 +293,13 @@ describe('useApiRequest unit tests', () => {
       },
     });
 
-    const TempComponent = () => {
+    /**
+     * Temporary component to test useApiRequest hook.
+     * @returns {import('react').JSX.Element} The rendered component.
+     * @example
+     * <TempComponent />
+     */
+    function TempComponent() {
       const apis = useSelector(state => state.apis);
       const { makePutCall } = useApiRequest();
 
@@ -277,7 +317,7 @@ describe('useApiRequest unit tests', () => {
           Mocked
         </button>
       );
-    };
+    }
 
     const component = render(
       <Provider store={store}>
@@ -304,7 +344,13 @@ describe('useApiRequest unit tests', () => {
       },
     });
 
-    const TempComponent = () => {
+    /**
+     * Temporary component to test useApiRequest hook.
+     * @returns {import('react').JSX.Element} The rendered component.
+     * @example
+     * <TempComponent />
+     */
+    function TempComponent() {
       const apis = useSelector(state => state.apis);
       const { makeDeleteCall } = useApiRequest();
 
@@ -322,7 +368,7 @@ describe('useApiRequest unit tests', () => {
           Mocked
         </button>
       );
-    };
+    }
 
     const component = render(
       <Provider store={store}>

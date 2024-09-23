@@ -1,3 +1,7 @@
+/**
+ * Contains the apis slice.
+ * @file This file is saved as `apisSlice.js`.
+ */
 import { createSlice } from '@reduxjs/toolkit';
 
 const apisSlice = createSlice({

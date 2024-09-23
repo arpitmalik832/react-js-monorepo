@@ -1,3 +1,7 @@
+/**
+ * Unit tests for SWRegistration service.
+ * @file This file is saved as `SWRegistration.test.js`.
+ */
 import '@testing-library/jest-dom';
 
 import SWRegistration from '../SWRegistration';

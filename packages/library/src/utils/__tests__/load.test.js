@@ -1,3 +1,7 @@
+/**
+ * Unit tests for load event listener.
+ * @file This file is saved as `load.test.js`.
+ */
 import '@testing-library/jest-dom';
 
 import load from '../eventListeners/load';

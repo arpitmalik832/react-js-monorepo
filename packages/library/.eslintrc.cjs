@@ -63,7 +63,7 @@ module.exports = {
     'jsdoc/check-syntax': 2,
     'jsdoc/check-alignment': 2,
     'jsdoc/check-tag-names': 2,
-    'jsdoc/check-indentation': 2,
+    'jsdoc/check-indentation': 1,
     'jsdoc/check-param-names': 2,
     'jsdoc/check-property-names': 2,
     'jsdoc/check-line-alignment': 2,

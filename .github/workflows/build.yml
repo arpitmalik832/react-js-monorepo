@@ -2,9 +2,21 @@ name: Build
 
 on:
   push:
-    branches: [development, staging, beta, release, master]
+    branches:
+      - development
+      - staging
+      - beta
+      - release
+      - master
+      - "feature-*"
   pull_request:
-    branches: [development, staging, beta, release, master]
+    branches:
+      - development
+      - staging
+      - beta
+      - release
+      - master
+      - "feature-*"
 
 jobs:
   build:

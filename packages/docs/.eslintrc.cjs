@@ -9,7 +9,6 @@ module.exports = {
     'plugin:jsx-a11y/recommended',
     'prettier',
     'react-app',
-    'plugin:storybook/recommended',
   ],
   plugins: [
     'css-modules',
@@ -18,7 +17,6 @@ module.exports = {
     'prettier',
     'react',
     'react-hooks',
-    'storybook',
   ],
   rules: {
     // rules regarding react plugin

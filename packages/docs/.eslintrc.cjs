@@ -9,7 +9,6 @@ module.exports = {
     'plugin:jsx-a11y/recommended',
     'prettier',
     'react-app',
-    'plugin:storybook/recommended',
   ],
   plugins: [
     'css-modules',
@@ -18,13 +17,7 @@ module.exports = {
     'prettier',
     'react',
     'react-hooks',
-    'storybook',
   ],
-  // globals: {
-  //   __isRelease__: 'readonly',
-  //   __isBeta__: 'readonly',
-  //   __isStaging__: 'readonly',
-  // },
   rules: {
     // rules regarding react plugin
     'react/react-in-jsx-scope': 0,

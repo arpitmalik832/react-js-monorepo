@@ -30,11 +30,6 @@ module.exports = {
     '!src/routes/**',
     '!src/stories/**',
   ],
-  globals: {
-    __isStaging__: true,
-    __isBeta__: false,
-    __isRelease__: false,
-  },
   // https://facebook.github.io/jest/docs/en/configuration.html#coveragedirectory-string
   coverageDirectory: '<rootDir>/coverage', // [string]
   coveragePathIgnorePatterns: ['node_modules'],
@@ -92,7 +87,7 @@ module.exports = {
     url: 'http://localhost:3000/',
   },
   transform: {
-    '\\.(js|jsx)$': ['babel-jest', { configFile: './.babelrc.jest.cjs' }],
+    '\\.(js|jsx)$': ['babel-jest', { configFile: './babel.jest.config.cjs' }],
   },
   // unmockedModulePathPatterns: // [array<string>]
   verbose: true, // [boolean],

@@ -4,19 +4,22 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-    target-branch: "development"
-    open-pull-requests-limit: 10
+    target-branch: "feature-dependabot"
 
   - package-ecosystem: "npm"
     directory: "/packages/library"
     schedule:
       interval: "weekly"
-    target-branch: "development"
-    open-pull-requests-limit: 10
+    target-branch: "feature-dependabot"
 
   - package-ecosystem: "npm"
     directory: "/packages/docs"
     schedule:
       interval: "weekly"
-    target-branch: "development"
-    open-pull-requests-limit: 10
+    target-branch: "feature-dependabot"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    target-branch: "feature-dependabot"

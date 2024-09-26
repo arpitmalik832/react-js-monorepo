@@ -3,15 +3,19 @@
   "packages": [
     "packages/*"
   ],
-  "version": "0.0.1",
+  "version": "0.3.2",
+  "conventionalCommits": true,
   "npmClient": "yarn",
   "command": {
     "bootstrap": {
-      "hoist": false,
+      "hoist": "false",
       "nohoist": [
         "react",
         "react-dom"
       ]
+    },
+    "version": {
+      "createRelease": "github"
     }
   }
 }

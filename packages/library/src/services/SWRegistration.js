@@ -1,10 +1,21 @@
+/**
+ * To register and unregister service worker.
+ * @file The file is saved as `SWRegistration.js`.
+ */
 import { URL, LOGS } from '../enums/sw';
 import { errorLog, log } from '../utils/logsUtils';
 import { isLocalhost } from '../utils/commonUtils';
 import load from '../utils/eventListeners/load';
 import { ENVS } from '../enums/app';
 
-const registerValidSW = () => {
+/**
+ * Registers a valid service worker.
+ * Logs success or error messages based on the registration outcome.
+ * @example
+ * // Example usage:
+ * registerValidSW();
+ */
+function registerValidSW() {
   navigator.serviceWorker
     .register(URL)
     .then(registration => {
@@ -13,10 +24,16 @@ const registerValidSW = () => {
     .catch(error => {
       errorLog(LOGS.REGISTRATION_ERROR, error);
     });
-};
+}
 
-const checkValidSW = () => {
-  // Check if the service worker can be found. If it can't, then reload the page.
+/**
+ * Checks if the service worker is valid.
+ * If it can't be found, reloads the page.
+ * @example
+ * // Example usage:
+ * checkValidSW();
+ */
+function checkValidSW() {
   fetch(URL, {
     headers: { 'Service-Worker': 'script' },
   })
@@ -41,8 +58,18 @@ const checkValidSW = () => {
     .catch(() => {
       log(LOGS.NO_INTERNET);
     });
-};
+}
 
+/**
+ * Service worker registration object.
+ * @property {Function} register - Registers the service worker.
+ * @property {Function} unregister - Unregisters the service worker.
+ * @returns {object} The service worker registration object.
+ * @example
+ * // Example usage:
+ * SWRegistration.register();
+ * SWRegistration.unregister();
+ */
 const SWRegistration = {
   register() {
     if (
@@ -63,14 +90,14 @@ const SWRegistration = {
 
       load.subscribe(() => {
         if (isLocalhost()) {
-          // Running on localhost -> Let's check if a service worker still exists or not.
+          // Running on localhost -> Let's check if the service worker still exists or not.
           checkValidSW();
 
           navigator.serviceWorker.ready.then(() => {
             log(LOGS.SW_READY);
           });
         } else {
-          // Not localhost -> Just register service worker
+          // Not localhost -> Just register the service worker
           registerValidSW();
         }
       });

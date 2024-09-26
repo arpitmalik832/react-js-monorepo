@@ -1,0 +1,294 @@
+{
+  "files": [
+    {
+      "fileName": "index.js",
+      "size": 2568,
+      "gzippedSize": 868,
+      "type": "chunk",
+      "percentageBySize": "6.84"
+    },
+    {
+      "fileName": "components/atoms/Button/index.js",
+      "size": 529,
+      "gzippedSize": 337,
+      "type": "chunk",
+      "percentageBySize": "1.41"
+    },
+    {
+      "fileName": "components/atoms/ComponentWithSuspense/index.js",
+      "size": 424,
+      "gzippedSize": 264,
+      "type": "chunk",
+      "percentageBySize": "1.13"
+    },
+    {
+      "fileName": "components/atoms/HtmlContent/index.js",
+      "size": 537,
+      "gzippedSize": 296,
+      "type": "chunk",
+      "percentageBySize": "1.43"
+    },
+    {
+      "fileName": "components/organisms/Loader/index.js",
+      "size": 179,
+      "gzippedSize": 168,
+      "type": "chunk",
+      "percentageBySize": "0.48"
+    },
+    {
+      "fileName": "enums/app.js",
+      "size": 246,
+      "gzippedSize": 206,
+      "type": "chunk",
+      "percentageBySize": "0.66"
+    },
+    {
+      "fileName": "enums/sw.js",
+      "size": 365,
+      "gzippedSize": 285,
+      "type": "chunk",
+      "percentageBySize": "0.97"
+    },
+    {
+      "fileName": "hooks/useApiRequest.js",
+      "size": 2179,
+      "gzippedSize": 514,
+      "type": "chunk",
+      "percentageBySize": "5.80"
+    },
+    {
+      "fileName": "hooks/useBackPress.js",
+      "size": 1244,
+      "gzippedSize": 508,
+      "type": "chunk",
+      "percentageBySize": "3.31"
+    },
+    {
+      "fileName": "hooks/useInitAxios.js",
+      "size": 1020,
+      "gzippedSize": 426,
+      "type": "chunk",
+      "percentageBySize": "2.72"
+    },
+    {
+      "fileName": "hooks/useTheme.js",
+      "size": 896,
+      "gzippedSize": 413,
+      "type": "chunk",
+      "percentageBySize": "2.39"
+    },
+    {
+      "fileName": "providers/ReduxProvider.js",
+      "size": 326,
+      "gzippedSize": 216,
+      "type": "chunk",
+      "percentageBySize": "0.87"
+    },
+    {
+      "fileName": "redux/queries/index.js",
+      "size": 179,
+      "gzippedSize": 144,
+      "type": "chunk",
+      "percentageBySize": "0.48"
+    },
+    {
+      "fileName": "redux/slices/index.js",
+      "size": 329,
+      "gzippedSize": 200,
+      "type": "chunk",
+      "percentageBySize": "0.88"
+    },
+    {
+      "fileName": "services/SWRegistration.js",
+      "size": 2662,
+      "gzippedSize": 1099,
+      "type": "chunk",
+      "percentageBySize": "7.09"
+    },
+    {
+      "fileName": "utils/classNames.js",
+      "size": 930,
+      "gzippedSize": 497,
+      "type": "chunk",
+      "percentageBySize": "2.48"
+    },
+    {
+      "fileName": "utils/reportWebVitals.js",
+      "size": 294,
+      "gzippedSize": 199,
+      "type": "chunk",
+      "percentageBySize": "0.78"
+    },
+    {
+      "fileName": "utils/apiUtils.js",
+      "size": 1615,
+      "gzippedSize": 550,
+      "type": "chunk",
+      "percentageBySize": "4.30"
+    },
+    {
+      "fileName": "utils/arrayUtils.js",
+      "size": 114,
+      "gzippedSize": 117,
+      "type": "chunk",
+      "percentageBySize": "0.30"
+    },
+    {
+      "fileName": "utils/commonUtils.js",
+      "size": 2557,
+      "gzippedSize": 1209,
+      "type": "chunk",
+      "percentageBySize": "6.81"
+    },
+    {
+      "fileName": "utils/converters.js",
+      "size": 1703,
+      "gzippedSize": 718,
+      "type": "chunk",
+      "percentageBySize": "4.54"
+    },
+    {
+      "fileName": "utils/cookieUtils.js",
+      "size": 877,
+      "gzippedSize": 382,
+      "type": "chunk",
+      "percentageBySize": "2.34"
+    },
+    {
+      "fileName": "utils/deviceUtils.js",
+      "size": 597,
+      "gzippedSize": 315,
+      "type": "chunk",
+      "percentageBySize": "1.59"
+    },
+    {
+      "fileName": "utils/eventListeners/beforeUnload.js",
+      "size": 332,
+      "gzippedSize": 202,
+      "type": "chunk",
+      "percentageBySize": "0.88"
+    },
+    {
+      "fileName": "utils/eventListeners/load.js",
+      "size": 292,
+      "gzippedSize": 192,
+      "type": "chunk",
+      "percentageBySize": "0.78"
+    },
+    {
+      "fileName": "utils/eventListeners/preferredColorScheme.js",
+      "size": 469,
+      "gzippedSize": 253,
+      "type": "chunk",
+      "percentageBySize": "1.25"
+    },
+    {
+      "fileName": "utils/logsUtils.js",
+      "size": 1242,
+      "gzippedSize": 294,
+      "type": "chunk",
+      "percentageBySize": "3.31"
+    },
+    {
+      "fileName": "utils/objectUtils.js",
+      "size": 571,
+      "gzippedSize": 353,
+      "type": "chunk",
+      "percentageBySize": "1.52"
+    },
+    {
+      "fileName": "utils/queryUtils.js",
+      "size": 942,
+      "gzippedSize": 421,
+      "type": "chunk",
+      "percentageBySize": "2.51"
+    },
+    {
+      "fileName": "utils/reactUtils.js",
+      "size": 1285,
+      "gzippedSize": 524,
+      "type": "chunk",
+      "percentageBySize": "3.42"
+    },
+    {
+      "fileName": "utils/stringUtils.js",
+      "size": 980,
+      "gzippedSize": 493,
+      "type": "chunk",
+      "percentageBySize": "2.61"
+    },
+    {
+      "fileName": "redux/slices/apisSlice.js",
+      "size": 956,
+      "gzippedSize": 368,
+      "type": "chunk",
+      "percentageBySize": "2.55"
+    },
+    {
+      "fileName": "redux/slices/navigationSlice.js",
+      "size": 598,
+      "gzippedSize": 291,
+      "type": "chunk",
+      "percentageBySize": "1.59"
+    },
+    {
+      "fileName": "redux/slices/appSlice.js",
+      "size": 654,
+      "gzippedSize": 326,
+      "type": "chunk",
+      "percentageBySize": "1.74"
+    },
+    {
+      "fileName": "redux/queries/baseQuery.js",
+      "size": 444,
+      "gzippedSize": 266,
+      "type": "chunk",
+      "percentageBySize": "1.18"
+    },
+    {
+      "fileName": "redux/queries/sampleQuery.js",
+      "size": 893,
+      "gzippedSize": 370,
+      "type": "chunk",
+      "percentageBySize": "2.38"
+    },
+    {
+      "fileName": "assets/icons/lg32/standardAccount.svg.js",
+      "size": 2035,
+      "gzippedSize": 844,
+      "type": "chunk",
+      "percentageBySize": "5.42"
+    },
+    {
+      "fileName": "assets/images/forwardGrey.png.js",
+      "size": 576,
+      "gzippedSize": 479,
+      "type": "chunk",
+      "percentageBySize": "1.53"
+    },
+    {
+      "fileName": "components/atoms/Button/index.module.scss.js",
+      "size": 121,
+      "gzippedSize": 129,
+      "type": "chunk",
+      "percentageBySize": "0.32"
+    },
+    {
+      "fileName": "index.css",
+      "size": 2781,
+      "gzippedSize": 1129,
+      "type": "asset",
+      "percentageBySize": "7.41"
+    }
+  ],
+  "totalSize": 37541,
+  "totalGzippedSize": 16865,
+  "buildDuration": 2094,
+  "noOfFiles": 40,
+  "largestFile": {
+    "fileName": "index.css",
+    "size": 2781,
+    "gzippedSize": 1129,
+    "type": "asset"
+  }
+}

@@ -1,3 +1,7 @@
+/**
+ * Contains the app slice.
+ * @file This file is saved as `appSlice.js`.
+ */
 import { createSlice } from '@reduxjs/toolkit';
 
 import { THEME } from '../../enums/app';

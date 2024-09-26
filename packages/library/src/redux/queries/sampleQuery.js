@@ -1,3 +1,7 @@
+/**
+ * Contains the sampleQuery query.
+ * @file This file is saved as `sampleQuery.js`.
+ */
 import { createApi } from '@reduxjs/toolkit/query/react';
 import axiosBaseQuery from './baseQuery';
 

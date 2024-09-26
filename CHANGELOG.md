@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/compare/v0.3.0...v0.3.1) (2024-09-23)
+
+
+### Bug Fixes
+
+* resolver for declaration file ([fb7aa43](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/commit/fb7aa4330265affa56d8ab914274871e9b1ca697))
+
+
+
+
+
+
+# [0.3.0](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/compare/v0.2.3...v0.3.0) (2024-09-23)
+
+
+### Bug Fixes
+
+* **main:** fixed jsdoc rule to check indentation ([dc86604](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/commit/dc866048d8acba5d843f588d87b58ea9e1a00f3c))
+
+
+### Features
+
+* **main:** added jsdoc comments to each method ([9d0e695](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/commit/9d0e6951adf92c2301fca46289f0dc8fbe9421a8))
+* **main:** added jsdoc config to library project ([2ef88a1](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/commit/2ef88a112d615b6553e824a2761c890098f55b48))
+* **main:** added jsdoc documentation for each mathods ([778d8e9](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/commit/778d8e99250d35bc2e95b174b714ea4a3a610b1c))
+* **main:** added some new components along with build stats plugin ([0d64317](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/commit/0d64317a2cca43000d67b46f522b156afd4f5b5a))
+* **main:** added type declaration for library ([1453306](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/commit/1453306ebb56f4d1c74a07c24d0091120395bfad))
+
+
+
+
+
+
 ## [0.2.3](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/compare/v0.2.2...v0.2.3) (2024-09-05)
 
 

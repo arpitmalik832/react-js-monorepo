@@ -1,3 +1,7 @@
+/**
+ * Unit tests for logsUtils.
+ * @file This file is saved as `logsUtils.test.js`.
+ */
 import '@testing-library/jest-dom';
 
 import {

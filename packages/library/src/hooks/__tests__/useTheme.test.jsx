@@ -1,3 +1,7 @@
+/**
+ * Unit tests for useTheme hook.
+ * @file The file is saved as `useTheme.test.jsx`.
+ */
 import { cleanup, render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { configureStore, createSlice } from '@reduxjs/toolkit';
@@ -36,11 +40,17 @@ describe('useAppMount unit tests', () => {
       },
     });
 
-    const TestComponent = () => {
+    /**
+     * Test component that uses the useTheme hook.
+     * @returns {import('react').JSX.Element} The rendered Test Component.
+     * @example
+     * <TestComponent />
+     */
+    function TestComponent() {
       useTheme();
 
       return <div data-testid="temp-component">Test Component</div>;
-    };
+    }
 
     const component = render(
       <Provider store={store}>
@@ -69,11 +79,17 @@ describe('useAppMount unit tests', () => {
       },
     });
 
-    const TestComponent = () => {
+    /**
+     * Test component that uses the useTheme hook.
+     * @returns {import('react').JSX.Element} The rendered Test Component.
+     * @example
+     * <TestComponent />
+     */
+    function TestComponent() {
       useTheme();
 
       return <div data-testid="temp-component">Test Component</div>;
-    };
+    }
 
     const component = render(
       <Provider store={store}>
@@ -102,11 +118,17 @@ describe('useAppMount unit tests', () => {
       },
     });
 
-    const TestComponent = () => {
+    /**
+     * Test component that uses the useTheme hook.
+     * @returns {import('react').JSX.Element} The rendered Test Component.
+     * @example
+     * <TestComponent />
+     */
+    function TestComponent() {
       useTheme();
 
       return <div data-testid="temp-component">Test Component</div>;
-    };
+    }
 
     const component = render(
       <Provider store={store}>
@@ -135,11 +157,17 @@ describe('useAppMount unit tests', () => {
       },
     });
 
-    const TestComponent = () => {
+    /**
+     * Test component that uses the useTheme hook.
+     * @returns {import('react').JSX.Element} The rendered Test Component.
+     * @example
+     * <TestComponent />
+     */
+    function TestComponent() {
       useTheme();
 
       return <div data-testid="temp-component">Test Component</div>;
-    };
+    }
 
     const component = render(
       <Provider store={store}>

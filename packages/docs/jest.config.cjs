@@ -87,7 +87,7 @@ module.exports = {
     url: 'http://localhost:3000/',
   },
   transform: {
-    '\\.(js|jsx)$': ['babel-jest', { configFile: './.babelrc.jest.cjs' }],
+    '\\.(js|jsx)$': ['babel-jest', { configFile: './babel.jest.config.cjs' }],
   },
   // unmockedModulePathPatterns: // [array<string>]
   verbose: true, // [boolean],

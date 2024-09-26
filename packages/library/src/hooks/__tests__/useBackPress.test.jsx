@@ -1,3 +1,7 @@
+/**
+ * Unit tests for useBackPress hook.
+ * @file The file is saved as `useBackPress.test.jsx`.
+ */
 import { useEffect } from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import '@testing-library/jest-dom';
@@ -37,11 +41,18 @@ describe('useBackPress unit tests', () => {
       },
     });
 
-    const TempComponent = () => {
+    /**
+     * Temporary component to test the useBackPress hook.
+     * @returns {import('react').JSX.Element} The rendered component.
+     * @example
+     * // Example usage:
+     * <TempComponent />
+     */
+    function TempComponent() {
       useBackPress();
 
       return <div data-testid="temp-component" />;
-    };
+    }
 
     const component = render(
       <Provider store={store}>
@@ -80,7 +91,14 @@ describe('useBackPress unit tests', () => {
       },
     });
 
-    const TempComponent = () => {
+    /**
+     * Temporary component to test the useBackPress hook.
+     * @returns {import('react').JSX.Element} The rendered component.
+     * @example
+     * // Example usage:
+     * <TempComponent />
+     */
+    function TempComponent() {
       const { push, pop } = useBackPress();
 
       useEffect(() => {
@@ -94,7 +112,7 @@ describe('useBackPress unit tests', () => {
           </button>
         </div>
       );
-    };
+    }
 
     const { getByTestId } = render(
       <Provider store={store}>
@@ -134,7 +152,14 @@ describe('useBackPress unit tests', () => {
       },
     });
 
-    const TempComponent = () => {
+    /**
+     * Temporary component to test the useBackPress hook.
+     * @returns {import('react').JSX.Element} The rendered component.
+     * @example
+     * // Example usage:
+     * <TempComponent />
+     */
+    function TempComponent() {
       const { push, clear } = useBackPress();
 
       useEffect(() => {
@@ -148,7 +173,7 @@ describe('useBackPress unit tests', () => {
           </button>
         </div>
       );
-    };
+    }
 
     const { getByTestId } = render(
       <Provider store={store}>

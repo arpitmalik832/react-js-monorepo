@@ -1,3 +1,7 @@
+/**
+ * This file is used to detect the preferred color scheme of the user.
+ * @file This file is saved as `preferredColorScheme.js`.
+ */
 const preferredColorScheme = {
   callBackFn() {},
   subscribe(callBackFn) {

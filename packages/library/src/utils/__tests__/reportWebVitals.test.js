@@ -1,3 +1,7 @@
+/**
+ * Unit tests for the reportWebVitals file.
+ * @file This file is saved as `reportWebVitals.test.js`.
+ */
 import { onCLS, onFCP, onFID, onLCP, onTTFB } from 'web-vitals';
 import '@testing-library/jest-dom';
 

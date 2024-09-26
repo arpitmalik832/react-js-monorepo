@@ -19,7 +19,7 @@ jobs:
       - name: Navigating to the library directory
         working-directory: packages/library
         run: |
-          yarn build
+          yarn build:prod
           yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

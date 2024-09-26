@@ -1,3 +1,7 @@
+/**
+ * Unit tests for beforeUnload event listener.
+ * @file This file is saved as `beforeUnload.test.js`.
+ */
 import '@testing-library/jest-dom';
 
 import beforeUnload from '../eventListeners/beforeUnload';

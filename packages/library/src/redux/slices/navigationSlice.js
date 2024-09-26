@@ -1,3 +1,7 @@
+/**
+ * Contains the navigation slice.
+ * @file This file is saved as `navigationSlice.js`.
+ */
 import { createSlice } from '@reduxjs/toolkit';
 
 const navigationSlice = createSlice({

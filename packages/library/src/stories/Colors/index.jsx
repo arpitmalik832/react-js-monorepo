@@ -5,7 +5,7 @@
 import tokens from '../../../static/enums/design_tokens.json';
 import { capitalizeFirstChar } from '../../utils/stringUtils';
 import classnames from '../../utils/classNames';
-import s from './index.module.scss';
+import s from './index.scss';
 
 /**
  * Colors component that renders color boxes based on design tokens.

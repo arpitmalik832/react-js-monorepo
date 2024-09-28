@@ -9,7 +9,7 @@ import { capitalizeFirstChar } from '../../utils/stringUtils';
 import { copyToClipboard } from '../../utils/commonUtils';
 import { errorLog } from '../../utils/logsUtils';
 
-import s from './index.module.scss';
+import s from './index.scss';
 
 /**
  * Icon component that dynamically imports and renders an SVG icon.

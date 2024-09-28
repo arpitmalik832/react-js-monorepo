@@ -5,5 +5,3 @@
 
 export { useDispatch, useSelector } from 'react-redux';
 export { configureStore } from '@reduxjs/toolkit';
-export { default as logger } from 'redux-logger';
-export { thunk } from 'redux-thunk';

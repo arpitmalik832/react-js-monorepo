@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.4](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/compare/v0.3.3...v0.3.4) (2024-09-28)
+
+### Bug Fixes
+
+- **utils:** updated dependencies ([3403bab](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/commit/3403bab61c48be6ebfc705f2e9296f345667a58f))
+
 ## [0.3.3](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/compare/v0.3.2...v0.3.3) (2024-09-28)
 
 **Note:** Version bump only for package @arpitmalik832/react-js-rollup-monorepo-library

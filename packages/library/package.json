@@ -24,16 +24,14 @@
   "types": "types/index.d.ts",
   "exports": {
     "./icons/*": {
+      "types": "./types/assets/icons/*",
       "import": "./dist/assets/icons/*",
-      "require": "./dist/assets/icons/*",
-      "default": "./dist/assets/icons/*",
-      "types": "./types/assets/icons/*"
+      "require": "./dist/assets/icons/*"
     },
     ".": {
+      "types": "./types/index.d.ts",
       "import": "./dist/index.js",
-      "require": "./dist/index.js",
-      "default": "./dist/index.js",
-      "types": "./types/index.d.ts"
+      "require": "./dist/index.js"
     },
     "./styles/*": "./dist/styles/*"
   },

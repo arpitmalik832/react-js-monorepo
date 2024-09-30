@@ -3743,13 +3743,13 @@
     "@storybook/global" "^5.0.0"
 
 "@storybook/addon-interactions@^8.2.8":
-  version "8.3.3"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-interactions/-/addon-interactions-8.3.3.tgz#2ba7e3f2bd1e945c4e0c1e785fdaba7a3c2043ba"
-  integrity sha512-3w5tpCGYdF33wF44xEhTS3Zmcwd6nITtwy5q+PJvHCJAm3fpjzL3xrjtlHKDvXNwYacJPRCbWKn2QwtxZIdN0g==
+  version "8.3.4"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-interactions/-/addon-interactions-8.3.4.tgz#81305449cd05d3827189eb79011a30a7a6be849c"
+  integrity sha512-ORxqe35wUmF7EDHo45mdDHiju3Ryk2pZ1vO9PyvW6ZItNlHt/IxAr7T/TysGejZ/eTBg6tMZR3ExGky3lTg/CQ==
   dependencies:
     "@storybook/global" "^5.0.0"
-    "@storybook/instrumenter" "8.3.3"
-    "@storybook/test" "8.3.3"
+    "@storybook/instrumenter" "8.3.4"
+    "@storybook/test" "8.3.4"
     polished "^4.2.2"
     ts-dedent "^2.2.0"
 
@@ -3915,10 +3915,10 @@
   resolved "https://registry.yarnpkg.com/@storybook/icons/-/icons-1.2.12.tgz#3e4c939113b67df7ab17b78f805dbb57f4acf0db"
   integrity sha512-UxgyK5W3/UV4VrI3dl6ajGfHM4aOqMAkFLWe2KibeQudLf6NJpDrDMSHwZj+3iKC4jFU7dkKbbtH2h/al4sW3Q==
 
-"@storybook/instrumenter@8.3.3":
-  version "8.3.3"
-  resolved "https://registry.yarnpkg.com/@storybook/instrumenter/-/instrumenter-8.3.3.tgz#7f2506f59d7862a691cfc7719c62b881c19fd419"
-  integrity sha512-ZiODB9EwCQkl4PBxGJjBHXRTLxcNs68ZZvR+xeMr0eMFzzlJG+trXoX5kK95oA4BFhGN+3uM0Zl3MoRjBtJTNA==
+"@storybook/instrumenter@8.3.4":
+  version "8.3.4"
+  resolved "https://registry.yarnpkg.com/@storybook/instrumenter/-/instrumenter-8.3.4.tgz#fa1e513af5e243d8757bb6a77c33e317d90935c7"
+  integrity sha512-jVhfNOPekOyJmta0BTkQl9Z6rgRbFHlc0eV4z1oSrzaawSlc9TFzAeDCtCP57vg3FuBX8ydDYAvyZ7s4xPpLyg==
   dependencies:
     "@storybook/global" "^5.0.0"
     "@vitest/utils" "^2.0.5"
@@ -4017,14 +4017,14 @@
     lodash "^4.17.21"
     prettier "^3.1.1"
 
-"@storybook/test@8.3.3":
-  version "8.3.3"
-  resolved "https://registry.yarnpkg.com/@storybook/test/-/test-8.3.3.tgz#2bf83f3ffc736b851c034e26d215dbb6da0e2a0d"
-  integrity sha512-uZ8nMIovfI2ry989K2+cYAeEVD/3dpjj2+Rbmy7DiZWWVhFALfmqaTRkzZfShLmlH0TFv+rfcBPihGccBtw0FQ==
+"@storybook/test@8.3.4":
+  version "8.3.4"
+  resolved "https://registry.yarnpkg.com/@storybook/test/-/test-8.3.4.tgz#74306ba2f15607a74092e1d591d63afa222569b8"
+  integrity sha512-HRiUenitln8QPHu6DEWUg9s9cEoiGN79lMykzXzw9shaUvdEIhWCsh82YKtmB3GJPj6qcc6dZL/Aio8srxyGAg==
   dependencies:
     "@storybook/csf" "^0.1.11"
     "@storybook/global" "^5.0.0"
-    "@storybook/instrumenter" "8.3.3"
+    "@storybook/instrumenter" "8.3.4"
     "@testing-library/dom" "10.4.0"
     "@testing-library/jest-dom" "6.5.0"
     "@testing-library/user-event" "14.5.2"

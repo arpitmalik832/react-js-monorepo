@@ -85,7 +85,7 @@ if (['production', 'beta'].includes(process.env.LIB_ENV)) {
       compress: {
         dead_code: true,
         drop_debugger: true,
-        drop_console: process.env.LIB_ENV === 'production',
+        drop_console: false,
         conditionals: true,
         evaluate: true,
         booleans: true,

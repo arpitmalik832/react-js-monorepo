@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.6](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/compare/v0.3.5...v0.3.6) (2024-10-02)
+
+### Bug Fixes
+
+- **main:** allowing logs even in prod env of the library ([7f4c6ec](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/commit/7f4c6ec1fa15e551b59865b16ed74a106654b405))
+
 ## [0.3.5](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/compare/v0.3.4...v0.3.5) (2024-10-02)
 
 ### Bug Fixes

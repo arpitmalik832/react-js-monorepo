@@ -2,7 +2,7 @@
  * To register and unregister service worker.
  * @file The file is saved as `SWRegistration.js`.
  */
-import { URL, LOGS } from '../enums/sw';
+import { SW_URL, LOGS } from '../enums/sw';
 import { errorLog, log } from '../utils/logsUtils';
 import { isLocalhost } from '../utils/commonUtils';
 import load from '../utils/eventListeners/load';
@@ -17,7 +17,7 @@ import { ENVS } from '../enums/app';
  */
 function registerValidSW() {
   navigator.serviceWorker
-    .register(URL)
+    .register(SW_URL)
     .then(registration => {
       log(LOGS.SUCCESS, registration);
     })
@@ -34,7 +34,7 @@ function registerValidSW() {
  * checkValidSW();
  */
 function checkValidSW() {
-  fetch(URL, {
+  fetch(SW_URL, {
     headers: { 'Service-Worker': 'script' },
   })
     .then(response => {
@@ -77,10 +77,7 @@ const SWRegistration = {
       'serviceWorker' in navigator
     ) {
       // The URL constructor is available in all browsers that support SW.
-      const publicUrl = new global.URL(
-        process.env.PUBLIC_URL,
-        window.location.href,
-      );
+      const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
       if (publicUrl.origin !== window.location.origin) {
         // Our service worker won't work if PUBLIC_URL is on a different origin
         // from what our page is served on. This might happen if a CDN is used to

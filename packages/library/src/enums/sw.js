@@ -2,7 +2,7 @@
  * Contains constants for Service Worker.
  * @file This file is saved as `sw.js`.
  */
-const URL = `/sw.js`;
+const SW_URL = `/sw.js`;
 
 const LOGS = {
   SUCCESS: 'Service Worker registered successfully',
@@ -11,4 +11,4 @@ const LOGS = {
   NO_INTERNET: 'No internet connection found. App is running in offline mode.',
 };
 
-export { URL, LOGS };
+export { SW_URL, LOGS };

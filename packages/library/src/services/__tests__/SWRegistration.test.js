@@ -7,10 +7,11 @@ import '@testing-library/jest-dom';
 import SWRegistration from '../SWRegistration';
 import { isLocalhost } from '../../utils/commonUtils';
 import fetchMock from '../../__tests__/__mocks__/fetchMock';
+import { ENVS } from '../../enums/app';
 
 jest.mock('../../enums/sw', () => ({
   __esModule: true,
-  URL: `/sw.js`,
+  SW_URL: `/sw.js`,
   LOGS: {
     SUCCESS: 'Service Worker registered successfully',
     SW_READY: 'This web-app is being served cache-first by a service.',
@@ -49,13 +50,13 @@ describe('SWRegistration unit tests', () => {
   });
 
   it('SWRegistration functions test', () => {
-    process.env.APP_ENV = 'production';
+    process.env.APP_ENV = ENVS.PROD;
     SWRegistration.register();
     SWRegistration.unregister();
   });
 
   it('SWRegistration functions test', () => {
-    process.env.APP_ENV = 'production';
+    process.env.APP_ENV = ENVS.PROD;
     Object.defineProperty(global.navigator, 'serviceWorker', {
       value: {
         register: jest.fn(() => Promise.resolve('xyz')),
@@ -72,7 +73,7 @@ describe('SWRegistration unit tests', () => {
   });
 
   it('SWRegistration functions test with rejecting ready state', async () => {
-    process.env.APP_ENV = 'production';
+    process.env.APP_ENV = ENVS.PROD;
     Object.defineProperty(global.navigator, 'serviceWorker', {
       value: {
         register: jest.fn(() => Promise.resolve('xyz')),
@@ -87,7 +88,7 @@ describe('SWRegistration unit tests', () => {
   });
 
   it('SWRegistration functions test in case of localhost', () => {
-    process.env.APP_ENV = 'production';
+    process.env.APP_ENV = ENVS.PROD;
     delete window.location;
     window.location = {
       hostname: 'localhost',
@@ -113,7 +114,7 @@ describe('SWRegistration unit tests', () => {
   });
 
   it('SWRegistration functions test in case of localhost when fetch is throwing error', () => {
-    process.env.APP_ENV = 'production';
+    process.env.APP_ENV = ENVS.PROD;
     delete window.location;
     window.location = {
       hostname: 'localhost',
@@ -142,7 +143,7 @@ describe('SWRegistration unit tests', () => {
   });
 
   it('SWRegistration functions test in case of localhost when service worker is not loaded', () => {
-    process.env.APP_ENV = 'production';
+    process.env.APP_ENV = ENVS.PROD;
     delete window.location;
     window.location = {
       hostname: 'localhost',
@@ -171,7 +172,7 @@ describe('SWRegistration unit tests', () => {
   });
 
   it('SWRegistration functions test in case of localhost with different origin', () => {
-    process.env.APP_ENV = 'production';
+    process.env.APP_ENV = ENVS.PROD;
     delete window.location;
     window.location = {
       hostname: 'localhost',

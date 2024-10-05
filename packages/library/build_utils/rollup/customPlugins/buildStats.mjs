@@ -64,14 +64,14 @@ export default function buildStats(outputPath = 'build-stats.json') {
       stats.noOfFiles = stats.files.length;
 
       if (stats.files.length > 0) {
-        stats.largestFile = stats.files.reduce(
-          (prev, current) => (prev.size > current.size ? prev : current),
-          stats.files[0],
-        );
         stats.files = stats.files.map(i => ({
           ...i,
           percentageBySize: ((i.size / stats.totalSize) * 100).toFixed(2),
         }));
+        stats.largestFile = stats.files.reduce(
+          (prev, current) => (prev.size > current.size ? prev : current),
+          stats.files[0],
+        );
       }
 
       // Ensure the directory exists

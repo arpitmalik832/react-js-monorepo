@@ -56,10 +56,10 @@
     "grant-permissions:husky": "chmod +x .husky/*",
     "prepare": "husky install && yarn grant-permissions:husky",
     "commit": "git-cz",
-    "tag": "node -e \"console.log(require('./lerna.json').version)\" | xargs -I {} git tag -a v{} -m \"Release v{}\"",
-    "push:tags": "git push --tags",
-    "version:bump": "lerna version",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
+    "version-bump": "lerna version",
+    "version-bump:major": "lerna version major --yes",
+    "version-bump:minor": "lerna version minor --yes",
+    "version-bump:patch": "lerna version patch --yes"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.5.0",

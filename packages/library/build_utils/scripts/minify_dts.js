@@ -53,7 +53,7 @@ const minifyDirectory = async dir => {
 
 const main = async () => {
   try {
-    await minifyDirectory(join(dirName, '../types'));
+    await minifyDirectory(join(dirName, '../../types'));
     console.log('Declaration files minified successfully.');
   } catch (error) {
     console.error('Error minifying declaration files:', error);

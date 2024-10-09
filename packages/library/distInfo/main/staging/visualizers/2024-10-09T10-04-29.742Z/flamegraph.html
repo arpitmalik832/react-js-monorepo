@@ -386,21 +386,6 @@ var drawChart = (function (exports) {
     [Symbol.iterator]: node_iterator
   };
 
-  function required(f) {
-    if (typeof f !== "function") throw new Error;
-    return f;
-  }
-
-  function constantZero() {
-    return 0;
-  }
-
-  function constant$1(x) {
-    return function() {
-      return x;
-    };
-  }
-
   function roundNode(node) {
     node.x0 = Math.round(node.x0);
     node.y0 = Math.round(node.y0);
@@ -421,205 +406,55 @@ var drawChart = (function (exports) {
     }
   }
 
-  function treemapSlice(parent, x0, y0, x1, y1) {
-    var nodes = parent.children,
-        node,
-        i = -1,
-        n = nodes.length,
-        k = parent.value && (y1 - y0) / parent.value;
-
-    while (++i < n) {
-      node = nodes[i], node.x0 = x0, node.x1 = x1;
-      node.y0 = y0, node.y1 = y0 += node.value * k;
-    }
-  }
-
-  var phi = (1 + Math.sqrt(5)) / 2;
-
-  function squarifyRatio(ratio, parent, x0, y0, x1, y1) {
-    var rows = [],
-        nodes = parent.children,
-        row,
-        nodeValue,
-        i0 = 0,
-        i1 = 0,
-        n = nodes.length,
-        dx, dy,
-        value = parent.value,
-        sumValue,
-        minValue,
-        maxValue,
-        newRatio,
-        minRatio,
-        alpha,
-        beta;
-
-    while (i0 < n) {
-      dx = x1 - x0, dy = y1 - y0;
-
-      // Find the next non-empty node.
-      do sumValue = nodes[i1++].value; while (!sumValue && i1 < n);
-      minValue = maxValue = sumValue;
-      alpha = Math.max(dy / dx, dx / dy) / (value * ratio);
-      beta = sumValue * sumValue * alpha;
-      minRatio = Math.max(maxValue / beta, beta / minValue);
-
-      // Keep adding nodes while the aspect ratio maintains or improves.
-      for (; i1 < n; ++i1) {
-        sumValue += nodeValue = nodes[i1].value;
-        if (nodeValue < minValue) minValue = nodeValue;
-        if (nodeValue > maxValue) maxValue = nodeValue;
-        beta = sumValue * sumValue * alpha;
-        newRatio = Math.max(maxValue / beta, beta / minValue);
-        if (newRatio > minRatio) { sumValue -= nodeValue; break; }
-        minRatio = newRatio;
-      }
-
-      // Position and record the row orientation.
-      rows.push(row = {value: sumValue, dice: dx < dy, children: nodes.slice(i0, i1)});
-      if (row.dice) treemapDice(row, x0, y0, x1, value ? y0 += dy * sumValue / value : y1);
-      else treemapSlice(row, x0, y0, value ? x0 += dx * sumValue / value : x1, y1);
-      value -= sumValue, i0 = i1;
-    }
-
-    return rows;
-  }
-
-  var squarify = (function custom(ratio) {
-
-    function squarify(parent, x0, y0, x1, y1) {
-      squarifyRatio(ratio, parent, x0, y0, x1, y1);
-    }
-
-    squarify.ratio = function(x) {
-      return custom((x = +x) > 1 ? x : 1);
-    };
-
-    return squarify;
-  })(phi);
-
-  function treemap() {
-    var tile = squarify,
-        round = false,
-        dx = 1,
+  function partition() {
+    var dx = 1,
         dy = 1,
-        paddingStack = [0],
-        paddingInner = constantZero,
-        paddingTop = constantZero,
-        paddingRight = constantZero,
-        paddingBottom = constantZero,
-        paddingLeft = constantZero;
+        padding = 0,
+        round = false;
 
-    function treemap(root) {
+    function partition(root) {
+      var n = root.height + 1;
       root.x0 =
-      root.y0 = 0;
+      root.y0 = padding;
       root.x1 = dx;
-      root.y1 = dy;
-      root.eachBefore(positionNode);
-      paddingStack = [0];
+      root.y1 = dy / n;
+      root.eachBefore(positionNode(dy, n));
       if (round) root.eachBefore(roundNode);
       return root;
     }
 
-    function positionNode(node) {
-      var p = paddingStack[node.depth],
-          x0 = node.x0 + p,
-          y0 = node.y0 + p,
-          x1 = node.x1 - p,
-          y1 = node.y1 - p;
-      if (x1 < x0) x0 = x1 = (x0 + x1) / 2;
-      if (y1 < y0) y0 = y1 = (y0 + y1) / 2;
-      node.x0 = x0;
-      node.y0 = y0;
-      node.x1 = x1;
-      node.y1 = y1;
-      if (node.children) {
-        p = paddingStack[node.depth + 1] = paddingInner(node) / 2;
-        x0 += paddingLeft(node) - p;
-        y0 += paddingTop(node) - p;
-        x1 -= paddingRight(node) - p;
-        y1 -= paddingBottom(node) - p;
+    function positionNode(dy, n) {
+      return function(node) {
+        if (node.children) {
+          treemapDice(node, node.x0, dy * (node.depth + 1) / n, node.x1, dy * (node.depth + 2) / n);
+        }
+        var x0 = node.x0,
+            y0 = node.y0,
+            x1 = node.x1 - padding,
+            y1 = node.y1 - padding;
         if (x1 < x0) x0 = x1 = (x0 + x1) / 2;
         if (y1 < y0) y0 = y1 = (y0 + y1) / 2;
-        tile(node, x0, y0, x1, y1);
-      }
+        node.x0 = x0;
+        node.y0 = y0;
+        node.x1 = x1;
+        node.y1 = y1;
+      };
     }
 
-    treemap.round = function(x) {
-      return arguments.length ? (round = !!x, treemap) : round;
+    partition.round = function(x) {
+      return arguments.length ? (round = !!x, partition) : round;
     };
 
-    treemap.size = function(x) {
-      return arguments.length ? (dx = +x[0], dy = +x[1], treemap) : [dx, dy];
+    partition.size = function(x) {
+      return arguments.length ? (dx = +x[0], dy = +x[1], partition) : [dx, dy];
     };
 
-    treemap.tile = function(x) {
-      return arguments.length ? (tile = required(x), treemap) : tile;
+    partition.padding = function(x) {
+      return arguments.length ? (padding = +x, partition) : padding;
     };
 
-    treemap.padding = function(x) {
-      return arguments.length ? treemap.paddingInner(x).paddingOuter(x) : treemap.paddingInner();
-    };
-
-    treemap.paddingInner = function(x) {
-      return arguments.length ? (paddingInner = typeof x === "function" ? x : constant$1(+x), treemap) : paddingInner;
-    };
-
-    treemap.paddingOuter = function(x) {
-      return arguments.length ? treemap.paddingTop(x).paddingRight(x).paddingBottom(x).paddingLeft(x) : treemap.paddingTop();
-    };
-
-    treemap.paddingTop = function(x) {
-      return arguments.length ? (paddingTop = typeof x === "function" ? x : constant$1(+x), treemap) : paddingTop;
-    };
-
-    treemap.paddingRight = function(x) {
-      return arguments.length ? (paddingRight = typeof x === "function" ? x : constant$1(+x), treemap) : paddingRight;
-    };
-
-    treemap.paddingBottom = function(x) {
-      return arguments.length ? (paddingBottom = typeof x === "function" ? x : constant$1(+x), treemap) : paddingBottom;
-    };
-
-    treemap.paddingLeft = function(x) {
-      return arguments.length ? (paddingLeft = typeof x === "function" ? x : constant$1(+x), treemap) : paddingLeft;
-    };
-
-    return treemap;
+    return partition;
   }
-
-  var treemapResquarify = (function custom(ratio) {
-
-    function resquarify(parent, x0, y0, x1, y1) {
-      if ((rows = parent._squarify) && (rows.ratio === ratio)) {
-        var rows,
-            row,
-            nodes,
-            i,
-            j = -1,
-            n,
-            m = rows.length,
-            value = parent.value;
-
-        while (++j < m) {
-          row = rows[j], nodes = row.children;
-          for (i = row.value = 0, n = nodes.length; i < n; ++i) row.value += nodes[i].value;
-          if (row.dice) treemapDice(row, x0, y0, x1, value ? y0 += (y1 - y0) * row.value / value : y1);
-          else treemapSlice(row, x0, y0, value ? x0 += (x1 - x0) * row.value / value : x1, y1);
-          value -= row.value;
-        }
-      } else {
-        parent._squarify = rows = squarifyRatio(ratio, parent, x0, y0, x1, y1);
-        rows.ratio = ratio;
-      }
-    }
-
-    resquarify.ratio = function(x) {
-      return custom((x = +x) > 1 ? x : 1);
-    };
-
-    return resquarify;
-  })(phi);
 
   const isModuleTree = (mod) => "children" in mod;
 
@@ -2844,209 +2679,6 @@ var drawChart = (function (exports) {
       };
   };
 
-  function ascending(a, b) {
-    return a == null || b == null ? NaN : a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
-  }
-
-  function descending(a, b) {
-    return a == null || b == null ? NaN
-      : b < a ? -1
-      : b > a ? 1
-      : b >= a ? 0
-      : NaN;
-  }
-
-  function bisector(f) {
-    let compare1, compare2, delta;
-
-    // If an accessor is specified, promote it to a comparator. In this case we
-    // can test whether the search value is (self-) comparable. We can’t do this
-    // for a comparator (except for specific, known comparators) because we can’t
-    // tell if the comparator is symmetric, and an asymmetric comparator can’t be
-    // used to test whether a single value is comparable.
-    if (f.length !== 2) {
-      compare1 = ascending;
-      compare2 = (d, x) => ascending(f(d), x);
-      delta = (d, x) => f(d) - x;
-    } else {
-      compare1 = f === ascending || f === descending ? f : zero$1;
-      compare2 = f;
-      delta = f;
-    }
-
-    function left(a, x, lo = 0, hi = a.length) {
-      if (lo < hi) {
-        if (compare1(x, x) !== 0) return hi;
-        do {
-          const mid = (lo + hi) >>> 1;
-          if (compare2(a[mid], x) < 0) lo = mid + 1;
-          else hi = mid;
-        } while (lo < hi);
-      }
-      return lo;
-    }
-
-    function right(a, x, lo = 0, hi = a.length) {
-      if (lo < hi) {
-        if (compare1(x, x) !== 0) return hi;
-        do {
-          const mid = (lo + hi) >>> 1;
-          if (compare2(a[mid], x) <= 0) lo = mid + 1;
-          else hi = mid;
-        } while (lo < hi);
-      }
-      return lo;
-    }
-
-    function center(a, x, lo = 0, hi = a.length) {
-      const i = left(a, x, lo, hi - 1);
-      return i > lo && delta(a[i - 1], x) > -delta(a[i], x) ? i - 1 : i;
-    }
-
-    return {left, center, right};
-  }
-
-  function zero$1() {
-    return 0;
-  }
-
-  function number$1(x) {
-    return x === null ? NaN : +x;
-  }
-
-  const ascendingBisect = bisector(ascending);
-  const bisectRight = ascendingBisect.right;
-  bisector(number$1).center;
-  var bisect = bisectRight;
-
-  class InternMap extends Map {
-    constructor(entries, key = keyof) {
-      super();
-      Object.defineProperties(this, {_intern: {value: new Map()}, _key: {value: key}});
-      if (entries != null) for (const [key, value] of entries) this.set(key, value);
-    }
-    get(key) {
-      return super.get(intern_get(this, key));
-    }
-    has(key) {
-      return super.has(intern_get(this, key));
-    }
-    set(key, value) {
-      return super.set(intern_set(this, key), value);
-    }
-    delete(key) {
-      return super.delete(intern_delete(this, key));
-    }
-  }
-
-  function intern_get({_intern, _key}, value) {
-    const key = _key(value);
-    return _intern.has(key) ? _intern.get(key) : value;
-  }
-
-  function intern_set({_intern, _key}, value) {
-    const key = _key(value);
-    if (_intern.has(key)) return _intern.get(key);
-    _intern.set(key, value);
-    return value;
-  }
-
-  function intern_delete({_intern, _key}, value) {
-    const key = _key(value);
-    if (_intern.has(key)) {
-      value = _intern.get(key);
-      _intern.delete(key);
-    }
-    return value;
-  }
-
-  function keyof(value) {
-    return value !== null && typeof value === "object" ? value.valueOf() : value;
-  }
-
-  function identity$2(x) {
-    return x;
-  }
-
-  function group(values, ...keys) {
-    return nest(values, identity$2, identity$2, keys);
-  }
-
-  function nest(values, map, reduce, keys) {
-    return (function regroup(values, i) {
-      if (i >= keys.length) return reduce(values);
-      const groups = new InternMap();
-      const keyof = keys[i++];
-      let index = -1;
-      for (const value of values) {
-        const key = keyof(value, ++index, values);
-        const group = groups.get(key);
-        if (group) group.push(value);
-        else groups.set(key, [value]);
-      }
-      for (const [key, values] of groups) {
-        groups.set(key, regroup(values, i));
-      }
-      return map(groups);
-    })(values, 0);
-  }
-
-  const e10 = Math.sqrt(50),
-      e5 = Math.sqrt(10),
-      e2 = Math.sqrt(2);
-
-  function tickSpec(start, stop, count) {
-    const step = (stop - start) / Math.max(0, count),
-        power = Math.floor(Math.log10(step)),
-        error = step / Math.pow(10, power),
-        factor = error >= e10 ? 10 : error >= e5 ? 5 : error >= e2 ? 2 : 1;
-    let i1, i2, inc;
-    if (power < 0) {
-      inc = Math.pow(10, -power) / factor;
-      i1 = Math.round(start * inc);
-      i2 = Math.round(stop * inc);
-      if (i1 / inc < start) ++i1;
-      if (i2 / inc > stop) --i2;
-      inc = -inc;
-    } else {
-      inc = Math.pow(10, power) * factor;
-      i1 = Math.round(start / inc);
-      i2 = Math.round(stop / inc);
-      if (i1 * inc < start) ++i1;
-      if (i2 * inc > stop) --i2;
-    }
-    if (i2 < i1 && 0.5 <= count && count < 2) return tickSpec(start, stop, count * 2);
-    return [i1, i2, inc];
-  }
-
-  function ticks(start, stop, count) {
-    stop = +stop, start = +start, count = +count;
-    if (!(count > 0)) return [];
-    if (start === stop) return [start];
-    const reverse = stop < start, [i1, i2, inc] = reverse ? tickSpec(stop, start, count) : tickSpec(start, stop, count);
-    if (!(i2 >= i1)) return [];
-    const n = i2 - i1 + 1, ticks = new Array(n);
-    if (reverse) {
-      if (inc < 0) for (let i = 0; i < n; ++i) ticks[i] = (i2 - i) / -inc;
-      else for (let i = 0; i < n; ++i) ticks[i] = (i2 - i) * inc;
-    } else {
-      if (inc < 0) for (let i = 0; i < n; ++i) ticks[i] = (i1 + i) / -inc;
-      else for (let i = 0; i < n; ++i) ticks[i] = (i1 + i) * inc;
-    }
-    return ticks;
-  }
-
-  function tickIncrement(start, stop, count) {
-    stop = +stop, start = +start, count = +count;
-    return tickSpec(start, stop, count)[2];
-  }
-
-  function tickStep(start, stop, count) {
-    stop = +stop, start = +start, count = +count;
-    const reverse = stop < start, inc = reverse ? tickIncrement(stop, start, count) : tickIncrement(start, stop, count);
-    return (reverse ? -1 : 1) * (inc < 0 ? 1 / -inc : inc);
-  }
-
   const TOP_PADDING = 20;
   const PADDING = 2;
 
@@ -3078,18 +2710,10 @@ var drawChart = (function (exports) {
               textRectRef.current = textRef.current.getBoundingClientRect();
           }
           let scale = 1;
-          if (children != null) {
-              scale = Math.min((width * 0.9) / textRectRef.current.width, Math.min(height, TOP_PADDING + PADDING) / textRectRef.current.height);
-              scale = Math.min(1, scale);
-              textRef.current.setAttribute("y", String(Math.min(TOP_PADDING + PADDING, height) / 2 / scale));
-              textRef.current.setAttribute("x", String(width / 2 / scale));
-          }
-          else {
-              scale = Math.min((width * 0.9) / textRectRef.current.width, (height * 0.9) / textRectRef.current.height);
-              scale = Math.min(1, scale);
-              textRef.current.setAttribute("y", String(height / 2 / scale));
-              textRef.current.setAttribute("x", String(width / 2 / scale));
-          }
+          scale = Math.min((width * 0.9) / textRectRef.current.width, (height * 0.9) / textRectRef.current.height);
+          scale = Math.min(1, scale);
+          textRef.current.setAttribute("y", String(height / 2 / scale));
+          textRef.current.setAttribute("x", String(width / 2 / scale));
           textRef.current.setAttribute("transform", `scale(${scale.toFixed(2)})`);
       }, [children, height, width]);
       if (width == 0 || height == 0) {
@@ -3109,24 +2733,10 @@ var drawChart = (function (exports) {
                   } }, textProps, { children: data.name }))] }));
   };
 
-  const TreeMap = ({ root, onNodeHover, selectedNode, onNodeClick, }) => {
+  const FlameGraph = ({ root, onNodeHover, selectedNode, onNodeClick, }) => {
       const { width, height, getModuleIds } = q(StaticContext);
-      console.time("layering");
-      // this will make groups by height
-      const nestedData = F(() => {
-          const nestedDataMap = group(root.descendants(), (d) => d.height);
-          const nestedData = Array.from(nestedDataMap, ([key, values]) => ({
-              key,
-              values,
-          }));
-          nestedData.sort((a, b) => b.key - a.key);
-          return nestedData;
-      }, [root]);
-      console.timeEnd("layering");
-      return (u$1("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: `0 0 ${width} ${height}`, children: nestedData.map(({ key, values }) => {
-              return (u$1("g", { className: "layer", children: values.map((node) => {
-                      return (u$1(Node, { node: node, onMouseOver: onNodeHover, selected: selectedNode === node, onClick: onNodeClick }, getModuleIds(node.data).nodeUid.id));
-                  }) }, key));
+      return (u$1("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: `0 0 ${width} ${height}`, children: root.descendants().map((node) => {
+              return (u$1(Node, { node: node, onMouseOver: onNodeHover, selected: selectedNode === node, onClick: onNodeClick }, getModuleIds(node.data).nodeUid.id));
           }) }));
   };
 
@@ -3384,7 +2994,7 @@ var drawChart = (function (exports) {
               document.removeEventListener("mouseover", handleMouseOut);
           };
       }, []);
-      return (u$1(g$1, { children: [u$1(TreeMap, { root: root, onNodeHover: (node) => {
+      return (u$1(g$1, { children: [u$1(FlameGraph, { root: root, onNodeHover: (node) => {
                       setTooltipNode(node);
                       setShowTooltip(true);
                   }, selectedNode: selectedNode, onNodeClick: (node) => {
@@ -3452,6 +3062,137 @@ var drawChart = (function (exports) {
       console.timeEnd("root hierarchy compute");
       return (u$1(g$1, { children: [u$1(SideBar, { sizeProperty: sizeProperty, availableSizeProperties: availableSizeProperties, setSizeProperty: setSizeProperty, onExcludeChange: setExcludeFilter, onIncludeChange: setIncludeFilter }), u$1(Chart, { root: root, sizeProperty: sizeProperty, selectedNode: selectedNode, setSelectedNode: setSelectedNode })] }));
   };
+
+  function ascending(a, b) {
+    return a == null || b == null ? NaN : a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
+  }
+
+  function descending(a, b) {
+    return a == null || b == null ? NaN
+      : b < a ? -1
+      : b > a ? 1
+      : b >= a ? 0
+      : NaN;
+  }
+
+  function bisector(f) {
+    let compare1, compare2, delta;
+
+    // If an accessor is specified, promote it to a comparator. In this case we
+    // can test whether the search value is (self-) comparable. We can’t do this
+    // for a comparator (except for specific, known comparators) because we can’t
+    // tell if the comparator is symmetric, and an asymmetric comparator can’t be
+    // used to test whether a single value is comparable.
+    if (f.length !== 2) {
+      compare1 = ascending;
+      compare2 = (d, x) => ascending(f(d), x);
+      delta = (d, x) => f(d) - x;
+    } else {
+      compare1 = f === ascending || f === descending ? f : zero$1;
+      compare2 = f;
+      delta = f;
+    }
+
+    function left(a, x, lo = 0, hi = a.length) {
+      if (lo < hi) {
+        if (compare1(x, x) !== 0) return hi;
+        do {
+          const mid = (lo + hi) >>> 1;
+          if (compare2(a[mid], x) < 0) lo = mid + 1;
+          else hi = mid;
+        } while (lo < hi);
+      }
+      return lo;
+    }
+
+    function right(a, x, lo = 0, hi = a.length) {
+      if (lo < hi) {
+        if (compare1(x, x) !== 0) return hi;
+        do {
+          const mid = (lo + hi) >>> 1;
+          if (compare2(a[mid], x) <= 0) lo = mid + 1;
+          else hi = mid;
+        } while (lo < hi);
+      }
+      return lo;
+    }
+
+    function center(a, x, lo = 0, hi = a.length) {
+      const i = left(a, x, lo, hi - 1);
+      return i > lo && delta(a[i - 1], x) > -delta(a[i], x) ? i - 1 : i;
+    }
+
+    return {left, center, right};
+  }
+
+  function zero$1() {
+    return 0;
+  }
+
+  function number$1(x) {
+    return x === null ? NaN : +x;
+  }
+
+  const ascendingBisect = bisector(ascending);
+  const bisectRight = ascendingBisect.right;
+  bisector(number$1).center;
+  var bisect = bisectRight;
+
+  const e10 = Math.sqrt(50),
+      e5 = Math.sqrt(10),
+      e2 = Math.sqrt(2);
+
+  function tickSpec(start, stop, count) {
+    const step = (stop - start) / Math.max(0, count),
+        power = Math.floor(Math.log10(step)),
+        error = step / Math.pow(10, power),
+        factor = error >= e10 ? 10 : error >= e5 ? 5 : error >= e2 ? 2 : 1;
+    let i1, i2, inc;
+    if (power < 0) {
+      inc = Math.pow(10, -power) / factor;
+      i1 = Math.round(start * inc);
+      i2 = Math.round(stop * inc);
+      if (i1 / inc < start) ++i1;
+      if (i2 / inc > stop) --i2;
+      inc = -inc;
+    } else {
+      inc = Math.pow(10, power) * factor;
+      i1 = Math.round(start / inc);
+      i2 = Math.round(stop / inc);
+      if (i1 * inc < start) ++i1;
+      if (i2 * inc > stop) --i2;
+    }
+    if (i2 < i1 && 0.5 <= count && count < 2) return tickSpec(start, stop, count * 2);
+    return [i1, i2, inc];
+  }
+
+  function ticks(start, stop, count) {
+    stop = +stop, start = +start, count = +count;
+    if (!(count > 0)) return [];
+    if (start === stop) return [start];
+    const reverse = stop < start, [i1, i2, inc] = reverse ? tickSpec(stop, start, count) : tickSpec(start, stop, count);
+    if (!(i2 >= i1)) return [];
+    const n = i2 - i1 + 1, ticks = new Array(n);
+    if (reverse) {
+      if (inc < 0) for (let i = 0; i < n; ++i) ticks[i] = (i2 - i) / -inc;
+      else for (let i = 0; i < n; ++i) ticks[i] = (i2 - i) * inc;
+    } else {
+      if (inc < 0) for (let i = 0; i < n; ++i) ticks[i] = (i1 + i) / -inc;
+      else for (let i = 0; i < n; ++i) ticks[i] = (i1 + i) * inc;
+    }
+    return ticks;
+  }
+
+  function tickIncrement(start, stop, count) {
+    stop = +stop, start = +start, count = +count;
+    return tickSpec(start, stop, count)[2];
+  }
+
+  function tickStep(start, stop, count) {
+    stop = +stop, start = +start, count = +count;
+    const reverse = stop < start, inc = reverse ? tickIncrement(stop, start, count) : tickIncrement(start, stop, count);
+    return (reverse ? -1 : 1) * (inc < 0 ? 1 / -inc : inc);
+  }
 
   function initRange(domain, range) {
     switch (arguments.length) {
@@ -4756,13 +4497,10 @@ var drawChart = (function (exports) {
   const drawChart = (parentNode, data, width, height) => {
       const availableSizeProperties = getAvailableSizeOptions(data.options);
       console.time("layout create");
-      const layout = treemap()
+      const layout = partition()
           .size([width, height])
-          .paddingOuter(PADDING)
-          .paddingTop(TOP_PADDING)
-          .paddingInner(PADDING)
-          .round(true)
-          .tile(treemapResquarify);
+          .padding(PADDING)
+          .round(true);
       console.timeEnd("layout create");
       console.time("rawHierarchy create");
       const rawHierarchy = hierarchy(data.tree);
@@ -4822,7 +4560,7 @@ var drawChart = (function (exports) {
   </script>
   <script>
     /*<!--*/
-    const data = {"version":2,"tree":{"name":"root","children":[{"name":"assets/icons/lg32/standardAccount.svg.js","children":[{"name":"src/assets/icons/lg32/standardAccount.svg","uid":"d8301a12-1"}]},{"name":"assets/icons/rg24/systemActionABCKeypad.svg.js","children":[{"name":"src/assets/icons/rg24/systemActionABCKeypad.svg","uid":"d8301a12-3"}]},{"name":"assets/icons/sm16/systemAdd.svg.js","children":[{"name":"src/assets/icons/sm16/systemAdd.svg","uid":"d8301a12-5"}]}],"isRoot":true},"nodeParts":{"d8301a12-1":{"renderedLength":1875,"gzipLength":0,"brotliLength":0,"metaUid":"d8301a12-0"},"d8301a12-3":{"renderedLength":3119,"gzipLength":0,"brotliLength":0,"metaUid":"d8301a12-2"},"d8301a12-5":{"renderedLength":1371,"gzipLength":0,"brotliLength":0,"metaUid":"d8301a12-4"}},"nodeMetas":{"d8301a12-0":{"id":"/src/assets/icons/lg32/standardAccount.svg","moduleParts":{"assets/icons/lg32/standardAccount.svg.js":"d8301a12-1"},"imported":[{"uid":"d8301a12-6"}],"importedBy":[],"isEntry":true},"d8301a12-2":{"id":"/src/assets/icons/rg24/systemActionABCKeypad.svg","moduleParts":{"assets/icons/rg24/systemActionABCKeypad.svg.js":"d8301a12-3"},"imported":[{"uid":"d8301a12-6"}],"importedBy":[],"isEntry":true},"d8301a12-4":{"id":"/src/assets/icons/sm16/systemAdd.svg","moduleParts":{"assets/icons/sm16/systemAdd.svg.js":"d8301a12-5"},"imported":[{"uid":"d8301a12-6"}],"importedBy":[],"isEntry":true},"d8301a12-6":{"id":"react","moduleParts":{},"imported":[],"importedBy":[{"uid":"d8301a12-0"},{"uid":"d8301a12-2"},{"uid":"d8301a12-4"}],"isExternal":true}},"env":{"rollup":"4.21.2"},"options":{"gzip":false,"brotli":false,"sourcemap":false}};
+    const data = {"version":2,"tree":{"name":"root","children":[{"name":"index.js","children":[{"name":"src/index.js","uid":"8e4e3f53-1"}]},{"name":"components/atoms/Button/index.js","children":[{"name":"src/components/atoms/Button/index.jsx","uid":"8e4e3f53-3"}]},{"name":"components/atoms/ComponentWithSuspense/index.js","children":[{"name":"src/components/atoms/ComponentWithSuspense/index.jsx","uid":"8e4e3f53-5"}]},{"name":"components/atoms/HtmlContent/index.js","children":[{"name":"src/components/atoms/HtmlContent/index.jsx","uid":"8e4e3f53-7"}]},{"name":"components/organisms/Loader/index.js","children":[{"name":"src/components/organisms/Loader/index.jsx","uid":"8e4e3f53-9"}]},{"name":"enums/app.js","children":[{"name":"src/enums/app.js","uid":"8e4e3f53-11"}]},{"name":"enums/sw.js","children":[{"name":"src/enums/sw.js","uid":"8e4e3f53-13"}]},{"name":"hooks/useApiRequest.js","children":[{"name":"src/hooks/useApiRequest.js","uid":"8e4e3f53-15"}]},{"name":"hooks/useBackPress.js","children":[{"name":"src/hooks/useBackPress.js","uid":"8e4e3f53-17"}]},{"name":"hooks/useInitAxios.js","children":[{"name":"src/hooks/useInitAxios.js","uid":"8e4e3f53-19"}]},{"name":"hooks/useTheme.js","children":[{"name":"src/hooks/useTheme.js","uid":"8e4e3f53-21"}]},{"name":"providers/ReduxProvider.js","children":[{"name":"src/providers/ReduxProvider.jsx","uid":"8e4e3f53-23"}]},{"name":"redux/queries/index.js","children":[{"name":"src/redux/queries/index.js","uid":"8e4e3f53-25"}]},{"name":"redux/slices/index.js","children":[{"name":"src/redux/slices/index.js","uid":"8e4e3f53-27"}]},{"name":"services/SWRegistration.js","children":[{"name":"src/services/SWRegistration.js","uid":"8e4e3f53-29"}]},{"name":"utils/classNames.js","children":[{"name":"src/utils/classNames.js","uid":"8e4e3f53-31"}]},{"name":"utils/reportWebVitals.js","children":[{"name":"src/utils/reportWebVitals.js","uid":"8e4e3f53-33"}]},{"name":"utils/apiUtils.js","children":[{"name":"src/utils/apiUtils.js","uid":"8e4e3f53-35"}]},{"name":"utils/arrayUtils.js","children":[{"name":"src/utils/arrayUtils.js","uid":"8e4e3f53-37"}]},{"name":"utils/commonUtils.js","children":[{"name":"src/utils/commonUtils.js","uid":"8e4e3f53-39"}]},{"name":"utils/converters.js","children":[{"name":"src/utils/converters.js","uid":"8e4e3f53-41"}]},{"name":"utils/cookieUtils.js","children":[{"name":"src/utils/cookieUtils.js","uid":"8e4e3f53-43"}]},{"name":"utils/deviceUtils.js","children":[{"name":"src/utils/deviceUtils.js","uid":"8e4e3f53-45"}]},{"name":"utils/eventListeners/beforeUnload.js","children":[{"name":"src/utils/eventListeners/beforeUnload.js","uid":"8e4e3f53-47"}]},{"name":"utils/eventListeners/load.js","children":[{"name":"src/utils/eventListeners/load.js","uid":"8e4e3f53-49"}]},{"name":"utils/eventListeners/preferredColorScheme.js","children":[{"name":"src/utils/eventListeners/preferredColorScheme.js","uid":"8e4e3f53-51"}]},{"name":"utils/logsUtils.js","children":[{"name":"src/utils/logsUtils.js","uid":"8e4e3f53-53"}]},{"name":"utils/objectUtils.js","children":[{"name":"src/utils/objectUtils.js","uid":"8e4e3f53-55"}]},{"name":"utils/queryUtils.js","children":[{"name":"src/utils/queryUtils.js","uid":"8e4e3f53-57"}]},{"name":"utils/reactUtils.js","children":[{"name":"src/utils/reactUtils.js","uid":"8e4e3f53-59"}]},{"name":"utils/stringUtils.js","children":[{"name":"src/utils/stringUtils.js","uid":"8e4e3f53-61"}]},{"name":"redux/slices/apisSlice.js","children":[{"name":"src/redux/slices/apisSlice.js","uid":"8e4e3f53-63"}]},{"name":"redux/slices/appSlice.js","children":[{"name":"src/redux/slices/appSlice.js","uid":"8e4e3f53-65"}]},{"name":"redux/slices/navigationSlice.js","children":[{"name":"src/redux/slices/navigationSlice.js","uid":"8e4e3f53-67"}]},{"name":"redux/queries/baseQuery.js","children":[{"name":"src/redux/queries/baseQuery.js","uid":"8e4e3f53-69"}]},{"name":"redux/queries/sampleQuery.js","children":[{"name":"src/redux/queries/sampleQuery.js","uid":"8e4e3f53-71"}]},{"name":"assets/icons/lg32/standardAccount.svg.js","children":[{"name":"src/assets/icons/lg32/standardAccount.svg","uid":"8e4e3f53-73"}]},{"name":"assets/images/forwardGrey.png.js","children":[{"name":"src/assets/images/forwardGrey.png","uid":"8e4e3f53-75"}]},{"name":"components/atoms/Button/index.scss.js","children":[{"name":"src/components/atoms/Button/index.scss","uid":"8e4e3f53-77"}]}],"isRoot":true},"nodeParts":{"8e4e3f53-1":{"renderedLength":0,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-0"},"8e4e3f53-3":{"renderedLength":316,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-2"},"8e4e3f53-5":{"renderedLength":365,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-4"},"8e4e3f53-7":{"renderedLength":484,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-6"},"8e4e3f53-9":{"renderedLength":396,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-8"},"8e4e3f53-11":{"renderedLength":254,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-10"},"8e4e3f53-13":{"renderedLength":403,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-12"},"8e4e3f53-15":{"renderedLength":5394,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-14"},"8e4e3f53-17":{"renderedLength":1454,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-16"},"8e4e3f53-19":{"renderedLength":893,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-18"},"8e4e3f53-21":{"renderedLength":791,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-20"},"8e4e3f53-23":{"renderedLength":265,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-22"},"8e4e3f53-25":{"renderedLength":84,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-24"},"8e4e3f53-27":{"renderedLength":111,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-26"},"8e4e3f53-29":{"renderedLength":3006,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-28"},"8e4e3f53-31":{"renderedLength":1094,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-30"},"8e4e3f53-33":{"renderedLength":289,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-32"},"8e4e3f53-35":{"renderedLength":2269,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-34"},"8e4e3f53-37":{"renderedLength":412,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-36"},"8e4e3f53-39":{"renderedLength":4876,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-38"},"8e4e3f53-41":{"renderedLength":3171,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-40"},"8e4e3f53-43":{"renderedLength":1680,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-42"},"8e4e3f53-45":{"renderedLength":1262,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-44"},"8e4e3f53-47":{"renderedLength":375,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-46"},"8e4e3f53-49":{"renderedLength":350,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-48"},"8e4e3f53-51":{"renderedLength":511,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-50"},"8e4e3f53-53":{"renderedLength":2209,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-52"},"8e4e3f53-55":{"renderedLength":1266,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-54"},"8e4e3f53-57":{"renderedLength":1361,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-56"},"8e4e3f53-59":{"renderedLength":1948,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-58"},"8e4e3f53-61":{"renderedLength":2101,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-60"},"8e4e3f53-63":{"renderedLength":850,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-62"},"8e4e3f53-65":{"renderedLength":540,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-64"},"8e4e3f53-67":{"renderedLength":537,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-66"},"8e4e3f53-69":{"renderedLength":406,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-68"},"8e4e3f53-71":{"renderedLength":778,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-70"},"8e4e3f53-73":{"renderedLength":1875,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-72"},"8e4e3f53-75":{"renderedLength":503,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-74"},"8e4e3f53-77":{"renderedLength":41,"gzipLength":0,"brotliLength":0,"metaUid":"8e4e3f53-76"}},"nodeMetas":{"8e4e3f53-0":{"id":"\\src\\index.js","moduleParts":{"index.js":"8e4e3f53-1"},"imported":[{"uid":"8e4e3f53-78"},{"uid":"8e4e3f53-79"},{"uid":"8e4e3f53-80"},{"uid":"8e4e3f53-81"},{"uid":"8e4e3f53-82"},{"uid":"8e4e3f53-83"},{"uid":"8e4e3f53-84"}],"importedBy":[],"isEntry":true},"8e4e3f53-2":{"id":"\\src\\components\\atoms\\Button\\index.jsx","moduleParts":{"components/atoms/Button/index.js":"8e4e3f53-3"},"imported":[{"uid":"8e4e3f53-72"},{"uid":"8e4e3f53-74"},{"uid":"8e4e3f53-76"},{"uid":"8e4e3f53-94"}],"importedBy":[{"uid":"8e4e3f53-86"}]},"8e4e3f53-4":{"id":"\\src\\components\\atoms\\ComponentWithSuspense\\index.jsx","moduleParts":{"components/atoms/ComponentWithSuspense/index.js":"8e4e3f53-5"},"imported":[{"uid":"8e4e3f53-90"},{"uid":"8e4e3f53-8"},{"uid":"8e4e3f53-94"}],"importedBy":[{"uid":"8e4e3f53-86"}]},"8e4e3f53-6":{"id":"\\src\\components\\atoms\\HtmlContent\\index.jsx","moduleParts":{"components/atoms/HtmlContent/index.js":"8e4e3f53-7"},"imported":[{"uid":"8e4e3f53-97"},{"uid":"8e4e3f53-94"}],"importedBy":[{"uid":"8e4e3f53-86"}]},"8e4e3f53-8":{"id":"\\src\\components\\organisms\\Loader\\index.jsx","moduleParts":{"components/organisms/Loader/index.js":"8e4e3f53-9"},"imported":[{"uid":"8e4e3f53-94"}],"importedBy":[{"uid":"8e4e3f53-87"},{"uid":"8e4e3f53-4"}]},"8e4e3f53-10":{"id":"\\src\\enums\\app.js","moduleParts":{"enums/app.js":"8e4e3f53-11"},"imported":[],"importedBy":[{"uid":"8e4e3f53-79"},{"uid":"8e4e3f53-18"},{"uid":"8e4e3f53-20"},{"uid":"8e4e3f53-28"},{"uid":"8e4e3f53-52"},{"uid":"8e4e3f53-64"}]},"8e4e3f53-12":{"id":"\\src\\enums\\sw.js","moduleParts":{"enums/sw.js":"8e4e3f53-13"},"imported":[],"importedBy":[{"uid":"8e4e3f53-79"},{"uid":"8e4e3f53-28"}]},"8e4e3f53-14":{"id":"\\src\\hooks\\useApiRequest.js","moduleParts":{"hooks/useApiRequest.js":"8e4e3f53-15"},"imported":[{"uid":"8e4e3f53-34"}],"importedBy":[{"uid":"8e4e3f53-80"},{"uid":"8e4e3f53-68"}]},"8e4e3f53-16":{"id":"\\src\\hooks\\useBackPress.js","moduleParts":{"hooks/useBackPress.js":"8e4e3f53-17"},"imported":[{"uid":"8e4e3f53-90"},{"uid":"8e4e3f53-91"},{"uid":"8e4e3f53-92"},{"uid":"8e4e3f53-66"},{"uid":"8e4e3f53-46"},{"uid":"8e4e3f53-52"}],"importedBy":[{"uid":"8e4e3f53-80"}]},"8e4e3f53-18":{"id":"\\src\\hooks\\useInitAxios.js","moduleParts":{"hooks/useInitAxios.js":"8e4e3f53-19"},"imported":[{"uid":"8e4e3f53-90"},{"uid":"8e4e3f53-93"},{"uid":"8e4e3f53-91"},{"uid":"8e4e3f53-62"},{"uid":"8e4e3f53-10"},{"uid":"8e4e3f53-34"}],"importedBy":[{"uid":"8e4e3f53-80"}]},"8e4e3f53-20":{"id":"\\src\\hooks\\useTheme.js","moduleParts":{"hooks/useTheme.js":"8e4e3f53-21"},"imported":[{"uid":"8e4e3f53-90"},{"uid":"8e4e3f53-91"},{"uid":"8e4e3f53-64"},{"uid":"8e4e3f53-50"},{"uid":"8e4e3f53-10"}],"importedBy":[{"uid":"8e4e3f53-80"}]},"8e4e3f53-22":{"id":"\\src\\providers\\ReduxProvider.jsx","moduleParts":{"providers/ReduxProvider.js":"8e4e3f53-23"},"imported":[{"uid":"8e4e3f53-91"},{"uid":"8e4e3f53-94"}],"importedBy":[{"uid":"8e4e3f53-81"}]},"8e4e3f53-24":{"id":"\\src\\redux\\queries\\index.js","moduleParts":{"redux/queries/index.js":"8e4e3f53-25"},"imported":[{"uid":"8e4e3f53-68"},{"uid":"8e4e3f53-70"}],"importedBy":[{"uid":"8e4e3f53-82"}]},"8e4e3f53-26":{"id":"\\src\\redux\\slices\\index.js","moduleParts":{"redux/slices/index.js":"8e4e3f53-27"},"imported":[{"uid":"8e4e3f53-62"},{"uid":"8e4e3f53-64"},{"uid":"8e4e3f53-66"}],"importedBy":[{"uid":"8e4e3f53-82"}]},"8e4e3f53-28":{"id":"\\src\\services\\SWRegistration.js","moduleParts":{"services/SWRegistration.js":"8e4e3f53-29"},"imported":[{"uid":"8e4e3f53-12"},{"uid":"8e4e3f53-52"},{"uid":"8e4e3f53-38"},{"uid":"8e4e3f53-48"},{"uid":"8e4e3f53-10"}],"importedBy":[{"uid":"8e4e3f53-83"}]},"8e4e3f53-30":{"id":"\\src\\utils\\classNames.js","moduleParts":{"utils/classNames.js":"8e4e3f53-31"},"imported":[],"importedBy":[{"uid":"8e4e3f53-84"}]},"8e4e3f53-32":{"id":"\\src\\utils\\reportWebVitals.js","moduleParts":{"utils/reportWebVitals.js":"8e4e3f53-33"},"imported":[{"uid":"8e4e3f53-96"},{"uid":"8e4e3f53-52"}],"importedBy":[{"uid":"8e4e3f53-84"}]},"8e4e3f53-34":{"id":"\\src\\utils\\apiUtils.js","moduleParts":{"utils/apiUtils.js":"8e4e3f53-35"},"imported":[{"uid":"8e4e3f53-52"}],"importedBy":[{"uid":"8e4e3f53-84"},{"uid":"8e4e3f53-14"},{"uid":"8e4e3f53-18"}]},"8e4e3f53-36":{"id":"\\src\\utils\\arrayUtils.js","moduleParts":{"utils/arrayUtils.js":"8e4e3f53-37"},"imported":[],"importedBy":[{"uid":"8e4e3f53-84"}]},"8e4e3f53-38":{"id":"\\src\\utils\\commonUtils.js","moduleParts":{"utils/commonUtils.js":"8e4e3f53-39"},"imported":[{"uid":"8e4e3f53-52"}],"importedBy":[{"uid":"8e4e3f53-84"},{"uid":"8e4e3f53-28"}]},"8e4e3f53-40":{"id":"\\src\\utils\\converters.js","moduleParts":{"utils/converters.js":"8e4e3f53-41"},"imported":[{"uid":"8e4e3f53-52"}],"importedBy":[{"uid":"8e4e3f53-84"}]},"8e4e3f53-42":{"id":"\\src\\utils\\cookieUtils.js","moduleParts":{"utils/cookieUtils.js":"8e4e3f53-43"},"imported":[],"importedBy":[{"uid":"8e4e3f53-84"}]},"8e4e3f53-44":{"id":"\\src\\utils\\deviceUtils.js","moduleParts":{"utils/deviceUtils.js":"8e4e3f53-45"},"imported":[],"importedBy":[{"uid":"8e4e3f53-84"}]},"8e4e3f53-46":{"id":"\\src\\utils\\eventListeners\\beforeUnload.js","moduleParts":{"utils/eventListeners/beforeUnload.js":"8e4e3f53-47"},"imported":[],"importedBy":[{"uid":"8e4e3f53-16"},{"uid":"8e4e3f53-89"}]},"8e4e3f53-48":{"id":"\\src\\utils\\eventListeners\\load.js","moduleParts":{"utils/eventListeners/load.js":"8e4e3f53-49"},"imported":[],"importedBy":[{"uid":"8e4e3f53-28"},{"uid":"8e4e3f53-89"}]},"8e4e3f53-50":{"id":"\\src\\utils\\eventListeners\\preferredColorScheme.js","moduleParts":{"utils/eventListeners/preferredColorScheme.js":"8e4e3f53-51"},"imported":[],"importedBy":[{"uid":"8e4e3f53-20"},{"uid":"8e4e3f53-89"}]},"8e4e3f53-52":{"id":"\\src\\utils\\logsUtils.js","moduleParts":{"utils/logsUtils.js":"8e4e3f53-53"},"imported":[{"uid":"8e4e3f53-10"}],"importedBy":[{"uid":"8e4e3f53-84"},{"uid":"8e4e3f53-16"},{"uid":"8e4e3f53-28"},{"uid":"8e4e3f53-32"},{"uid":"8e4e3f53-34"},{"uid":"8e4e3f53-38"},{"uid":"8e4e3f53-40"}]},"8e4e3f53-54":{"id":"\\src\\utils\\objectUtils.js","moduleParts":{"utils/objectUtils.js":"8e4e3f53-55"},"imported":[],"importedBy":[{"uid":"8e4e3f53-84"}]},"8e4e3f53-56":{"id":"\\src\\utils\\queryUtils.js","moduleParts":{"utils/queryUtils.js":"8e4e3f53-57"},"imported":[],"importedBy":[{"uid":"8e4e3f53-84"}]},"8e4e3f53-58":{"id":"\\src\\utils\\reactUtils.js","moduleParts":{"utils/reactUtils.js":"8e4e3f53-59"},"imported":[{"uid":"8e4e3f53-90"}],"importedBy":[{"uid":"8e4e3f53-84"}]},"8e4e3f53-60":{"id":"\\src\\utils\\stringUtils.js","moduleParts":{"utils/stringUtils.js":"8e4e3f53-61"},"imported":[],"importedBy":[{"uid":"8e4e3f53-84"}]},"8e4e3f53-62":{"id":"\\src\\redux\\slices\\apisSlice.js","moduleParts":{"redux/slices/apisSlice.js":"8e4e3f53-63"},"imported":[{"uid":"8e4e3f53-95"}],"importedBy":[{"uid":"8e4e3f53-18"},{"uid":"8e4e3f53-26"}]},"8e4e3f53-64":{"id":"\\src\\redux\\slices\\appSlice.js","moduleParts":{"redux/slices/appSlice.js":"8e4e3f53-65"},"imported":[{"uid":"8e4e3f53-95"},{"uid":"8e4e3f53-10"}],"importedBy":[{"uid":"8e4e3f53-20"},{"uid":"8e4e3f53-26"}]},"8e4e3f53-66":{"id":"\\src\\redux\\slices\\navigationSlice.js","moduleParts":{"redux/slices/navigationSlice.js":"8e4e3f53-67"},"imported":[{"uid":"8e4e3f53-95"}],"importedBy":[{"uid":"8e4e3f53-16"},{"uid":"8e4e3f53-26"}]},"8e4e3f53-68":{"id":"\\src\\redux\\queries\\baseQuery.js","moduleParts":{"redux/queries/baseQuery.js":"8e4e3f53-69"},"imported":[{"uid":"8e4e3f53-14"}],"importedBy":[{"uid":"8e4e3f53-24"},{"uid":"8e4e3f53-70"}]},"8e4e3f53-70":{"id":"\\src\\redux\\queries\\sampleQuery.js","moduleParts":{"redux/queries/sampleQuery.js":"8e4e3f53-71"},"imported":[{"uid":"8e4e3f53-98"},{"uid":"8e4e3f53-68"}],"importedBy":[{"uid":"8e4e3f53-24"}]},"8e4e3f53-72":{"id":"\\src\\assets\\icons\\lg32\\standardAccount.svg","moduleParts":{"assets/icons/lg32/standardAccount.svg.js":"8e4e3f53-73"},"imported":[{"uid":"8e4e3f53-90"}],"importedBy":[{"uid":"8e4e3f53-2"}]},"8e4e3f53-74":{"id":"\\src\\assets\\images\\forwardGrey.png","moduleParts":{"assets/images/forwardGrey.png.js":"8e4e3f53-75"},"imported":[],"importedBy":[{"uid":"8e4e3f53-2"}]},"8e4e3f53-76":{"id":"\\src\\components\\atoms\\Button\\index.scss","moduleParts":{"components/atoms/Button/index.scss.js":"8e4e3f53-77"},"imported":[],"importedBy":[{"uid":"8e4e3f53-2"}]},"8e4e3f53-78":{"id":"\\src\\components\\index.js","moduleParts":{},"imported":[{"uid":"8e4e3f53-85"},{"uid":"8e4e3f53-86"},{"uid":"8e4e3f53-87"}],"importedBy":[{"uid":"8e4e3f53-0"}]},"8e4e3f53-79":{"id":"\\src\\enums\\index.js","moduleParts":{},"imported":[{"uid":"8e4e3f53-10"},{"uid":"8e4e3f53-12"}],"importedBy":[{"uid":"8e4e3f53-0"}]},"8e4e3f53-80":{"id":"\\src\\hooks\\index.js","moduleParts":{},"imported":[{"uid":"8e4e3f53-14"},{"uid":"8e4e3f53-16"},{"uid":"8e4e3f53-18"},{"uid":"8e4e3f53-20"}],"importedBy":[{"uid":"8e4e3f53-0"}]},"8e4e3f53-81":{"id":"\\src\\providers\\index.js","moduleParts":{},"imported":[{"uid":"8e4e3f53-22"}],"importedBy":[{"uid":"8e4e3f53-0"}]},"8e4e3f53-82":{"id":"\\src\\redux\\index.js","moduleParts":{},"imported":[{"uid":"8e4e3f53-88"},{"uid":"8e4e3f53-24"},{"uid":"8e4e3f53-26"}],"importedBy":[{"uid":"8e4e3f53-0"}]},"8e4e3f53-83":{"id":"\\src\\services\\index.js","moduleParts":{},"imported":[{"uid":"8e4e3f53-28"}],"importedBy":[{"uid":"8e4e3f53-0"}]},"8e4e3f53-84":{"id":"\\src\\utils\\index.js","moduleParts":{},"imported":[{"uid":"8e4e3f53-30"},{"uid":"8e4e3f53-32"},{"uid":"8e4e3f53-34"},{"uid":"8e4e3f53-36"},{"uid":"8e4e3f53-38"},{"uid":"8e4e3f53-40"},{"uid":"8e4e3f53-42"},{"uid":"8e4e3f53-44"},{"uid":"8e4e3f53-89"},{"uid":"8e4e3f53-52"},{"uid":"8e4e3f53-54"},{"uid":"8e4e3f53-56"},{"uid":"8e4e3f53-58"},{"uid":"8e4e3f53-60"}],"importedBy":[{"uid":"8e4e3f53-0"}]},"8e4e3f53-85":{"id":"\\static\\styles\\postcss-processed\\index.css","moduleParts":{},"imported":[],"importedBy":[{"uid":"8e4e3f53-78"}]},"8e4e3f53-86":{"id":"\\src\\components\\atoms\\index.js","moduleParts":{},"imported":[{"uid":"8e4e3f53-2"},{"uid":"8e4e3f53-4"},{"uid":"8e4e3f53-6"}],"importedBy":[{"uid":"8e4e3f53-78"}]},"8e4e3f53-87":{"id":"\\src\\components\\organisms\\index.js","moduleParts":{},"imported":[{"uid":"8e4e3f53-8"}],"importedBy":[{"uid":"8e4e3f53-78"}]},"8e4e3f53-88":{"id":"\\src\\redux\\common\\index.js","moduleParts":{},"imported":[{"uid":"8e4e3f53-91"},{"uid":"8e4e3f53-95"}],"importedBy":[{"uid":"8e4e3f53-82"}]},"8e4e3f53-89":{"id":"\\src\\utils\\eventListeners\\index.js","moduleParts":{},"imported":[{"uid":"8e4e3f53-46"},{"uid":"8e4e3f53-48"},{"uid":"8e4e3f53-50"}],"importedBy":[{"uid":"8e4e3f53-84"}]},"8e4e3f53-90":{"id":"react","moduleParts":{},"imported":[],"importedBy":[{"uid":"8e4e3f53-16"},{"uid":"8e4e3f53-18"},{"uid":"8e4e3f53-20"},{"uid":"8e4e3f53-58"},{"uid":"8e4e3f53-4"},{"uid":"8e4e3f53-72"}],"isExternal":true},"8e4e3f53-91":{"id":"react-redux","moduleParts":{},"imported":[],"importedBy":[{"uid":"8e4e3f53-16"},{"uid":"8e4e3f53-18"},{"uid":"8e4e3f53-20"},{"uid":"8e4e3f53-22"},{"uid":"8e4e3f53-88"}],"isExternal":true},"8e4e3f53-92":{"id":"react-router-dom","moduleParts":{},"imported":[],"importedBy":[{"uid":"8e4e3f53-16"}],"isExternal":true},"8e4e3f53-93":{"id":"axios","moduleParts":{},"imported":[],"importedBy":[{"uid":"8e4e3f53-18"}],"isExternal":true},"8e4e3f53-94":{"id":"react/jsx-runtime","moduleParts":{},"imported":[],"importedBy":[{"uid":"8e4e3f53-22"},{"uid":"8e4e3f53-2"},{"uid":"8e4e3f53-4"},{"uid":"8e4e3f53-6"},{"uid":"8e4e3f53-8"}],"isExternal":true},"8e4e3f53-95":{"id":"@reduxjs/toolkit","moduleParts":{},"imported":[],"importedBy":[{"uid":"8e4e3f53-88"},{"uid":"8e4e3f53-66"},{"uid":"8e4e3f53-62"},{"uid":"8e4e3f53-64"}],"isExternal":true},"8e4e3f53-96":{"id":"web-vitals","moduleParts":{},"imported":[],"importedBy":[{"uid":"8e4e3f53-32"}],"isExternal":true},"8e4e3f53-97":{"id":"react-helmet-async","moduleParts":{},"imported":[],"importedBy":[{"uid":"8e4e3f53-6"}],"isExternal":true},"8e4e3f53-98":{"id":"@reduxjs/toolkit/query/react","moduleParts":{},"imported":[],"importedBy":[{"uid":"8e4e3f53-70"}],"isExternal":true}},"env":{"rollup":"4.24.0"},"options":{"gzip":false,"brotli":false,"sourcemap":false}};
 
     const run = () => {
       const width = window.innerWidth;

@@ -35,5 +35,3 @@ We welcome contributions to this project. Please read our contributing guideline
 ## License
 
 [License information will go here]
-
-<!-- CHANGELOG_AUTH_TOKEN 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 -->

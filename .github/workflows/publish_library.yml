@@ -14,16 +14,16 @@ jobs:
         with:
           node-version: "20"
       - name: Authenticate with GitHub Packages
-        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > ~/.npmrc
+        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}" > ~/.npmrc
       - name: Installing dependencies
         run: yarn install --frozen-lockfile
-      - name: Navigating to the library directory
+      - name: Publishing the library package
         working-directory: packages/library
         run: |
           yarn build:prod
           yarn publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Output package details
         working-directory: packages/library
         run: cat package.json

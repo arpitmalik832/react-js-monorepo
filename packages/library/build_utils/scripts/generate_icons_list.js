@@ -7,7 +7,7 @@ import { resolve, join, dirname, sep } from 'path';
 import { readdir, writeFile } from 'fs/promises';
 import { fileURLToPath } from 'url';
 
-import commonPaths from '../build_utils/config/commonPaths.mjs';
+import commonPaths from '../config/commonPaths.mjs';
 
 const filename = fileURLToPath(import.meta.url);
 const dirName = dirname(filename);
@@ -53,10 +53,10 @@ const list = ${JSON.stringify(filesNew, null, 2)}
 
 export default list;
 `;
-  await writeFile(join(dirName, '..', commonPaths.icons_list), content);
+  await writeFile(join(dirName, '..', '..', commonPaths.icons_list), content);
 }
 
-processIcons(join(dirName, '..', commonPaths.icons))
+processIcons(join(dirName, '..', '..', commonPaths.icons))
   .then(() => {
     console.log('\x1b[42m%s\x1b[0m', 'Successfully generated icons list');
   })

@@ -24,12 +24,13 @@
   ],
   "totalSize": 6845,
   "totalGzippedSize": 3010,
-  "buildDuration": 95,
+  "buildDuration": 241,
   "noOfFiles": 3,
   "largestFile": {
     "fileName": "assets/icons/rg24/systemActionABCKeypad.svg.js",
     "size": 3285,
     "gzippedSize": 1443,
-    "type": "chunk"
+    "type": "chunk",
+    "percentageBySize": "47.99"
   }
 }

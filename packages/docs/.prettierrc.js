@@ -1,5 +1,5 @@
 // Prettier configuration https://prettier.io/docs/en/options
-module.exports = {
+const config = {
   arrowParens: 'avoid',
   bracketSameLine: false,
   bracketSpacing: true,
@@ -11,3 +11,5 @@ module.exports = {
   printWidth: 80,
   endOfLine: 'lf',
 };
+
+module.exports = config;

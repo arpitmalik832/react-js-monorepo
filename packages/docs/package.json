@@ -5,6 +5,10 @@
   "private": true,
   "author": "Arpit Malik",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter"
+  },
   "engines": {
     "node": ">=20.17.0",
     "yarn": ">=1.22.22"
@@ -26,7 +30,9 @@
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
-    "serve": "docusaurus serve",
+    "serve": "docusaurus serve --config docusaurus.config.staging.cjs",
+    "serve:beta": "docusaurus serve --config docusaurus.config.beta.cjs",
+    "serve:prod": "docusaurus serve --config docusaurus.config.prod.cjs",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "create-version": "yarn docusaurus docs:version",
@@ -60,7 +66,9 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.25.1",
+    "@babel/plugin-proposal-optional-chaining": "^7.21.0",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/plugin-syntax-import-attributes": "^7.25.7",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
     "@types/jest": "^29.5.12",

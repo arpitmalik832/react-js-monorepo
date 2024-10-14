@@ -1,4 +1,4 @@
-module.exports = {
+const config = {
   presets: [
     [
       '@babel/preset-react',
@@ -8,5 +8,11 @@ module.exports = {
     ],
     '@babel/preset-env',
   ],
-  plugins: ['@babel/transform-runtime'],
+  plugins: [
+    '@babel/transform-runtime',
+    '@babel/plugin-syntax-import-attributes',
+    '@babel/plugin-proposal-optional-chaining',
+  ],
 };
+
+module.exports = config;

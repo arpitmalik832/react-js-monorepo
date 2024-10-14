@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.8](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/compare/v0.3.7...v0.3.8) (2024-10-09)
+
+
+### Bug Fixes
+
+* **main:** allowing logs even in prod env of the library ([fa862bb](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/commit/fa862bb4303d47a78985be5f455781df06633e17))
+* **main:** fixed pre-commit hook ([323548b](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/commit/323548b87723736710304a604bb803f432ae5133))
+* **main:** Publish library CI config ([7d81c53](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/commit/7d81c5302fddb94f8f2807295bbb212f1fcd5436))
+* **main:** Publish library CI config ([bdeed8f](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/commit/bdeed8f4e4d338c0e3866dacb3cdd0113fb76b3e))
+* **main:** Publish library CI config ([da7a441](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/commit/da7a4417905a89e115d963433021d73f957c4d35))
+* **main:** Publish library CI config ([9e666ea](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/commit/9e666ea5693149c5c5670e98a79d9aca6278eb11))
+
+
+
+
+
+
+## [0.3.7](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/compare/v0.3.6...v0.3.7) (2024-10-09)
+
+**Note:** Version bump only for package react-js-rollup-library
+
+
+
+
+
+
 ## [0.3.6](https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/compare/v0.3.5...v0.3.6) (2024-10-02)
 
 

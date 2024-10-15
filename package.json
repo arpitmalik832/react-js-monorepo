@@ -59,7 +59,10 @@
     "version-bump": "lerna version",
     "version-bump:major": "lerna version major --yes",
     "version-bump:minor": "lerna version minor --yes",
-    "version-bump:patch": "lerna version patch --yes"
+    "version-bump:patch": "lerna version patch --yes",
+    "version-bump:alpha": "lerna version prerelease --preid alpha --yes",
+    "version-bump:beta": "lerna version prerelease --preid beta --yes",
+    "version-bump:rc": "lerna version prerelease --preid rc --yes"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.5.0",

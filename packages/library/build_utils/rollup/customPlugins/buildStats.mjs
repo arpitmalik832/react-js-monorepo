@@ -27,6 +27,7 @@ export default function buildStats(outputPath = 'build-stats.json') {
         files: [],
         totalSize: 0,
         totalGzippedSize: 0,
+        totalBrotliSize: 0,
         buildDuration: Date.now() - startTime,
         noOfFiles: 0,
         largestFile: null,
@@ -34,8 +35,6 @@ export default function buildStats(outputPath = 'build-stats.json') {
 
       for (const [fileName, fileMeta] of Object.entries(bundle)) {
         if (!fileName.endsWith('.map')) {
-          let size = 0;
-          let gzippedSize = 0;
           let content = '';
 
           if (fileMeta.code) {
@@ -46,18 +45,21 @@ export default function buildStats(outputPath = 'build-stats.json') {
             content = fileMeta;
           }
 
-          size = Buffer.byteLength(content, 'utf8');
-          gzippedSize = zlib.gzipSync(content).length;
+          const size = Buffer.byteLength(content, 'utf8');
+          const gzippedSize = zlib.gzipSync(content).length;
+          const brotliSize = zlib.brotliCompressSync(content).length;
 
           stats.files.push({
             fileName,
             size,
             gzippedSize,
-            type: fileMeta.type || 'unknown',
+            brotliSize,
+            contentType: fileMeta.type || 'unknown',
           });
 
           stats.totalSize += size;
           stats.totalGzippedSize += gzippedSize;
+          stats.totalBrotliSize += brotliSize;
         }
       }
 

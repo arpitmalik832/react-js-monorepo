@@ -1,6 +1,6 @@
 // Jest configuration
 // https://facebook.github.io/jest/docs/en/configuration.html
-module.exports = {
+const config = {
   // Modules can be explicitly auto-mocked using jest.mock(moduleName).
   // https://facebook.github.io/jest/docs/en/configuration.html#automock-boolean
   automock: false, // [boolean]
@@ -93,3 +93,5 @@ module.exports = {
   verbose: true, // [boolean],
   setupFiles: ['<rootDir>/jest.setup.js'], // [testConfig files DOM,Mock]
 };
+
+module.exports = config;

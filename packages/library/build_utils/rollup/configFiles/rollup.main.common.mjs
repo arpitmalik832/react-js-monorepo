@@ -16,6 +16,7 @@ import progress from 'rollup-plugin-progress';
 import pkg from '../../../package.json' with { type: 'json' };
 import svgrConfig from '../../../svgr.config.mjs';
 import importStyles from '../customPlugins/importStyles.mjs';
+import stripCustomWindowVariables from '../customPlugins/stripCustomWindowVariables.mjs';
 import { ENVS } from '../../config/index.mjs';
 
 const config = {
@@ -45,6 +46,10 @@ const config = {
       configFile: './babel.config.cjs',
     }),
     commonjs(),
+    [ENVS.PROD, ENVS.BETA].includes(process.env.LIB_ENV) &&
+      stripCustomWindowVariables({
+        variables: ['abc'],
+      }),
     postcss({
       extensions: ['.css', '.scss'],
       extract: true,

@@ -65,7 +65,7 @@
     "knip:prod:check-files": "yarn knip:prod --include files"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.25.1",
+    "@babel/eslint-parser": "^7.25.8",
     "@babel/plugin-proposal-optional-chaining": "^7.21.0",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/plugin-syntax-import-attributes": "^7.25.7",
@@ -91,7 +91,7 @@
     "knip": "^5.33.2",
     "lint-staged": "^15.2.9",
     "rimraf": "^6.0.1",
-    "stylelint": "^16.9.0",
+    "stylelint": "^16.10.0",
     "stylelint-config-clean-order": "^6.1.0",
     "stylelint-config-hudochenkov": "^10.0.0",
     "stylelint-config-idiomatic-order": "^10.0.0",

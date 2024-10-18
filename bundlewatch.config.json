@@ -3,6 +3,10 @@
     {
       "path": "packages/rollup-library/dist/**/*.js",
       "maxSize": "100kB"
+    },
+    {
+      "path": "packages/vite-library/dist/**/*.js",
+      "maxSize": "100kB"
     }
   ],
   "ci": {

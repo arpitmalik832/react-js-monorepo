@@ -18,6 +18,12 @@ updates:
       interval: "weekly"
     target-branch: "feature-dependabot"
 
+  - package-ecosystem: "npm"
+    directory: "/packages/vite-library"
+    schedule:
+      interval: "weekly"
+    target-branch: "feature-dependabot"
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:

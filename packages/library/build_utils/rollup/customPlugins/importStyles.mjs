@@ -15,8 +15,8 @@ export default function importStyles() {
   return {
     name: 'import-styles-plugin',
     generateBundle(options, bundle) {
+      const importPath = '../index.css';
       for (const [fileName, fileMeta] of Object.entries(bundle)) {
-        const importPath = '../index.css';
         if (fileName === 'esm/index.js') {
           fileMeta.code = `import "${importPath}";${![ENVS.PROD, ENVS.BETA].includes(process.env.LIB_ENV) ? '\n' : ''}${fileMeta.code}`;
         } else if (fileName === 'cjs/index.js') {

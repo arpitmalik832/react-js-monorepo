@@ -1,7 +1,7 @@
 {
   "files": [
     {
-      "path": "packages/library/dist/**/*.js",
+      "path": "packages/rollup-library/dist/**/*.js",
       "maxSize": "100kB"
     }
   ],

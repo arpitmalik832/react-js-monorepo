@@ -5,32 +5,23 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.3.10-alpha.1](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.3.10-alpha.0...v0.3.10-alpha.1) (2024-10-16)
 
-**Note:** Version bump only for package react-js-rollup-library
+**Note:** Version bump only for package @arpitmalik832/react-js-rollup-monorepo-library
 
 ## [0.3.10-alpha.0](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.3.9...v0.3.10-alpha.0) (2024-10-15)
 
-**Note:** Version bump only for package react-js-rollup-library
+**Note:** Version bump only for package @arpitmalik832/react-js-rollup-monorepo-library
 
 ## [0.3.9](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.3.8...v0.3.9) (2024-10-15)
 
-### Bug Fixes
-
-- **main:** Publish library CI config ([f17fa05](https://github.com/arpitmalik832/react-js-monorepo/commit/f17fa05f22c5e80b07916b936da472dabfb55edc))
+**Note:** Version bump only for package @arpitmalik832/react-js-rollup-monorepo-library
 
 ## [0.3.8](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.3.7...v0.3.8) (2024-10-09)
 
-### Bug Fixes
-
-- **main:** allowing logs even in prod env of the library ([fa862bb](https://github.com/arpitmalik832/react-js-monorepo/commit/fa862bb4303d47a78985be5f455781df06633e17))
-- **main:** fixed pre-commit hook ([323548b](https://github.com/arpitmalik832/react-js-monorepo/commit/323548b87723736710304a604bb803f432ae5133))
-- **main:** Publish library CI config ([7d81c53](https://github.com/arpitmalik832/react-js-monorepo/commit/7d81c5302fddb94f8f2807295bbb212f1fcd5436))
-- **main:** Publish library CI config ([bdeed8f](https://github.com/arpitmalik832/react-js-monorepo/commit/bdeed8f4e4d338c0e3866dacb3cdd0113fb76b3e))
-- **main:** Publish library CI config ([da7a441](https://github.com/arpitmalik832/react-js-monorepo/commit/da7a4417905a89e115d963433021d73f957c4d35))
-- **main:** Publish library CI config ([9e666ea](https://github.com/arpitmalik832/react-js-monorepo/commit/9e666ea5693149c5c5670e98a79d9aca6278eb11))
+**Note:** Version bump only for package @arpitmalik832/react-js-rollup-monorepo-library
 
 ## [0.3.7](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.3.6...v0.3.7) (2024-10-09)
 
-**Note:** Version bump only for package react-js-rollup-library
+**Note:** Version bump only for package @arpitmalik832/react-js-rollup-monorepo-library
 
 ## [0.3.6](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.3.5...v0.3.6) (2024-10-02)
 
@@ -52,11 +43,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.3.3](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.3.2...v0.3.3) (2024-09-28)
 
-**Note:** Version bump only for package react-js-rollup-library
+**Note:** Version bump only for package @arpitmalik832/react-js-rollup-monorepo-library
 
 ## [0.3.2](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.3.1...v0.3.2) (2024-09-26)
 
-**Note:** Version bump only for package react-js-rollup-library
+**Note:** Version bump only for package @arpitmalik832/react-js-rollup-monorepo-library
 
 ## [0.3.1](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.3.0...v0.3.1) (2024-09-23)
 
@@ -94,7 +85,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.1.2](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.1.1...v0.1.2) (2024-09-04)
 
-**Note:** Version bump only for package react-js-rollup-library
+**Note:** Version bump only for package @arpitmalik832/react-js-rollup-monorepo-library
 
 # [0.2.0](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.1.2...v0.2.0) (2024-09-05)
 
@@ -104,7 +95,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.1.2](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.1.1...v0.1.2) (2024-09-04)
 
-**Note:** Version bump only for package react-js-rollup-library
+**Note:** Version bump only for package @arpitmalik832/react-js-rollup-monorepo-library
 
 ## [0.1.1](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.1.0...v0.1.1) (2024-09-04)
 
@@ -122,9 +113,3 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 - **main:** added beta and prod build scripts ([e578c55](https://github.com/arpitmalik832/react-js-monorepo/commit/e578c553f0c41643a99e99fc8a1d45fd40281025))
 - **main:** added dependabot for github actions also ([625dd1f](https://github.com/arpitmalik832/react-js-monorepo/commit/625dd1fea1bb62cf140d05ca8832d024ae2a43ce))
-
-# [0.0.0](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.0.1...v0.0.0) (2024-09-03)
-
-### Features
-
-- **main:** added beta and prod build scripts ([e578c55](https://github.com/arpitmalik832/react-js-monorepo/commit/e578c553f0c41643a99e99fc8a1d45fd40281025))

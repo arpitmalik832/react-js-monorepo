@@ -21,14 +21,12 @@ const { themes } = require('prism-react-renderer');
           docs: {
             sidebarPath: require.resolve('./sidebars.js'),
             // Please change this to your repo.
-            editUrl:
-              'https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/docs/',
+            editUrl: 'https://github.com/arpitmalik832/react-js-monorepo/docs/',
           },
           blog: {
             showReadingTime: true,
             // Please change this to your repo.
-            editUrl:
-              'https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/blog/',
+            editUrl: 'https://github.com/arpitmalik832/react-js-monorepo/blog/',
           },
           theme: {
             customCss: require.resolve('./src/css/custom.css'),
@@ -54,7 +52,7 @@ const { themes } = require('prism-react-renderer');
             },
             { to: '/blog', label: 'Blog', position: 'left' },
             {
-              href: 'https://github.com/arpitmalik832/react-js-rollup-library-monorepo-starter/',
+              href: 'https://github.com/arpitmalik832/react-js-monorepo/',
               label: 'GitHub',
               position: 'right',
             },

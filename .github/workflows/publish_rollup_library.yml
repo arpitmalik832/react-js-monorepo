@@ -18,12 +18,12 @@ jobs:
       - name: Installing dependencies
         run: yarn install --frozen-lockfile
       - name: Publishing the library package
-        working-directory: packages/library
+        working-directory: packages/rollup-library
         run: |
           yarn build:prod
           yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Output package details
-        working-directory: packages/library
+        working-directory: packages/rollup-library
         run: cat package.json

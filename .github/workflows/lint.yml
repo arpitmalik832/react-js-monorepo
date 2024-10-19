@@ -52,4 +52,4 @@ jobs:
       - name: Building the project
         run: yarn build
       - name: Running lint
-        run: yarn lint
+        run: yarn lint:ci

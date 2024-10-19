@@ -29,6 +29,7 @@
     "build:beta": "lerna run build:beta --stream --no-bail",
     "build:prod": "lerna run build:prod --stream --no-bail",
     "lint": "lerna run lint --stream",
+    "lint:ci": "lerna run lint --stream",
     "lint:fix": "lerna run lint:fix --stream",
     "lint-staged": "lerna run lint-staged --concurrency 1",
     "grant-permissions:husky": "chmod +x .husky/*",

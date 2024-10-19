@@ -63,6 +63,7 @@
     "lint-css": "stylelint",
     "prettier": "prettier",
     "lint": "yarn lint-js \"**/*.{mjs,cjs,js,jsx,mdx}\" && yarn lint-css \"**/*.{css,scss}\" && yarn prettier --check .",
+    "lint:ci": "yarn lint",
     "lint-js:fix": "yarn lint-js --fix",
     "lint-css:fix": "yarn lint-css --fix",
     "prettier:fix": "prettier --write --ignore-unknown",

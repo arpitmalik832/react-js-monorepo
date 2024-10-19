@@ -75,7 +75,7 @@
     "lint-css": "stylelint",
     "prettier": "prettier --check",
     "lint": "yarn lint-js \"**/*.{mjs,cjs,js,jsx,mdx}\" && yarn lint-css \"**/*.{css,scss}\" && yarn prettier .",
-    "lint:ci": "yarn lint-js \"**/*.{mjs,cjs,js,jsx,mdx}\" && yarn lint-css \"**/*.{css,scss}\" && yarn prettier . \"!icons_list.mjs\"",
+    "lint:ci": "yarn lint-js \"**/*.{mjs,cjs,js,jsx,mdx}\" && yarn lint-css \"**/*.{css,scss}\" && yarn prettier . \"!static/enums/icons_list.mjs\"",
     "lint-js:fix": "yarn lint-js --fix",
     "lint-css:fix": "yarn lint-css --fix",
     "prettier:fix": "prettier --write --ignore-unknown",

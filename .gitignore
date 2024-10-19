@@ -122,8 +122,8 @@ build
 dist
 
 # cypress results
-cypress/videos
-cypress/screenshots
+videos
+screenshots
 *storybook.log
 
 # for storybook

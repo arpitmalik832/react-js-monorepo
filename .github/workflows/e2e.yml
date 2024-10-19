@@ -1,12 +1,25 @@
-name: Publish Rollup Package
+name: E2E
 
 on:
   push:
     branches:
+      - development
       - staging
+      - beta
+      - release
+      - master
+      - "feature-*"
+  pull_request:
+    branches:
+      - development
+      - staging
+      - beta
+      - release
+      - master
+      - "feature-*"
 
 jobs:
-  publish:
+  e2e:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -36,13 +49,7 @@ jobs:
         run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}" >> ~/.npmrc
       - name: Installing dependencies
         run: yarn install --frozen-lockfile
-      - name: Publishing the library package
-        working-directory: packages/rollup-library
-        run: |
-          yarn build:prod
-          yarn publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
-      - name: Output package details
-        working-directory: packages/rollup-library
-        run: cat package.json
+      - name: Building the project
+        run: yarn build
+      - name: Running lint
+        run: yarn e2e-run

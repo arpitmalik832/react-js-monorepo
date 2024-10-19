@@ -49,5 +49,7 @@ jobs:
         run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}" >> ~/.npmrc
       - name: Installing dependencies
         run: yarn install --frozen-lockfile
+      - name: Building the project
+        run: yarn build
       - name: Running lint
         run: yarn lint

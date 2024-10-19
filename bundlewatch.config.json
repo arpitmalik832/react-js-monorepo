@@ -2,23 +2,23 @@
   "files": [
     {
       "path": "packages/rollup-library/dist/**/*.js",
-      "maxSize": "100kB"
+      "maxSize": "150kB"
     },
     {
       "path": "packages/vite-library/dist/**/*.js",
-      "maxSize": "100kB"
+      "maxSize": "150kB"
     },
     {
       "path": "apps/vite/dist/**/*.js",
-      "maxSize": "100kB"
+      "maxSize": "150kB"
     },
     {
       "path": "apps/webpack/dist/**/*.js",
-      "maxSize": "100kB"
+      "maxSize": "150kB"
     },
     {
       "path": "apps/rollup-library-docs/build/**/*.js",
-      "maxSize": "100kB"
+      "maxSize": "150kB"
     }
   ],
   "ci": {

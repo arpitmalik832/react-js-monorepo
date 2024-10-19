@@ -3828,11 +3828,11 @@
     ts-dedent "^2.0.0"
 
 "@storybook/addon-storysource@^8.3.5":
-  version "8.3.5"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-storysource/-/addon-storysource-8.3.5.tgz#d24edb90fad2e9a84cf3bb217cf300813d0d6630"
-  integrity sha512-NdVVlBtVRLBeMNwaMNd+B/XDNbQGQ4yKjZOCNBzGsV0sf0fAm8BQ7D5HJFbL4/VoZmRxlYCeQRYHu+/iE2VJhg==
+  version "8.3.6"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-storysource/-/addon-storysource-8.3.6.tgz#c3d443bf9f0507e58338da4bc09fcce35439d53a"
+  integrity sha512-L35BJj8vO+jIHSVjCCygoQCHSPt6wiviOLkOMgY1KluslXGHfwHd5am5y9sy4YuFl21SyFPw525/yZj9SLgqpA==
   dependencies:
-    "@storybook/source-loader" "8.3.5"
+    "@storybook/source-loader" "8.3.6"
     estraverse "^5.2.0"
     tiny-invariant "^1.3.1"
 
@@ -4056,10 +4056,10 @@
     type-fest "~2.19"
     util-deprecate "^1.0.2"
 
-"@storybook/source-loader@8.3.5":
-  version "8.3.5"
-  resolved "https://registry.yarnpkg.com/@storybook/source-loader/-/source-loader-8.3.5.tgz#a481aa79a0c686a949e68d4e0f8a9f62f35847a7"
-  integrity sha512-rQRWMqsM2PROeQxBCX23sDKdTMpdkub3A2Q3+6JhVzYRQodQrQDbzVRULq3G7RGXdktTkE+huVO4pLKaDa7PDw==
+"@storybook/source-loader@8.3.6":
+  version "8.3.6"
+  resolved "https://registry.yarnpkg.com/@storybook/source-loader/-/source-loader-8.3.6.tgz#1a14c1d4b1ab099770cbb755cf0149dc656800fd"
+  integrity sha512-czgQVFMsqeXe0pXjbore8X91gUOnpVVIv2dWsgS2UN9sHh+4B/Uevxx6Lz21074aynGO4bNti1BETGelejIM6w==
   dependencies:
     "@storybook/csf" "^0.1.11"
     estraverse "^5.2.0"

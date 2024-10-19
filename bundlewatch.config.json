@@ -7,6 +7,18 @@
     {
       "path": "packages/vite-library/dist/**/*.js",
       "maxSize": "100kB"
+    },
+    {
+      "path": "apps/vite/dist/**/*.js",
+      "maxSize": "100kB"
+    },
+    {
+      "path": "apps/webpack/dist/**/*.js",
+      "maxSize": "100kB"
+    },
+    {
+      "path": "apps/rollup-library-docs/build/**/*.js",
+      "maxSize": "100kB"
     }
   ],
   "ci": {

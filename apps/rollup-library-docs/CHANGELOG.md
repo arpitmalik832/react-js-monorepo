@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.10-alpha.2](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.3.10-alpha.1...v0.3.10-alpha.2) (2024-10-19)
+
+### Bug Fixes
+
+- prettierignore for docs app ([d2d6966](https://github.com/arpitmalik832/react-js-monorepo/commit/d2d696686e40d0462d4de1c98ac0a76c6bec047f))
+
+### Features
+
+- **main:** added webpack app to the monorepo ([5785f61](https://github.com/arpitmalik832/react-js-monorepo/commit/5785f61bb95e11168c12199a859c955c2f8ba0d4))
+
 ## [0.3.10-alpha.1](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.3.10-alpha.0...v0.3.10-alpha.1) (2024-10-16)
 
 **Note:** Version bump only for package docs

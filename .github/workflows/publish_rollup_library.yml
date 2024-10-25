@@ -1,4 +1,4 @@
-name: Publish Package
+name: Publish Rollup Package
 
 on:
   push:
@@ -20,16 +20,32 @@ jobs:
         working-directory: packages/rollup-library
         run: |
           sed -i 's|//npm.pkg.github.com/:_authToken=${GH_TOKEN}|#//npm.pkg.github.com/:_authToken=${GH_TOKEN}|' .npmrc
+      - name: Comment out authToken line in packages/rollup-swc-library .npmrc
+        working-directory: packages/rollup-swc-library
+        run: |
+          sed -i 's|//npm.pkg.github.com/:_authToken=${GH_TOKEN}|#//npm.pkg.github.com/:_authToken=${GH_TOKEN}|' .npmrc
       - name: Comment out authToken line in packages/vite-library .npmrc
         working-directory: packages/vite-library
+        run: |
+          sed -i 's|//npm.pkg.github.com/:_authToken=${GH_TOKEN}|#//npm.pkg.github.com/:_authToken=${GH_TOKEN}|' .npmrc
+      - name: Comment out authToken line in packages/vite-swc-library .npmrc
+        working-directory: packages/vite-swc-library
         run: |
           sed -i 's|//npm.pkg.github.com/:_authToken=${GH_TOKEN}|#//npm.pkg.github.com/:_authToken=${GH_TOKEN}|' .npmrc
       - name: Comment out authToken line in apps/vite .npmrc
         working-directory: apps/vite
         run: |
           sed -i 's|//npm.pkg.github.com/:_authToken=${GH_TOKEN}|#//npm.pkg.github.com/:_authToken=${GH_TOKEN}|' .npmrc
+      - name: Comment out authToken line in apps/vite-swc .npmrc
+        working-directory: apps/vite-swc
+        run: |
+          sed -i 's|//npm.pkg.github.com/:_authToken=${GH_TOKEN}|#//npm.pkg.github.com/:_authToken=${GH_TOKEN}|' .npmrc
       - name: Comment out authToken line in apps/webpack .npmrc
         working-directory: apps/webpack
+        run: |
+          sed -i 's|//npm.pkg.github.com/:_authToken=${GH_TOKEN}|#//npm.pkg.github.com/:_authToken=${GH_TOKEN}|' .npmrc
+      - name: Comment out authToken line in apps/webpack-swc .npmrc
+        working-directory: apps/webpack-swc
         run: |
           sed -i 's|//npm.pkg.github.com/:_authToken=${GH_TOKEN}|#//npm.pkg.github.com/:_authToken=${GH_TOKEN}|' .npmrc
       - name: Authenticate with GitHub Packages

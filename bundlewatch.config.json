@@ -5,7 +5,15 @@
       "maxSize": "150kB"
     },
     {
+      "path": "packages/rollup-swc-library/dist/**/*.js",
+      "maxSize": "150kB"
+    },
+    {
       "path": "packages/vite-library/dist/**/*.js",
+      "maxSize": "150kB"
+    },
+    {
+      "path": "packages/vite-swc-library/dist/**/*.js",
       "maxSize": "150kB"
     },
     {
@@ -13,7 +21,15 @@
       "maxSize": "150kB"
     },
     {
+      "path": "apps/vite-swc/dist/**/*.js",
+      "maxSize": "150kB"
+    },
+    {
       "path": "apps/webpack/dist/**/*.js",
+      "maxSize": "150kB"
+    },
+    {
+      "path": "apps/webpack-swc/dist/**/*.js",
       "maxSize": "150kB"
     },
     {

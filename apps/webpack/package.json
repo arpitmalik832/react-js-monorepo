@@ -1,5 +1,5 @@
 {
-  "name": "react_js_webpack",
+  "name": "react_js_webpack_monorepo",
   "version": "0.3.10-alpha.2",
   "description": "A React JS starter code",
   "sideEffects": false,

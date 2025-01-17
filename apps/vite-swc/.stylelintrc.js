@@ -1,3 +1,7 @@
+/**
+ * This file is used to configure stylelint.
+ * @file This file is saved as '.stylelintrc.js'.
+ */
 // stylelint configuration
 // https://stylelint.io/user-guide/configuration/
 const config = {
@@ -15,9 +19,9 @@ const config = {
   plugins: ['stylelint-order'],
   rules: {
     'declaration-property-unit-allowed-list': {
-      '/^border|^padding|^gap/': ['px'],
+      '/^border|^padding|^gap/': ['rem'],
     },
-    'unit-allowed-list': ['%', 'px', 'ms', 'deg', 'vw', 'vh', 'fr'],
+    'unit-allowed-list': ['%', 'rem', 'em', 'ms', 'deg', 'vw', 'vh', 'fr'],
     'color-named': 'never',
     'function-disallowed-list': ['rgb', 'hwb', 'lch', 'hsl'],
     'custom-property-pattern': [
@@ -63,6 +67,7 @@ const config = {
     '**/*.{mjs,cjs,js,jsx,ts,mdx}',
     'build/**/*.{css,scss}',
     'dist/**/*.{css,scss}',
+    'static/**/*.{css,scss}',
     'node_modules/**/*.{css,scss}',
     'coverage/**/*.{css,scss}',
     'storybook-static/**/*.{css,scss}',

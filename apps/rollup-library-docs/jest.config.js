@@ -1,5 +1,7 @@
-// Jest configuration
-// https://facebook.github.io/jest/docs/en/configuration.html
+/**
+ * @file Jest configuration for the documentation site.
+ * @see https://facebook.github.io/jest/docs/en/configuration.html
+ */
 const config = {
   // Modules can be explicitly auto-mocked using jest.mock(moduleName).
   // https://facebook.github.io/jest/docs/en/configuration.html#automock-boolean

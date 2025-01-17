@@ -1,3 +1,6 @@
+/**
+ * @file Docusaurus configuration for the documentation site.
+ */
 const { themes } = require('prism-react-renderer');
 
 // With JSDoc @type annotations, IDEs can provide config autocompletion

@@ -30,8 +30,15 @@ jobs:
           cache: "pnpm"
       - name: Authenticating with GitHub Packages
         run: |
-          sed -i 's|//npm.pkg.github.com/:_authToken=${GH_TOKEN}|#//npm.pkg.github.com/:_authToken=${GH_TOKEN}|' .npmrc
+          # First find and update all .npmrc files recursively
+          find . -type f -name ".npmrc" -exec sh -c '
+            echo "Processing: {}"
+            sed -i "s|//npm.pkg.github.com/:_authToken=\${GH_TOKEN}|//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}|g" {}
+            cat {}
+          ' \;
+          # Add token to global .npmrc
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}" >> ~/.npmrc
+          echo "Added token to global .npmrc"
       - name: Installing dependencies
         run: pnpm install --frozen-lockfile
       - name: Running dependency audit
@@ -51,8 +58,15 @@ jobs:
           cache: "pnpm"
       - name: Authenticating with GitHub Packages
         run: |
-          sed -i 's|//npm.pkg.github.com/:_authToken=${GH_TOKEN}|#//npm.pkg.github.com/:_authToken=${GH_TOKEN}|' .npmrc
+          # First find and update all .npmrc files recursively
+          find . -type f -name ".npmrc" -exec sh -c '
+            echo "Processing: {}"
+            sed -i "s|//npm.pkg.github.com/:_authToken=\${GH_TOKEN}|//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}|g" {}
+            cat {}
+          ' \;
+          # Add token to global .npmrc
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}" >> ~/.npmrc
+          echo "Added token to global .npmrc"
       - name: Installing dependencies
         run: pnpm install --frozen-lockfile
       - name: Running outdated
@@ -72,8 +86,15 @@ jobs:
           cache: "pnpm"
       - name: Authenticating with GitHub Packages
         run: |
-          sed -i 's|//npm.pkg.github.com/:_authToken=${GH_TOKEN}|#//npm.pkg.github.com/:_authToken=${GH_TOKEN}|' .npmrc
+          # First find and update all .npmrc files recursively
+          find . -type f -name ".npmrc" -exec sh -c '
+            echo "Processing: {}"
+            sed -i "s|//npm.pkg.github.com/:_authToken=\${GH_TOKEN}|//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}|g" {}
+            cat {}
+          ' \;
+          # Add token to global .npmrc
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}" >> ~/.npmrc
+          echo "Added token to global .npmrc"
       - name: Installing dependencies
         run: pnpm install --frozen-lockfile
       - name: Running lint
@@ -93,8 +114,15 @@ jobs:
           cache: "pnpm"
       - name: Authenticating with GitHub Packages
         run: |
-          sed -i 's|//npm.pkg.github.com/:_authToken=${GH_TOKEN}|#//npm.pkg.github.com/:_authToken=${GH_TOKEN}|' .npmrc
+          # First find and update all .npmrc files recursively
+          find . -type f -name ".npmrc" -exec sh -c '
+            echo "Processing: {}"
+            sed -i "s|//npm.pkg.github.com/:_authToken=\${GH_TOKEN}|//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}|g" {}
+            cat {}
+          ' \;
+          # Add token to global .npmrc
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}" >> ~/.npmrc
+          echo "Added token to global .npmrc"
       - name: Installing dependencies
         run: pnpm install --frozen-lockfile
       - name: Running unit tests
@@ -114,8 +142,15 @@ jobs:
           cache: "pnpm"
       - name: Authenticating with GitHub Packages
         run: |
-          sed -i 's|//npm.pkg.github.com/:_authToken=${GH_TOKEN}|#//npm.pkg.github.com/:_authToken=${GH_TOKEN}|' .npmrc
+          # First find and update all .npmrc files recursively
+          find . -type f -name ".npmrc" -exec sh -c '
+            echo "Processing: {}"
+            sed -i "s|//npm.pkg.github.com/:_authToken=\${GH_TOKEN}|//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}|g" {}
+            cat {}
+          ' \;
+          # Add token to global .npmrc
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}" >> ~/.npmrc
+          echo "Added token to global .npmrc"
       - name: Installing dependencies
         run: pnpm install --frozen-lockfile
       - name: Installing cypress
@@ -137,8 +172,15 @@ jobs:
           cache: "pnpm"
       - name: Authenticating with GitHub Packages
         run: |
-          sed -i 's|//npm.pkg.github.com/:_authToken=${GH_TOKEN}|#//npm.pkg.github.com/:_authToken=${GH_TOKEN}|' .npmrc
+          # First find and update all .npmrc files recursively
+          find . -type f -name ".npmrc" -exec sh -c '
+            echo "Processing: {}"
+            sed -i "s|//npm.pkg.github.com/:_authToken=\${GH_TOKEN}|//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}|g" {}
+            cat {}
+          ' \;
+          # Add token to global .npmrc
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}" >> ~/.npmrc
+          echo "Added token to global .npmrc"
       - name: Installing dependencies
         run: pnpm install --frozen-lockfile
       - name: Building the project
@@ -158,8 +200,15 @@ jobs:
           cache: "pnpm"
       - name: Authenticating with GitHub Packages
         run: |
-          sed -i 's|//npm.pkg.github.com/:_authToken=${GH_TOKEN}|#//npm.pkg.github.com/:_authToken=${GH_TOKEN}|' .npmrc
+          # First find and update all .npmrc files recursively
+          find . -type f -name ".npmrc" -exec sh -c '
+            echo "Processing: {}"
+            sed -i "s|//npm.pkg.github.com/:_authToken=\${GH_TOKEN}|//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}|g" {}
+            cat {}
+          ' \;
+          # Add token to global .npmrc
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}" >> ~/.npmrc
+          echo "Added token to global .npmrc"
       - name: Installing dependencies
         run: pnpm install --frozen-lockfile
       - name: Building the storybook
@@ -179,8 +228,15 @@ jobs:
           cache: "pnpm"
       - name: Authenticating with GitHub Packages
         run: |
-          sed -i 's|//npm.pkg.github.com/:_authToken=${GH_TOKEN}|#//npm.pkg.github.com/:_authToken=${GH_TOKEN}|' .npmrc
+          # First find and update all .npmrc files recursively
+          find . -type f -name ".npmrc" -exec sh -c '
+            echo "Processing: {}"
+            sed -i "s|//npm.pkg.github.com/:_authToken=\${GH_TOKEN}|//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}|g" {}
+            cat {}
+          ' \;
+          # Add token to global .npmrc
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}" >> ~/.npmrc
+          echo "Added token to global .npmrc"
       - name: Installing dependencies
         run: pnpm install --frozen-lockfile
       - name: Building the project

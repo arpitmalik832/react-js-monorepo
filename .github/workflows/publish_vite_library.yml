@@ -50,16 +50,15 @@ jobs:
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
       - name: Authenticating with GitHub Packages
         run: |
-          sed -i 's|//npm.pkg.github.com/:_authToken=${GH_TOKEN}|#//npm.pkg.github.com/:_authToken=${GH_TOKEN}|' .npmrc
-          sed -i 's|//npm.pkg.github.com/:_authToken=${GH_TOKEN}|#//npm.pkg.github.com/:_authToken=${GH_TOKEN}|' packages/rollup-library/.npmrc
-          sed -i 's|//npm.pkg.github.com/:_authToken=${GH_TOKEN}|#//npm.pkg.github.com/:_authToken=${GH_TOKEN}|' packages/rollup-swc-library/.npmrc
-          sed -i 's|//npm.pkg.github.com/:_authToken=${GH_TOKEN}|#//npm.pkg.github.com/:_authToken=${GH_TOKEN}|' packages/vite-library/.npmrc
-          sed -i 's|//npm.pkg.github.com/:_authToken=${GH_TOKEN}|#//npm.pkg.github.com/:_authToken=${GH_TOKEN}|' packages/vite-swc-library/.npmrc
-          sed -i 's|//npm.pkg.github.com/:_authToken=${GH_TOKEN}|#//npm.pkg.github.com/:_authToken=${GH_TOKEN}|' apps/vite/.npmrc
-          sed -i 's|//npm.pkg.github.com/:_authToken=${GH_TOKEN}|#//npm.pkg.github.com/:_authToken=${GH_TOKEN}|' apps/vite-swc/.npmrc
-          sed -i 's|//npm.pkg.github.com/:_authToken=${GH_TOKEN}|#//npm.pkg.github.com/:_authToken=${GH_TOKEN}|' apps/webpack/.npmrc
-          sed -i 's|//npm.pkg.github.com/:_authToken=${GH_TOKEN}|#//npm.pkg.github.com/:_authToken=${GH_TOKEN}|' apps/webpack-swc/.npmrc
+          # First find and update all .npmrc files recursively
+          find . -type f -name ".npmrc" -exec sh -c '
+            echo "Processing: {}"
+            sed -i "s|//npm.pkg.github.com/:_authToken=\${GH_TOKEN}|//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}|g" {}
+            cat {}
+          ' \;
+          # Add token to global .npmrc
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}" >> ~/.npmrc
+          echo "Added token to global .npmrc"
       - name: Installing dependencies
         run: pnpm install --frozen-lockfile
       - name: Publishing the library package

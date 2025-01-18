@@ -41,6 +41,7 @@ export default [
       'storybook-static',
       '**/*.md',
       'distInfo/*',
+      '.docusaurus',
     ],
   },
   {

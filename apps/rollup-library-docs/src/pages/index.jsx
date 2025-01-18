@@ -1,3 +1,6 @@
+/**
+ * @file Homepage component that serves as the landing page for the documentation site.
+ */
 /* eslint-disable import/no-unresolved */
 import React from 'react';
 import clsx from 'clsx';
@@ -7,6 +10,13 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './index.module.css';
 import HomepageFeatures from '../components/HomepageFeatures';
 
+/**
+ * Renders the homepage header section with title, tagline and call-to-action button.
+ * @returns {JSX.Element} The header component for the homepage.
+ * @example
+ * // Usage in Home component
+ * <HomepageHeader />
+ */
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
@@ -27,6 +37,13 @@ function HomepageHeader() {
   );
 }
 
+/**
+ * Main homepage component that combines the header and features sections.
+ * @returns {JSX.Element} The complete homepage layout.
+ * @example
+ * // Renders the homepage
+ * <Home />
+ */
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (

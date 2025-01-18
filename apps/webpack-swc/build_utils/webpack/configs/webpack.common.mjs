@@ -2,7 +2,6 @@
  * Webpack common configuration for both development and production environments.
  * @file The file is saved as `build_utils/webpack/webpack.common.js`.
  */
-/* eslint-disable no-underscore-dangle */
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import webpack from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
@@ -11,14 +10,13 @@ import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import Dotenv from 'dotenv-webpack';
 import { fileURLToPath } from 'url';
-import path from 'path';
 
 import pkg from '../../../package.json' with { type: 'json' };
 import { entryPath, outputPath } from '../../config/commonPaths.mjs';
 import svgrConfig from '../../../svgr.config.mjs';
 import { ENVS } from '../../config/index.mjs';
 
-const __filename = fileURLToPath(import.meta.url);
+const filename = fileURLToPath(import.meta.url);
 
 const isBeta = process.env.APP_ENV === ENVS.BETA;
 const isRelease = process.env.APP_ENV === ENVS.PROD;
@@ -42,14 +40,14 @@ const config = {
     version: `${pkg.version}_${process.env.APP_ENV}`,
     store: 'pack',
     buildDependencies: {
-      config: [__filename],
+      config: [filename],
     },
   },
   devtool: isRelease || isBeta ? false : 'source-map',
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: ['swc-loader'],
       },
@@ -90,7 +88,7 @@ const config = {
         ],
       },
       {
-        test: /\.css$/i,
+        test: /\.css$/,
         include: /node_modules/,
         use: ['style-loader', 'css-loader'],
       },
@@ -145,7 +143,6 @@ const config = {
                   if_return: true,
                   join_vars: true,
                   side_effects: true,
-                  warnings: false,
                 },
                 mangle: true,
                 output: {
@@ -173,7 +170,7 @@ const config = {
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
-          name(module, _, _2) {
+          name(module) {
             const moduleName = module.context.match(
               /[\\/]node_modules[\\/](.*?)([\\/]|$)/,
             )?.[1];
@@ -195,9 +192,6 @@ const config = {
     sideEffects: true,
   },
   plugins: [
-    new webpack.ProvidePlugin({
-      process: 'process/browser',
-    }),
     new webpack.DefinePlugin({
       'process.env.APP_ENV': JSON.stringify(process.env.APP_ENV),
     }),
@@ -223,15 +217,8 @@ const config = {
     }),
   ],
   resolve: {
-    alias: {
-      process: 'process/browser',
-    },
-    fallback: {
-      'process/browser': path.resolve('../../node_modules/process/browser.js'),
-    },
-    extensions: ['*', '.js', '.jsx'],
-    symlinks: false,
-    cacheWithContext: false,
+    extensions: ['.jsx', '.js'],
+    fullySpecified: false,
   },
 };
 

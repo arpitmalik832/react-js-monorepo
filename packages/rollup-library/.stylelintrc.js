@@ -1,5 +1,9 @@
+/**
+ * Stylelint configuration.
+ * For more info, pls refer to https://stylelint.io/user-guide/configuration/.
+ * @file This file is saved as `.stylelintrc.js`.
+ */
 // stylelint configuration
-// https://stylelint.io/user-guide/configuration/
 const config = {
   // The standard config based on a handful of CSS style guides
   // https://github.com/stylelint/stylelint-config-standard
@@ -15,9 +19,9 @@ const config = {
   plugins: ['stylelint-order'],
   rules: {
     'declaration-property-unit-allowed-list': {
-      '/^border|^padding|^gap/': ['px'],
+      '/^border|^padding|^gap/': ['rem'],
     },
-    'unit-allowed-list': ['%', 'px', 'ms', 'deg', 'vw', 'vh', 'fr'],
+    'unit-allowed-list': ['%', 'rem', 'em', 'ms', 'deg', 'vw', 'vh', 'fr'],
     'color-named': 'never',
     'function-disallowed-list': ['rgb', 'hwb', 'lch', 'hsl'],
     'custom-property-pattern': [

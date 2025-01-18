@@ -1,10 +1,10 @@
-# React JS Vite Starter Template
+# React JS Vite Template
 
 This is a starter template for building React applications using Vite.
 
 ## Table of Contents
 
-- [React JS Vite Starter Template](#react-js-vite-starter-template)
+- [React JS Vite Starter Template](#react-js-vite-template)
   - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
   - [Usage](#usage)

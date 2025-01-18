@@ -1,6 +1,11 @@
+/\*\*
+
+- @file Documentation page showcasing Markdown and MDX features in Docusaurus, including code blocks, links, images, and interactive components
+  \*/
+
 ---
+
 sidebar_position: 4
----
 
 # Markdown Features
 
@@ -55,16 +60,18 @@ Add an image at `static/img/docusaurus.png` and display it in Markdown:
 
 Markdown code blocks are supported with Syntax highlighting.
 
-    ```jsx title="src/components/HelloDocusaurus.js"
-    function HelloDocusaurus() {
-        return (
-            <h1>Hello, Docusaurus!</h1>
-        )
-    }
-    ```
-
 ```jsx title="src/components/HelloDocusaurus.js"
-function HelloDocusaurus() {
+/**
+ * @file A simple component that displays a greeting message.
+ */
+/**
+ * A simple component that displays a greeting message.
+ * @returns {JSX.Element} A heading element with a greeting.
+ * @example
+ * // Renders a greeting message
+ * const App = () => <HelloDocusaurus />;
+ */
+export function HelloDocusaurus() {
   return <h1>Hello, Docusaurus!</h1>;
 }
 ```
@@ -73,17 +80,19 @@ function HelloDocusaurus() {
 
 Docusaurus has a special syntax to create admonitions and callouts:
 
-    :::tip My tip
+```md
+:::tip My tip
 
-    Use this awesome feature option
+Use this awesome feature option
 
-    :::
+:::
 
-    :::danger Take care
+:::danger Take care
 
-    This action is dangerous
+This action is dangerous
 
-    :::
+:::
+```
 
 :::tip My tip
 
@@ -102,44 +111,40 @@ This action is dangerous
 [MDX](https://mdxjs.com/) can make your documentation more **interactive** and allows using any **React components inside Markdown**:
 
 ```jsx
-export const Highlight = ({children, color}) => (
-  <span
-    style={{
-      backgroundColor: color,
-      borderRadius: '20px',
-      color: '#fff',
-      padding: '10px',
-      cursor: 'pointer',
-    }}
-    onClick={() => {
-      alert(`You clicked the color ${color} with label ${children}`)
-    }}>
-    {children}
-  </span>
-);
-
-This is <Highlight color="#25c2a0">Docusaurus green</Highlight> !
-
-This is <Highlight color="#1877F2">Facebook blue</Highlight> !
-```
-
+/**
+ * @file A component that renders text with a colored background.
+ */
+/**
+ * A component that renders text with a colored background.
+ * @param {object} props - The component props.
+ * @param {React.ReactNode} props.children - The text content to display.
+ * @param {string} props.color - The background color to use.
+ * @returns {JSX.Element} A button with styled text.
+ * @example
+ * // Renders green text
+ * <Highlight color="#25c2a0">Docusaurus green</Highlight>
+ */
 export const Highlight = ({ children, color }) => (
-  <span
+  <button
+    type="button"
     style={{
       backgroundColor: color,
       borderRadius: '20px',
       color: '#fff',
       padding: '10px',
+      border: 'none',
       cursor: 'pointer',
     }}
     onClick={() => {
       alert(`You clicked the color ${color} with label ${children}`);
     }}
+    onKeyDown={e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        alert(`You clicked the color ${color} with label ${children}`);
+      }
+    }}
   >
     {children}
-  </span>
+  </button>
 );
-
-This is <Highlight color="#25c2a0">Docusaurus green</Highlight> !
-
-This is <Highlight color="#1877F2">Facebook blue</Highlight> !
+```

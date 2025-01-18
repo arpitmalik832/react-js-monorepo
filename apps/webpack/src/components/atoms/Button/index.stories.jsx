@@ -1,8 +1,8 @@
 /**
- * Button storybook component.
- * @file The file is saved as `Button/index.stories.jsx`.
+ * This file is used to test the Button component.
+ * @file This file is saved as 'src/components/atoms/Button/index.stories.jsx'.
  */
-import { ReduxProvider } from '@arpitmalik832/react-js-rollup-monorepo-library';
+import { ReduxProvider } from '@arpitmalik832/react-js-rollup-library';
 
 import Button from './index';
 import store from '../../../redux/store/store';

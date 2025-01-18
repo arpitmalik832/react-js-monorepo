@@ -1,5 +1,7 @@
-// Jest configuration
-// https://facebook.github.io/jest/docs/en/configuration.html
+/**
+ * @file Jest configuration for the documentation site.
+ * @see https://facebook.github.io/jest/docs/en/configuration.html
+ */
 const config = {
   // Modules can be explicitly auto-mocked using jest.mock(moduleName).
   // https://facebook.github.io/jest/docs/en/configuration.html#automock-boolean
@@ -55,7 +57,7 @@ const config = {
     '@docusaurus/Link': '<rootDir>/src/__tests__/__mocks__/mockLink.jsx',
     '@docusaurus/useDocusaurusContext':
       '<rootDir>/src/__tests__/__mocks__/mockUseDocusaurusContext.js',
-    '.+\\.(css|styl|less|sass|scss)$': 'identity-obj-proxy',
+    '.+\\.(css|sass|scss)$': 'identity-obj-proxy',
     '.+\\.(jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       '<rootDir>/src/__tests__/__mocks__/mockAsset.js',
     '.+\\.(svg)$': '<rootDir>/src/__tests__/__mocks__/mockSvgr.jsx',

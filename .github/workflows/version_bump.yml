@@ -28,7 +28,7 @@ env:
   NODE_VERSION: 22
 
 jobs:
-  publish-rollup-library:
+  version-bump:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

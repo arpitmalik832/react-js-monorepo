@@ -1,5 +1,7 @@
-// stylelint configuration
-// https://stylelint.io/user-guide/configuration/
+/**
+ * @file Stylelint configuration for the documentation site.
+ * @see https://stylelint.io/user-guide/configuration/
+ */
 const config = {
   // The standard config based on a handful of CSS style guides
   // https://github.com/stylelint/stylelint-config-standard

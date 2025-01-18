@@ -1,4 +1,6 @@
-// Prettier configuration https://prettier.io/docs/en/options
+/**
+ * @file Prettier configuration for the documentation site.
+ */
 const config = {
   arrowParens: 'avoid',
   bracketSameLine: false,

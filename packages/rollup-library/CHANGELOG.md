@@ -1,121 +1,37 @@
-# Change Log
+# Changelog
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+## 0.0.1-alpha.6 (2025-01-17)
 
-## [0.3.10-alpha.2](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.3.10-alpha.1...v0.3.10-alpha.2) (2024-10-19)
+## 0.0.1-alpha.5 (2025-01-13)
+
+## 0.0.1-alpha.4 (2025-01-13)
+
+## 0.0.1-alpha.3 (2025-01-13)
+
+## [0.0.1-alpha.2](https://github.com/arpitmalik832/react-js-rollup-library/compare/v0.0.1-alpha.1...v0.0.1-alpha.2) (2024-10-19)
+
+## [0.0.1-alpha.1](https://github.com/arpitmalik832/react-js-rollup-library/compare/v0.0.1-alpha.0...v0.0.1-alpha.1) (2024-10-16)
+
+## 0.0.1-alpha.0 (2024-10-16)
+
+### Bug Fixes
+
+- **main:** fixed for storybook for colors component ([904a202](https://github.com/arpitmalik832/react-js-rollup-library/commit/904a202ef42c67d6b0228d0724c8c640fd399ee9))
 
 ### Features
 
-- **main:** added vite project to the monorepo ([60a6957](https://github.com/arpitmalik832/react-js-monorepo/commit/60a69578508e33dede5051dde069e8a210b1262f))
-
-## [0.3.10-alpha.1](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.3.10-alpha.0...v0.3.10-alpha.1) (2024-10-16)
-
-**Note:** Version bump only for package @arpitmalik832/react-js-rollup-monorepo-library
-
-## [0.3.10-alpha.0](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.3.9...v0.3.10-alpha.0) (2024-10-15)
-
-**Note:** Version bump only for package @arpitmalik832/react-js-rollup-monorepo-library
-
-## [0.3.9](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.3.8...v0.3.9) (2024-10-15)
-
-**Note:** Version bump only for package @arpitmalik832/react-js-rollup-monorepo-library
-
-## [0.3.8](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.3.7...v0.3.8) (2024-10-09)
-
-**Note:** Version bump only for package @arpitmalik832/react-js-rollup-monorepo-library
-
-## [0.3.7](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.3.6...v0.3.7) (2024-10-09)
-
-**Note:** Version bump only for package @arpitmalik832/react-js-rollup-monorepo-library
-
-## [0.3.6](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.3.5...v0.3.6) (2024-10-02)
-
-### Bug Fixes
-
-- **main:** allowing logs even in prod env of the library ([7f4c6ec](https://github.com/arpitmalik832/react-js-monorepo/commit/7f4c6ec1fa15e551b59865b16ed74a106654b405))
-
-## [0.3.5](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.3.4...v0.3.5) (2024-10-02)
-
-### Bug Fixes
-
-- **services:** fixed sw registration utility ([afa7299](https://github.com/arpitmalik832/react-js-monorepo/commit/afa7299bdd23950154e35b5844e03332a2549e07))
-
-## [0.3.4](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.3.3...v0.3.4) (2024-09-28)
-
-### Bug Fixes
-
-- **utils:** updated dependencies ([3403bab](https://github.com/arpitmalik832/react-js-monorepo/commit/3403bab61c48be6ebfc705f2e9296f345667a58f))
-
-## [0.3.3](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.3.2...v0.3.3) (2024-09-28)
-
-**Note:** Version bump only for package @arpitmalik832/react-js-rollup-monorepo-library
-
-## [0.3.2](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.3.1...v0.3.2) (2024-09-26)
-
-**Note:** Version bump only for package @arpitmalik832/react-js-rollup-monorepo-library
-
-## [0.3.1](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.3.0...v0.3.1) (2024-09-23)
-
-### Bug Fixes
-
-- resolver for declaration file ([fb7aa43](https://github.com/arpitmalik832/react-js-monorepo/commit/fb7aa4330265affa56d8ab914274871e9b1ca697))
-
-# [0.3.0](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.2.3...v0.3.0) (2024-09-23)
-
-### Bug Fixes
-
-- **main:** fixed jsdoc rule to check indentation ([dc86604](https://github.com/arpitmalik832/react-js-monorepo/commit/dc866048d8acba5d843f588d87b58ea9e1a00f3c))
-
-### Features
-
-- **main:** added jsdoc comments to each method ([9d0e695](https://github.com/arpitmalik832/react-js-monorepo/commit/9d0e6951adf92c2301fca46289f0dc8fbe9421a8))
-- **main:** added jsdoc config to library project ([2ef88a1](https://github.com/arpitmalik832/react-js-monorepo/commit/2ef88a112d615b6553e824a2761c890098f55b48))
-- **main:** added jsdoc documentation for each mathods ([778d8e9](https://github.com/arpitmalik832/react-js-monorepo/commit/778d8e99250d35bc2e95b174b714ea4a3a610b1c))
-- **main:** added some new components along with build stats plugin ([0d64317](https://github.com/arpitmalik832/react-js-monorepo/commit/0d64317a2cca43000d67b46f522b156afd4f5b5a))
-- **main:** added type declaration for library ([1453306](https://github.com/arpitmalik832/react-js-monorepo/commit/1453306ebb56f4d1c74a07c24d0091120395bfad))
-
-## [0.2.3](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.2.2...v0.2.3) (2024-09-05)
-
-### Bug Fixes
-
-- added fix to only import the statement in the main index.js file ([144b08f](https://github.com/arpitmalik832/react-js-monorepo/commit/144b08f7ecca8d8c5ec75f322428d4c98b69090d))
-
-## [0.2.2](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.2.1...v0.2.2) (2024-09-05)
-
-### Bug Fixes
-
-- **main:** importing styles file in the main file and also exporting only signle file ([ff5e725](https://github.com/arpitmalik832/react-js-monorepo/commit/ff5e72585af150f2ffed1f9eb56faedf2d820d7e))
-
-## [0.2.1](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.2.0...v0.2.1) (2024-09-05)
-
-## [0.1.2](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.1.1...v0.1.2) (2024-09-04)
-
-**Note:** Version bump only for package @arpitmalik832/react-js-rollup-monorepo-library
-
-# [0.2.0](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.1.2...v0.2.0) (2024-09-05)
-
-### Features
-
-- **main:** added hooks, providers, and redux utilities ([344a107](https://github.com/arpitmalik832/react-js-monorepo/commit/344a107780b706e9493a327085dba68553f979e5))
-
-## [0.1.2](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.1.1...v0.1.2) (2024-09-04)
-
-**Note:** Version bump only for package @arpitmalik832/react-js-rollup-monorepo-library
-
-## [0.1.1](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.1.0...v0.1.1) (2024-09-04)
-
-### Bug Fixes
-
-- **main:** dependabot ([3648418](https://github.com/arpitmalik832/react-js-monorepo/commit/36484188247c686f85cd558a74e04f5f669f1921))
-
-# [0.1.0](https://github.com/arpitmalik832/react-js-monorepo/compare/v0.0.1...v0.1.0) (2024-09-03)
-
-### Bug Fixes
-
-- **main:** fixed lint script for md files ([21a277b](https://github.com/arpitmalik832/react-js-monorepo/commit/21a277b92d50584b90c9ef5cac9334714059b93c))
-
-### Features
-
-- **main:** added beta and prod build scripts ([e578c55](https://github.com/arpitmalik832/react-js-monorepo/commit/e578c553f0c41643a99e99fc8a1d45fd40281025))
-- **main:** added dependabot for github actions also ([625dd1f](https://github.com/arpitmalik832/react-js-monorepo/commit/625dd1fea1bb62cf140d05ca8832d024ae2a43ce))
+- **main:** added rollup plugins to copy styles directory to dist ([17fb4b5](https://github.com/arpitmalik832/react-js-rollup-library/commit/17fb4b5efa01d73644b1d18aa6e84252ee2bd3ad))
+- **main:** change for pre-commit hook ([3f02ded](https://github.com/arpitmalik832/react-js-rollup-library/commit/3f02dedbfb30cdf63aac4dc03c7baf59163945b8))
+- **main:** added a story for colors list ([2f24ad9](https://github.com/arpitmalik832/react-js-rollup-library/commit/2f24ad9e8919d1d8bbffc93b1c7db400d5b06d68))
+- **main:** added colors handling for icons and primitive colors ([5dcb781](https://github.com/arpitmalik832/react-js-rollup-library/commit/5dcb781adefe7d990e7ae7b318e4d1d4ead172f8))
+- **main:** added icons storybook component ([3d3487d](https://github.com/arpitmalik832/react-js-rollup-library/commit/3d3487da80193623d2b8d747b29bfa49394f14a6))
+- **main:** added jest unit testing ([d08a513](https://github.com/arpitmalik832/react-js-rollup-library/commit/d08a513b76431fe8fa1212d0f28986e2addd3513))
+- **main:** added postcss config and script for icons list ([73b796b](https://github.com/arpitmalik832/react-js-rollup-library/commit/73b796b76d74a909d4286a280df09172dffabf3b))
+- **main:** added react and rollup ([342051e](https://github.com/arpitmalik832/react-js-rollup-library/commit/342051e89ef1145d89cfd25891d87249eb66a6a0))
+- **main:** added rollup compiling for multiple entries and svgs ([b28e8ca](https://github.com/arpitmalik832/react-js-rollup-library/commit/b28e8ca50e881315e22f0aa98cd889e561fd8d53))
+- **main:** added script to move assets out of components directory ([0a96e47](https://github.com/arpitmalik832/react-js-rollup-library/commit/0a96e475c4e8427adf3c600b707be8e05f943a23))
+- **main:** added storybook ([3777b36](https://github.com/arpitmalik832/react-js-rollup-library/commit/3777b3682a11192b6324b614fe8936049316c99e))
+- **main:** added storybook for typography ([d7b5c63](https://github.com/arpitmalik832/react-js-rollup-library/commit/d7b5c632e9c507ff423092af6da4de54daccd264))
+- **main:** added style-ditionary along with scss parser ([dfbb545](https://github.com/arpitmalik832/react-js-rollup-library/commit/dfbb54542425e0bb48b25848af18973e258f396a))
+- **main:** change for pre-commit hook ([1e72226](https://github.com/arpitmalik832/react-js-rollup-library/commit/1e72226187aea86b7662b9252301c1c3d1ca8313))
+- **main:** changes to include lint:fix changes during pre commit ([83a0dce](https://github.com/arpitmalik832/react-js-rollup-library/commit/83a0dceee141ad0067d73d8b48985b536f410bc4))

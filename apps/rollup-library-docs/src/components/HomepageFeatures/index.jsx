@@ -1,3 +1,6 @@
+/**
+ * @file Homepage features component that displays the main features of Docusaurus.
+ */
 import React from 'react';
 import clsx from 'clsx';
 
@@ -40,6 +43,20 @@ const FeatureList = [
   },
 ];
 
+/**
+ * Renders a feature card component with an icon, title, and description.
+ * @param {object} root0 - The component props.
+ * @param {React.ComponentType<SVGProps<SVGSVGElement>>} root0.Svg - The SVG component to display.
+ * @param {string} root0.title - The title of the feature.
+ * @param {React.ReactNode} root0.description - The description of the feature.
+ * @returns {JSX.Element} A feature card component.
+ * @example
+ * <Feature
+ *   Svg={MyIconComponent}
+ *   title="Feature Title"
+ *   description="Feature description goes here"
+ * />
+ */
 function Feature({ Svg, title, description }) {
   return (
     <div className={clsx('col col--4')}>
@@ -54,6 +71,12 @@ function Feature({ Svg, title, description }) {
   );
 }
 
+/**
+ * Renders the homepage features section containing multiple feature cards.
+ * @returns {JSX.Element} The homepage features section.
+ * @example
+ * <HomepageFeatures />
+ */
 export default function HomepageFeatures() {
   return (
     <section className={styles.features}>

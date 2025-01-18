@@ -1,3 +1,6 @@
+/**
+ * @file Homepage unit tests.
+ */
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 

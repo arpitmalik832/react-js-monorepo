@@ -9,4 +9,16 @@ const ENVS = {
   DEV: 'development',
 };
 
-export { ENVS };
+const BUILD_TYPE = {
+  SVGR: 'svgr',
+  MAIN: 'main',
+  STORYBOOK: 'storybook',
+};
+
+const SPECIAL_IMPORTS = [
+  'react/jsx-runtime',
+  'react/jsx-dev-runtime',
+  'react-dom/client',
+];
+
+export { ENVS, BUILD_TYPE, SPECIAL_IMPORTS };

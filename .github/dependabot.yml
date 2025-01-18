@@ -60,6 +60,36 @@ updates:
       interval: "weekly"
     target-branch: "feature-dependabot"
 
+  - package-ecosystem: "npm"
+    directory: "/test-apps/rollup-library-test"
+    schedule:
+      interval: "weekly"
+    target-branch: "feature-dependabot"
+
+  - package-ecosystem: "npm"
+    directory: "/test-apps/rollup-swc-library-test"
+    schedule:
+      interval: "weekly"
+    target-branch: "feature-dependabot"
+
+  - package-ecosystem: "npm"
+    directory: "/test-apps/vite-library-test"
+    schedule:
+      interval: "weekly"
+    target-branch: "feature-dependabot"
+
+  - package-ecosystem: "npm"
+    directory: "/test-apps/vite-swc-library-test"
+    schedule:
+      interval: "weekly"
+    target-branch: "feature-dependabot"
+
+  - package-ecosystem: "npm"
+    directory: "/test-apps/webpack-test"
+    schedule:
+      interval: "weekly"
+    target-branch: "feature-dependabot"
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:

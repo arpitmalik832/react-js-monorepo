@@ -1,0 +1,217 @@
+{
+  "files": [
+    {
+      "fileName": "sw.js",
+      "size": 148938,
+      "gzippedSize": 30975,
+      "brotliSize": 25858,
+      "contentType": "asset",
+      "percentageBySize": "13.02"
+    },
+    {
+      "fileName": "0.0.0/js/main.df746687.js",
+      "size": 2250,
+      "gzippedSize": 910,
+      "brotliSize": 754,
+      "contentType": "chunk",
+      "percentageBySize": "0.20"
+    },
+    {
+      "fileName": "remoteEntry.js",
+      "size": 1813,
+      "gzippedSize": 736,
+      "brotliSize": 641,
+      "contentType": "chunk",
+      "percentageBySize": "0.16"
+    },
+    {
+      "fileName": "0.0.0/js/runtime.ae3ece86.js",
+      "size": 33711,
+      "gzippedSize": 7685,
+      "brotliSize": 6800,
+      "contentType": "chunk",
+      "percentageBySize": "2.95"
+    },
+    {
+      "fileName": "0.0.0/js/251.b769f08e.js",
+      "size": 11292,
+      "gzippedSize": 3002,
+      "brotliSize": 2630,
+      "contentType": "chunk",
+      "percentageBySize": "0.99"
+    },
+    {
+      "fileName": "0.0.0/js/2.12e654a9.js",
+      "size": 1911,
+      "gzippedSize": 794,
+      "brotliSize": 657,
+      "contentType": "chunk",
+      "percentageBySize": "0.17"
+    },
+    {
+      "fileName": "0.0.0/js/Error.8cbceee5.js",
+      "size": 969,
+      "gzippedSize": 492,
+      "brotliSize": 405,
+      "contentType": "chunk",
+      "percentageBySize": "0.08"
+    },
+    {
+      "fileName": "0.0.0/css/274.3f337509.css",
+      "size": 210,
+      "gzippedSize": 162,
+      "brotliSize": 116,
+      "contentType": "chunk",
+      "percentageBySize": "0.02"
+    },
+    {
+      "fileName": "0.0.0/js/Home.3f337509.js",
+      "size": 2463,
+      "gzippedSize": 983,
+      "brotliSize": 847,
+      "contentType": "chunk",
+      "percentageBySize": "0.22"
+    },
+    {
+      "fileName": "0.0.0/js/Abc.236a2ee6.js",
+      "size": 942,
+      "gzippedSize": 486,
+      "brotliSize": 437,
+      "contentType": "chunk",
+      "percentageBySize": "0.08"
+    },
+    {
+      "fileName": "0.0.0/js/NotFound.99810226.js",
+      "size": 1010,
+      "gzippedSize": 514,
+      "brotliSize": 424,
+      "contentType": "chunk",
+      "percentageBySize": "0.09"
+    },
+    {
+      "fileName": "0.0.0/js/vendor-react-dom.07b485b8.js",
+      "size": 133061,
+      "gzippedSize": 43091,
+      "brotliSize": 37339,
+      "contentType": "chunk",
+      "percentageBySize": "11.63"
+    },
+    {
+      "fileName": "0.0.0/js/vendor-react.0569ac62.js",
+      "size": 8432,
+      "gzippedSize": 3103,
+      "brotliSize": 2706,
+      "contentType": "chunk",
+      "percentageBySize": "0.74"
+    },
+    {
+      "fileName": "0.0.0/js/976.d7b74715.js",
+      "size": 38173,
+      "gzippedSize": 10664,
+      "brotliSize": 9491,
+      "contentType": "chunk",
+      "percentageBySize": "3.34"
+    },
+    {
+      "fileName": "0.0.0/js/vendor-scheduler.adee8217.js",
+      "size": 4633,
+      "gzippedSize": 1971,
+      "brotliSize": 1720,
+      "contentType": "chunk",
+      "percentageBySize": "0.40"
+    },
+    {
+      "fileName": "0.0.0/js/vendor-redux-logger.85db11b5.js",
+      "size": 10724,
+      "gzippedSize": 3680,
+      "brotliSize": 3305,
+      "contentType": "chunk",
+      "percentageBySize": "0.94"
+    },
+    {
+      "fileName": "0.0.0/js/vendor-react-router-dom.85c5da23.js",
+      "size": 54982,
+      "gzippedSize": 14640,
+      "brotliSize": 12565,
+      "contentType": "chunk",
+      "percentageBySize": "4.81"
+    },
+    {
+      "fileName": "0.0.0/js/373.39260941.js",
+      "size": 178281,
+      "gzippedSize": 47253,
+      "brotliSize": 40369,
+      "contentType": "chunk",
+      "percentageBySize": "15.58"
+    },
+    {
+      "fileName": "0.0.0/js/595.7fcea155.js",
+      "size": 140647,
+      "gzippedSize": 33148,
+      "brotliSize": 28459,
+      "contentType": "chunk",
+      "percentageBySize": "12.29"
+    },
+    {
+      "fileName": "0.0.0/js/369.22e1e705.js",
+      "size": 168051,
+      "gzippedSize": 35486,
+      "brotliSize": 30053,
+      "contentType": "chunk",
+      "percentageBySize": "14.69"
+    },
+    {
+      "fileName": "0.0.0/js/588.1bd510ba.js",
+      "size": 196232,
+      "gzippedSize": 49192,
+      "brotliSize": 40654,
+      "contentType": "chunk",
+      "percentageBySize": "17.15"
+    },
+    {
+      "fileName": "_redirects",
+      "size": 18,
+      "gzippedSize": 38,
+      "brotliSize": 18,
+      "contentType": "asset",
+      "percentageBySize": "0.00"
+    },
+    {
+      "fileName": "favicon.ico",
+      "size": 1406,
+      "gzippedSize": 701,
+      "brotliSize": 671,
+      "contentType": "asset",
+      "percentageBySize": "0.12"
+    },
+    {
+      "fileName": "index.html",
+      "size": 1131,
+      "gzippedSize": 454,
+      "brotliSize": 296,
+      "contentType": "asset",
+      "percentageBySize": "0.10"
+    },
+    {
+      "fileName": "asset-manifest.json",
+      "size": 2714,
+      "gzippedSize": 579,
+      "brotliSize": 513,
+      "contentType": "asset",
+      "percentageBySize": "0.24"
+    }
+  ],
+  "totalSize": 1143994,
+  "totalGzippedSize": 290739,
+  "totalBrotliSize": 247728,
+  "noOfFiles": 25,
+  "largestFile": {
+    "fileName": "0.0.0/js/588.1bd510ba.js",
+    "size": 196232,
+    "gzippedSize": 49192,
+    "brotliSize": 40654,
+    "contentType": "chunk",
+    "percentageBySize": "17.15"
+  },
+  "buildDuration": 3568
+}

@@ -2,7 +2,6 @@
  * HtmlContent component for rendering page title and description.
  * @file The file is saved as`HtmlContent/index.jsx`.
  */
-import React from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 /**

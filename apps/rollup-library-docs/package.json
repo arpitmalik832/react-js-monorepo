@@ -101,7 +101,7 @@
     "lint-staged": "^15.4.1",
     "prettier": "^3.4.2",
     "rimraf": "^6.0.1",
-    "stylelint": "^16.13.2",
+    "stylelint": "^16.14.1",
     "stylelint-config-clean-order": "^7.0.0",
     "stylelint-config-hudochenkov": "^11.0.0",
     "stylelint-config-idiomatic-order": "^10.0.0",

@@ -1,49 +1,23 @@
-name: Version Bump
+name: Publish Package
 permissions:
   contents: write
+  packages: write
 
 on:
   workflow_dispatch:
     inputs:
       package_name:
-        description: "Package to bump version"
+        description: "Package to publish"
         required: true
         default: "packages/rollup"
         type: "choice"
         options:
-          - /
           - packages/rollup
           - packages/rollup-flow
           - packages/rollup-swc
           - packages/vite
           - packages/vite-flow
           - packages/vite-swc
-          - apps/rollup-library-docs
-          - apps/rollup-flow-library-docs
-          - apps/rollup-swc-library-docs
-          - apps/vite-library-docs
-          - apps/vite-flow-library-docs
-          - apps/vite-swc-library-docs
-          - apps/webpack
-          - apps/webpack-flow
-          - apps/webpack-swc
-          - apps/vite
-          - apps/vite-swc
-          - test-apps/rollup
-          - test-apps/rollup-flow
-          - test-apps/rollup-swc
-          - test-apps/vite
-          - test-apps/vite-flow
-          - test-apps/vite-swc
-      version_bump_type:
-        description: "Version bump type"
-        required: true
-        default: "patch"
-        type: "choice"
-        options:
-          - patch
-          - minor
-          - major
       release_type:
         description: "Release type"
         required: true
@@ -54,32 +28,68 @@ on:
           - alpha
           - beta
           - rc
+      build_type:
+        description: "Build type"
+        required: true
+        default: "prod"
+        type: "choice"
+        options:
+          - prod
+          - beta
+          - stage
 
 env:
   PNPM_VERSION: 10.8.1
   NODE_VERSION: 22
+  NX_CACHE_DIRECTORY: .nx-cache
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
 jobs:
-  version-bump:
+  validate-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate package name
+        run: |
+          if [[ ! "${{ github.event.inputs.package_name }}" =~ ^packages/(rollup|rollup-flow|rollup-swc|vite|vite-flow|vite-swc)$ ]]; then
+            echo "Invalid package name"
+            exit 1
+          fi
+
+  publish-rollup-library:
+    needs: validate-inputs
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           token: ${{ secrets.GH_TOKEN }}
+
       - name: Installing pnpm ${{ env.PNPM_VERSION }}
         uses: pnpm/action-setup@v4
         with:
           version: ${{ env.PNPM_VERSION }}
+
       - name: Using Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
+          registry-url: "https://npm.pkg.github.com"
           cache: "pnpm"
+
+      - name: Nx cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.NX_CACHE_DIRECTORY }}
+          key: ${{ runner.os }}-nx-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-nx-${{ hashFiles('**/pnpm-lock.yaml') }}-
+            ${{ runner.os }}-nx-
+
       - name: Configure Git
         run: |
           git remote set-url origin https://${{ github.actor }}:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+
       - name: Authenticating with GitHub Packages
         run: |
           # Update only the root .npmrc file since packages use symbolic links
@@ -91,23 +101,29 @@ jobs:
             echo "Root .npmrc file not found, creating it"
             echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}" > .npmrc
           fi
+
       - name: Installing dependencies
         run: pnpm install --frozen-lockfile
-      - name: Installing Cypress binary
-        run: pnpx cypress install
-      - name: Installing Xvfb
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y xvfb
-      - name: Bumping the version
+
+      - name: Build and publish package
         working-directory: ${{ github.event.inputs.package_name }}
         run: |
-          git status
-          git stash
-          git status
-          git pull
-          pnpm version-bump:${{ github.event.inputs.version_bump_type }}:${{ github.event.inputs.release_type }}
+          echo "Building ${{ github.event.inputs.package_name }}..."
+          if [ "${{ github.event.inputs.build_type }}" = "stage" ]; then
+            pnpm build
+          else
+            pnpm build:${{ github.event.inputs.build_type }}
+          fi
+
+          echo "Publishing package..."
+          pnpm publish:${{ github.event.inputs.release_type }}
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      - name: Verify package
+        working-directory: ${{ github.event.inputs.package_name }}
+        run: |
+          echo "Package details:"
+          cat package.json
+          echo "Build output:"
+          ls -la dist/

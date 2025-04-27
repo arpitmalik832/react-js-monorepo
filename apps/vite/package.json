@@ -8,7 +8,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/arpitmalik832/react-js-vite"
+    "url": "git+https://github.com/arpitmalik832/react-js-monorepo.git"
   },
   "engines": {
     "node": ">=20.17.0"
@@ -235,7 +235,7 @@
     "vite-plugin-svgr": "^4.3.0"
   },
   "dependencies": {
-    "@arpitmalik832/react-js-rollup-library": "0.0.1-alpha.5",
+    "@arpitmalik832/react-js-rollup": "workspace:*",
     "@reduxjs/toolkit": "^2.5.0",
     "axios": "^1.7.9",
     "react": "^19.0.0",

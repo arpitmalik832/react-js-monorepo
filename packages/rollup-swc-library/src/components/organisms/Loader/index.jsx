@@ -2,7 +2,7 @@
  * A simple loader component that displays a loading message.
  * @file The file is saved as `Loader/index.js`.
  */
-import React from 'react';
+
 /**
  * Loader component that displays a loading message.
  * @returns {import('react').JSX.Element} The loader element.

@@ -1,3 +1,7 @@
+/**
+ * Commitlint configuration for the monorepo.
+ * @file This file is saved as `.commitlintrc.js`.
+ */
 const config = {
   extends: ["@commitlint/config-conventional"],
   rules: {

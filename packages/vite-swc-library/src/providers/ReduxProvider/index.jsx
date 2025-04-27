@@ -2,7 +2,6 @@
  * Provides the Redux store to its children.
  * @file The file is saved as `ReduxProvider.jsx`.
  */
-import React from 'react';
 import { Provider } from 'react-redux';
 
 /**

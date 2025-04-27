@@ -1,0 +1,129 @@
+name: Publish Package
+permissions:
+  contents: write
+  packages: write
+
+on:
+  workflow_dispatch:
+    inputs:
+      package_name:
+        description: "Package to publish"
+        required: true
+        default: "packages/rollup"
+        type: "choice"
+        options:
+          - packages/rollup
+          - packages/rollup-flow
+          - packages/rollup-swc
+          - packages/vite
+          - packages/vite-flow
+          - packages/vite-swc
+      release_type:
+        description: "Release type"
+        required: true
+        default: "alpha"
+        type: "choice"
+        options:
+          - release
+          - alpha
+          - beta
+          - rc
+      build_type:
+        description: "Build type"
+        required: true
+        default: "prod"
+        type: "choice"
+        options:
+          - prod
+          - beta
+          - stage
+
+env:
+  PNPM_VERSION: 10.8.1
+  NODE_VERSION: 22
+  NX_CACHE_DIRECTORY: .nx-cache
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+jobs:
+  validate-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate package name
+        run: |
+          if [[ ! "${{ github.event.inputs.package_name }}" =~ ^packages/(rollup|rollup-flow|rollup-swc|vite|vite-flow|vite-swc)$ ]]; then
+            echo "Invalid package name"
+            exit 1
+          fi
+
+  publish-rollup-library:
+    needs: validate-inputs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Installing pnpm ${{ env.PNPM_VERSION }}
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Using Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: "https://npm.pkg.github.com"
+          cache: "pnpm"
+
+      - name: Nx cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.NX_CACHE_DIRECTORY }}
+          key: ${{ runner.os }}-nx-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-nx-${{ hashFiles('**/pnpm-lock.yaml') }}-
+            ${{ runner.os }}-nx-
+
+      - name: Configure Git
+        run: |
+          git remote set-url origin https://${{ github.actor }}:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+
+      - name: Authenticating with GitHub Packages
+        run: |
+          # Update only the root .npmrc file since packages use symbolic links
+          if [ -f ".npmrc" ]; then
+            echo "Updating root .npmrc file"
+            sed -i "s|//npm.pkg.github.com/:_authToken=\${GH_TOKEN}|//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}|g" .npmrc
+            cat .npmrc
+          else
+            echo "Root .npmrc file not found, creating it"
+            echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}" > .npmrc
+          fi
+
+      - name: Installing dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build and publish package
+        working-directory: ${{ github.event.inputs.package_name }}
+        run: |
+          echo "Building ${{ github.event.inputs.package_name }}..."
+          if [ "${{ github.event.inputs.build_type }}" = "stage" ]; then
+            pnpm build
+          else
+            pnpm build:${{ github.event.inputs.build_type }}
+          fi
+
+          echo "Publishing package..."
+          pnpm publish:${{ github.event.inputs.release_type }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      - name: Verify package
+        working-directory: ${{ github.event.inputs.package_name }}
+        run: |
+          echo "Package details:"
+          cat package.json
+          echo "Build output:"
+          ls -la dist/

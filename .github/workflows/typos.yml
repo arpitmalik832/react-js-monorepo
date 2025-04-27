@@ -1,11 +1,15 @@
 name: Spellcheck
+permissions:
+  contents: read
+  pull-requests: read
 
 on:
   pull_request:
     branches:
-      - development
-      - staging
+      - dev
+      - alpha
       - beta
+      - rc
       - release
       - master
       - "feature-*"

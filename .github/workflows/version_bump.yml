@@ -1,10 +1,42 @@
-name: Version Bumping
+name: Version Bump
+permissions:
+  contents: write
 
 on:
   workflow_dispatch:
     inputs:
+      package_name:
+        description: "Package to bump version"
+        required: true
+        default: "packages/rollup"
+        type: "choice"
+        options:
+          - /
+          - packages/rollup
+          - packages/rollup-flow
+          - packages/rollup-swc
+          - packages/vite
+          - packages/vite-flow
+          - packages/vite-swc
+          - apps/rollup-library-docs
+          - apps/rollup-flow-library-docs
+          - apps/rollup-swc-library-docs
+          - apps/vite-library-docs
+          - apps/vite-flow-library-docs
+          - apps/vite-swc-library-docs
+          - apps/webpack
+          - apps/webpack-flow
+          - apps/webpack-swc
+          - apps/vite
+          - apps/vite-swc
+          - test-apps/rollup
+          - test-apps/rollup-flow
+          - test-apps/rollup-swc
+          - test-apps/vite
+          - test-apps/vite-flow
+          - test-apps/vite-swc
       version_bump_type:
-        description: "Version bump type (patch, minor, major)"
+        description: "Version bump type"
         required: true
         default: "patch"
         type: "choice"
@@ -13,7 +45,7 @@ on:
           - minor
           - major
       release_type:
-        description: "Release type (release, alpha, beta, rc)"
+        description: "Release type"
         required: true
         default: "alpha"
         type: "choice"
@@ -24,7 +56,7 @@ on:
           - rc
 
 env:
-  PNPM_VERSION: 10.0.0-beta.1
+  PNPM_VERSION: 10.8.1
   NODE_VERSION: 22
 
 jobs:
@@ -50,22 +82,30 @@ jobs:
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
       - name: Authenticating with GitHub Packages
         run: |
-          # First find and update all .npmrc files recursively
-          find . -type f -name ".npmrc" -exec sh -c '
-            echo "Processing: {}"
-            sed -i "s|//npm.pkg.github.com/:_authToken=\${GH_TOKEN}|//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}|g" {}
-            cat {}
-          ' \;
-          # Add token to global .npmrc
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}" >> ~/.npmrc
-          echo "Added token to global .npmrc"
+          # Update only the root .npmrc file since packages use symbolic links
+          if [ -f ".npmrc" ]; then
+            echo "Updating root .npmrc file"
+            sed -i "s|//npm.pkg.github.com/:_authToken=\${GH_TOKEN}|//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}|g" .npmrc
+            cat .npmrc
+          else
+            echo "Root .npmrc file not found, creating it"
+            echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}" > .npmrc
+          fi
       - name: Installing dependencies
         run: pnpm install --frozen-lockfile
+      - name: Installing Cypress binary
+        run: pnpx cypress install
+      - name: Installing Xvfb
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb
       - name: Bumping the version
+        working-directory: ${{ github.event.inputs.package_name }}
         run: |
           git status
           git stash
           git status
+          git pull
           pnpm version-bump:${{ github.event.inputs.version_bump_type }}:${{ github.event.inputs.release_type }}
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
